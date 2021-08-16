@@ -17,12 +17,12 @@ We will need to:
 
 Sprout is an application that allows users to keep track of the plants they own, and to be notified of stats like when to water them, when to give their plants nutrients, and more. 
 
-    [ ] Hosting on Heroku
-    [ ] User authentication: sign up and log in:
-    [ ] Home page with information on the user's garden and list of plants they own. 
-    [ ] Database of plants, each with their own show page - users also have the ability to add new plants to the db
-    [ ] Notifications system for watering, etc.
-    [ ] Production README
+    - [ ] Hosting on Heroku
+    - [ ] User authentication: sign up and log in:
+    - [ ] Home page with information on the user's garden and list of plants they own. 
+    - [ ] Database of plants, each with their own show page - users also have the ability to add new plants to the db
+    - [ ] Notifications system for watering, etc.
+    - [ ] Production README
 
 #### Bonus Features:
 
