@@ -4,6 +4,10 @@ const User = require("../../models/User")
 const bcrypt = require("bcryptjs")
 const keys = require('../../config/keys')
 const jwt = require("jsonwebtoken")
+const passport  = require("passport")
+
+const validLogin = require("../../validation/login")
+const validRegister = require("../../validation/register")
 
 router.get("/test",(req,res)=>{
     res.json({msg: "this is user routes"})
