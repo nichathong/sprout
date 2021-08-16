@@ -54,7 +54,7 @@ React-redux cycle would be implemented to manage the data visualization for the 
 * **Shirley Tang** - Backend Leader
 * **Nicha Thongpanchang** - Frontend Lead 
 
-#### **Monday**
+### **Monday**
 
 * Starting working on the app skeleton base on weekend project (Twitter)
 * Shirley - start implement user authorization on the backend
@@ -62,23 +62,23 @@ React-redux cycle would be implemented to manage the data visualization for the 
 * Patrick - Help Shirley on the backend setup  
 * Nicha - Create Wireframe for the apps, collecting information on what needs to be on the database
 
-#### **Tuesday**
+### **Tuesday**
 
 * Annie/Nicha Connecting the user backend to frontend to make sure that user auth is working
 * Shirley - populating database for plants
 * Patrick - Making sure the workflow of the group and will fill in the gap where needed (help both frontend and backend)
 
-#### **Wednesday**
+### **Wednesday**
 
 * Shirley/Annie - Continue implementation of visualization on Web application, add more features if possible
 * Nicha - Styling
 * Patrick - complete README, test for bugs
 
-#### **Thursday**
+### **Thursday**
 everyone
 * complete CSS styling
 * test for bugs
 
-#### ** Friday **
+### ** Friday **
 
 * Presentation day
