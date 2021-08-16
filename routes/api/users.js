@@ -82,7 +82,7 @@ router.post("/login",(req,res)=>{
           (err, token) => {
           res.json({
               success: true,
-              token: 'Sprout' + token
+              token: 'Bearer ' + token
           });
         });
 
