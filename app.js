@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const db = require("./config/keys").mongoURI
 const users = require("./routes/api/users")
+const User  = require("./models/User")
 
 mongoose
 .connect(db, {useNewUrlParser: true})
@@ -10,6 +11,11 @@ mongoose
 .catch(err=>console.log(err))
 
 app.get("/",(req,res)=>{
+    const user =new User({
+        email: 'demo1@gmail.com',
+        password:'123456'
+    });
+    user.save()
     res.send("Hello aa");
 })
 
