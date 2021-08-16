@@ -13,13 +13,30 @@ router.get("/test",(req,res)=>{
     res.json({msg: "this is user routes"})
 })
 
+router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
+  res.json({
+    id: req.user.id,
+    firstname: req.user.firstname,
+    lastname: req.user.lastname,
+    email: req.user.email
+  })
+})
+
 router.post("/register",(req,res) =>{
+    const {error, isValid} = validRegister(req.body)
+
+    if(!isValid){
+      return res.status(400).json(errors);
+    }
+
     User.findOne({ email: req.body.email })
     .then(user => {
       if (user) {
         return res.status(400).json({email: "A user has already registered with this address"})
       } else {
         const newUser = new User({
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
           email: req.body.email,
           password: req.body.password
         })
@@ -39,6 +56,10 @@ router.post("/register",(req,res) =>{
 
 
 router.post("/login",(req,res)=>{
+  const {error, isValid} = validLogin(req.body);
+  if(!isValid){
+    return res.status(400).json(errors);
+  }
   const email = req.body.email;
   const password= req.body.password;
   User.findOne({ email })
