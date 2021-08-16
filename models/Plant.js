@@ -24,8 +24,8 @@ const PlantSchema = new Schema({
         required: true
     },
     temperature:{
-        type: Number,
-        required:true
+        type: String,
+        default: ''
     },
     level:{
         type:String,
