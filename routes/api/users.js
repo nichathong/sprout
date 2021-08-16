@@ -23,7 +23,7 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
 })
 
 router.post("/register",(req,res) =>{
-    const {error, isValid} = validRegister(req.body)
+    const {errors, isValid} = validRegister(req.body)
 
     if(!isValid){
       return res.status(400).json(errors);
@@ -56,7 +56,7 @@ router.post("/register",(req,res) =>{
 
 
 router.post("/login",(req,res)=>{
-  const {error, isValid} = validLogin(req.body);
+  const {errors, isValid} = validLogin(req.body);
   if(!isValid){
     return res.status(400).json(errors);
   }
