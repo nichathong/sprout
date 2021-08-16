@@ -26,25 +26,20 @@ Sprout is an application that allows users to keep track of the plants they own,
 
 #### Bonus Features:
 
-    [] Users can search for/follow other users and see/like the plants in their gardens. 
+- [ ] Users can search for/follow other users and see/like the plants in their gardens. 
 
 ## Technologies & Technical Challenges
 
 ### Technologies
 Sprout is an application built with MERN stack
-#### Backend
-* Express
-* MongoDB
+
+**Backend:** MongoDB, Express
 
 The data for Sprout will be stored in MongoDB, a noSQL database. 
 
 Sprout only has two models `user` and `plant`. The association between them is easy. Using a noSQL database could make the database more scalable and flexible
 
-#### Frontend
-* React
-* Redux
-* Node.js
-* Axios
+**Frontend:** React/Redux, Node.js, Axios
 
 React-redux cycle would be implemented to manage the data visualization for the frontend
 
