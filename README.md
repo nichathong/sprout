@@ -1,10 +1,10 @@
 # Sprout
 
-### Sprout is an easy way to care for your plants.
+## Sprout is an easy way to care for your plants.
 
 [Live Demo](not available)
 
-### Background and Overview
+## Background and Overview
 
 We've all been there. How hard can keeping a plant alive be? All I have to do is water it every day. A month later your plant is withering. Keeping your plants healthy is hard. One slip of the mind and months of growth down the drain. Sprout is a simple app that aims to help you grow healthy plants.
 
@@ -15,7 +15,7 @@ We will need to:
     * Build a database to store user and plant information
     * Construct a Web application for visualization of and interaction with the user's plants
 
-### Functionality & MVP
+## Functionality & MVP
 
 Sprout is an application that allows users to keep track of the plants they own, and to be notified of stats like when to water them, when to give their plants nutrients, and more. 
 
@@ -30,7 +30,7 @@ Sprout is an application that allows users to keep track of the plants they own,
 
     [] Users can search for/follow other users and see/like the plants in their gardens. 
 
-### Technologies & Technical Challenges
+## Technologies & Technical Challenges
 
 ##### Technologies
 Sprout is an application built with MERN stack
@@ -54,7 +54,7 @@ React-redux cycle would be implemented to manage the data visualization for the 
 * implement a search function 
 * sending alerts when the user needs to water the plants
 
-### Group Members & Work Breakdown
+## Group Members & Work Breakdown
 
 * **Patrick Campbell** - Team leader
 * **Annie Yang** -  Frontend/Backend Asst.
