@@ -2,7 +2,7 @@ const express  = require("express");
 const router = express.Router();
 const User = require("../../models/User")
 const bcrypt = require("bcryptjs")
-const keys = require('../../config/keys')
+const keys = require('../../config/keys_dev')
 const jwt = require("jsonwebtoken")
 const passport  = require("passport")
 
@@ -45,7 +45,23 @@ router.post("/register",(req,res) =>{
             bcrypt.hash(newUser.password,salt,(err,hash)=>{
                 if (err) throw err;
                 newUser.password =hash;
-                newUser.save().then(user => res.json(user)).catch(err => console.log(err));
+                newUser.save().then(user => {
+                  const payload={
+                    id: user.id,
+                    email: user.email
+                  }
+                  jwt.sign(
+                    payload,
+                    keys.secretOrKey,
+                    {expiresIn: 3600},
+                    (err, token) => {
+                    res.json({
+                        success: true,
+                        token: 'Bearer ' + token
+                    });
+                  });          
+
+                }).catch(err => console.log(err));
             })
         })
 
