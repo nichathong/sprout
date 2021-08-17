@@ -17,10 +17,10 @@ router.post("/new",passport.authenticate('jwt', { session: false }),(req,res)=>{
       return res.status(400).json(errors);
     }
 
-
+    
     const newPlant = new Plant({
         author: req.user.id,
-        name: req.body.name,
+        name: req.body.name.toLowerCase(),
         tags: req.body.tags,
         waterLevel: req.body.waterLevel,
         light: req.body.light,
@@ -67,6 +67,15 @@ router.get("/searchlevel/:level",(req,res)=>{
     ); 
 })
 
+//search by name
+router.get("/searchname/:name",(req,res)=>{
+    Plant.find({name: req.params.name.split('+').join(" ")})
+    .then(plant => res.json(plant))
+    .catch(err =>
+        res.status(404).json({ noplantfound: 'No plants found with that name' })
+    ); 
+})
+
 //find by userId
 router.get("/user/:user_id",(req,res)=>{
     Plant.find({author: req.params.user_id})
@@ -84,11 +93,11 @@ router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>
     if(!isValid){
       return res.status(400).json(errors);
     }
-    
+
     const updatePlant = new Plant({
         _id: req.params.id,
         author: req.user.id,
-        name: req.body.name,
+        name: req.body.name.toLowerCase(),
         tags: req.body.tags,
         waterLevel: req.body.waterLevel,
         light: req.body.light,
