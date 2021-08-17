@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const GardenSchema = new Schema({
+const GardenPlantSchema = new Schema({
     owner:{
         type: Schema.Types.ObjectId,
         ref: 'users'
@@ -20,5 +20,5 @@ const GardenSchema = new Schema({
       }
 });
 
-const Garden = mongoose.model('gardens',GardenSchema);
+const GardenPlant = mongoose.model('garden_plants',GardenPlantSchema);
 module.exports=GardenPlant;

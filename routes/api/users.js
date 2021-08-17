@@ -109,5 +109,15 @@ router.post("/login",(req,res)=>{
   })
 })
 
+router.patch("/:id", passport.authenticate('jwt', {session: false}),(req,res)=>{
+   const updateUser ={
+      firstname = req.body.firstname,
+      lastname = req.body.lastname,
+      email = req.user.email,
+      password = req.user.password,
+      garden = req.body.garden 
+   }
+
+})
 
 module.exports = router;

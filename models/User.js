@@ -18,6 +18,10 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    garden:{
+        type: [{type: Schema.Types.ObjectId}],
+        ref: 'gardens'
+    },
     date: {
         type: Date,
         default: Date.now
