@@ -22,7 +22,7 @@ app.get("/",(req,res)=>{
     //     password:'123456'
     // });
     // user.save()
-    res.send("Hello aa");
+    res.send("Hello World");
 })
 
 

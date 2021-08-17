@@ -10,35 +10,35 @@ const PlantSchema = new Schema({
     name:{
         type: String,
         required: true
+    },
+    tags:{
+        type: Array,
+        default: []
+    },
+    waterLevel:{
+        type: Number,
+        required: true
+    },
+    light:{
+        type: Number,
+        required: true
+    },
+    temperature:{
+        type: String,
+        default: ''
+    },
+    level:{
+        type:String,
+        required: true
+    },
+    waterFrequency:{
+        type: Number,
+        required: true
+    },
+    photoUrls:{
+        type: Array,
+        default: []
     }
-    // tags:{
-    //     type: Array,
-    //     default: []
-    // },
-    // waterLevel:{
-    //     type: Number,
-    //     required: true
-    // },
-    // light:{
-    //     type: Number,
-    //     required: true
-    // },
-    // temperature:{
-    //     type: String,
-    //     default: ''
-    // },
-    // level:{
-    //     type:String,
-    //     required: true
-    // },
-    // waterFrequency:{
-    //     type: Number,
-    //     required: true
-    // },
-    // photoUrls:{
-    //     type: Array,
-    //     default: []
-    // }
 
 })
 
