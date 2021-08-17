@@ -21,4 +21,4 @@ const GardenPlantSchema = new Schema({
 });
 
 const GardenPlant = mongoose.model('garden_plants',GardenPlantSchema);
-module.exports(GardenPlant);
+module.exports=GardenPlant;
