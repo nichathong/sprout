@@ -6,10 +6,6 @@ const GardenPlantSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
-    ownerName:{
-        type: String,
-        required: true
-    },
     plantId:{
         type: Schema.Types.ObjectId,
         ref: 'plants'
