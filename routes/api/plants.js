@@ -70,7 +70,7 @@ router.get("/searchlevel/:level",(req,res)=>{
     Plant.find({level: req.params.level})
     .then(plant => res.json(plant))
     .catch(err =>
-        res.status(404).json({ noplantfound: 'No plants found with that tag' })
+        res.status(404).json({ noplantfound: 'No plants found with that level' })
     ); 
 })
 
