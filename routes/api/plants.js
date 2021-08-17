@@ -17,19 +17,26 @@ router.post("/new",passport.authenticate('jwt', { session: false }),(req,res)=>{
       return res.status(400).json(errors);
     }
 
+    Plant.findOne({name: req.body.name.toLowerCase()})
+    .then( plant => {
+        if(plant){
+            return res.status(400).json({name: "this plant name already exist"})
+        }else{
+            const newPlant = new Plant({
+                author: req.user.id,
+                name: req.body.name.toLowerCase(),
+                tags: req.body.tags.toLowerCase(),
+                waterLevel: req.body.waterLevel,
+                light: req.body.light,
+                temperature: req.body.temperature,
+                level: req.body.level,
+                waterFrequency: req.body.waterFrequency,
+                photoUrls: req.body.photoUrls
+            });
+            newPlant.save().then(plant => res.json(plant))
+        }
+    })
     
-    const newPlant = new Plant({
-        author: req.user.id,
-        name: req.body.name.toLowerCase(),
-        tags: req.body.tags,
-        waterLevel: req.body.waterLevel,
-        light: req.body.light,
-        temperature: req.body.temperature,
-        level: req.body.level,
-        waterFrequency: req.body.waterFrequency,
-        photoUrls: req.body.photoUrls
-    });
-    newPlant.save().then(plant => res.json(plant))
 })
 
 //index
@@ -98,7 +105,7 @@ router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>
         _id: req.params.id,
         author: req.user.id,
         name: req.body.name.toLowerCase(),
-        tags: req.body.tags,
+        tags: req.body.tags.toLowerCase(),
         waterLevel: req.body.waterLevel,
         light: req.body.light,
         temperature: req.body.temperature,
