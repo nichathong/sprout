@@ -110,14 +110,26 @@ router.post("/login",(req,res)=>{
 })
 
 router.patch("/:id", passport.authenticate('jwt', {session: false}),(req,res)=>{
-   const updateUser ={
-      firstname = req.body.firstname,
-      lastname = req.body.lastname,
-      email = req.user.email,
-      password = req.user.password,
-      garden = req.body.garden 
-   }
+   const updateUser =new User({
+      _id: req.params.id,
+      firstname: req.user.firstname,
+      lastname: req.user.lastname,
+      email: req.user.email,
+      password: req.user.password,
+      garden: req.body.garden 
+   })
 
+   User.updateOne({_id: req.params.id}, updateUser)
+   .then(user => res.json(user))
+    .catch(err =>
+        res.status(404).json({ nouserfound: 'update failed' })
+    );
+
+})
+
+//index all users 
+router.get("/",passport.authenticate('jwt', {session: false}),(req,res)=>{
+    
 })
 
 module.exports = router;

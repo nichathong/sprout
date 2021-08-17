@@ -15,15 +15,22 @@ router.post("/new/:plant_id",passport.authenticate('jwt', { session: false }),(r
         plant: req.params.plant_id,
     })
 
-    newGarden.save().then(garden => res.json(garden));
+    newGardenPlant.save().then(gardenPlant => res.json(gardenPlant));
 
+})
+
+router.delete("/:id",passport.authenticate('jwt', { session: false }),(req,res) =>{
+    GardenPlant.deleteOne({_id: req.params.id})
+    .then(gardenPlant => res.json(gardenPlant))
+    .catch(err =>
+        res.status(404).json({ noplantfound: 'No garden plants found with that id, fail delete' }))
 })
 
 router.get("/mine",passport.authenticate('jwt', { session: false }),(req,res)=>{
     GardenPlant.find({owner: req.user.id})
-    .then(garden => res.json(garden))
+    .then(gardenPlant => res.json(gardenPlant))
     .catch(err =>
-        res.status(404).json({ noplantfound: 'No plants found with that tag' })
+        res.status(404).json({ noplantfound: 'No garden plants found with that user' })
     ); 
 })
 
