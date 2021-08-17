@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const passport  = require("passport");
 const Plant = require("../../models/Plant")
+const validPlant =  require("../../validation/plant")
 
 router.get("/test",(req,res)=>{
     res.json({msg: "this is plant routes"})
@@ -10,6 +11,13 @@ router.get("/test",(req,res)=>{
 
 //create
 router.post("/new",passport.authenticate('jwt', { session: false }),(req,res)=>{
+    const {errors, isValid} = validPlant(req.body)
+
+    if(!isValid){
+      return res.status(400).json(errors);
+    }
+
+
     const newPlant = new Plant({
         author: req.user.id,
         name: req.body.name,
@@ -71,6 +79,12 @@ router.get("/user/:user_id",(req,res)=>{
 
 //update plant
 router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
+    const {errors, isValid} = validPlant(req.body)
+
+    if(!isValid){
+      return res.status(400).json(errors);
+    }
+    
     const updatePlant = new Plant({
         _id: req.params.id,
         author: req.user.id,
