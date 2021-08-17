@@ -38,8 +38,8 @@ router.get("/:id",(req,res)=>{
     );
 })
 
-router.get("/:tag",(req,res)=>{
-    Plant.find({tags: req.params.tag})
+router.get("/search/:tag",(req,res)=>{
+    Plant.find({tags: req.params.tag.split('+').join(" ")})
     .then(plant => res.json(plant))
     .catch(err =>
         res.status(404).json({ noplantfound: 'No plants found with that tag' })
