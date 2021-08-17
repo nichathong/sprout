@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const db = require("./config/keys").mongoURI
 const users = require("./routes/api/users")
 const plants = require("./routes/api/plants");
-const garden_plants = require("./routes/api/garden_plants")
+const gardens = require("./routes/api/gardens")
 const path = require('path');
 
 
@@ -43,7 +43,7 @@ require('./config/passport')(passport);
 
 app.use("/api/users",users);
 app.use("/api/plants",plants);
-app.use("/api/garden",garden_plants)
+app.use("/api/gardens",gardens)
 
 const port = process.env.PORT || 5000;
 
