@@ -23,5 +23,20 @@ router.post("/new",passport.authenticate('jwt', { session: false }),(req,res)=>{
     newPlant.save().then(plant => res.json(plant))
 })
 
+router.get("/",(req,res)=>{
+    Plant.find()
+    .sort({date: -1})
+    .then(plants => res.json(plants))
+    .catch(err => res.status(404).json({ notweetsfound: 'No plants found' }));
+})
+
+router.get("/:id",(req,res)=>{
+    Plant.findById(req.params.id)
+    .then(plant => res.json(plant))
+    .catch(err =>
+        res.status(404).json({ noplantfound: 'No plant found with that ID' })
+    );
+})
+
 
 module.exports = router;
