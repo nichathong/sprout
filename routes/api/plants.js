@@ -51,7 +51,7 @@ router.get("/:id",(req,res)=>{
 
 //search by tag
 router.get("/searchtag/:tag",(req,res)=>{
-    Plant.find({tags: req.params.tag.split('+').join(" ")})
+    Plant.find({tags: req.params.tag.split('+').join(" ").toLowerCase()})
     .then(plant => res.json(plant))
     .catch(err =>
         res.status(404).json({ noplantfound: 'No plants found with that tag' })
@@ -69,7 +69,7 @@ router.get("/searchlevel/:level",(req,res)=>{
 
 //search by name
 router.get("/searchname/:name",(req,res)=>{
-    Plant.find({name: req.params.name.split('+').join(" ")})
+    Plant.find({name: req.params.name.split('+').join(" ").toLowerCase()})
     .then(plant => res.json(plant))
     .catch(err =>
         res.status(404).json({ noplantfound: 'No plants found with that name' })
