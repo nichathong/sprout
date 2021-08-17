@@ -43,8 +43,7 @@ router.get("/search/:tag",(req,res)=>{
     .then(plant => res.json(plant))
     .catch(err =>
         res.status(404).json({ noplantfound: 'No plants found with that tag' })
-    );
-        
+    ); 
 })
 
 router.get("/user/:user_id",(req,res)=>{
@@ -56,13 +55,33 @@ router.get("/user/:user_id",(req,res)=>{
         
 })
 
+router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
+    const updatePlant = new Plant({
+        _id: req.params.id,
+        author: req.user.id,
+        name: req.body.name,
+        tags: req.body.tags,
+        waterLevel: req.body.waterLevel,
+        light: req.body.light,
+        temperature: req.body.temperature,
+        level: req.body.level,
+        waterFrequency: req.body.waterFrequency,
+        photoUrls: req.body.photoUrls
+    }); 
 
+    Plant.updateOne({_id: req.params.id}, updatePlant)
+    .then(plant => res.json(plant))
+    .catch(err =>
+        res.status(404).json({ noplantfound: 'fail update' })
+    );
+        
+})
 
 router.delete("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
     Plant.deleteOne({_id: req.params.id})
     .then(plant => res.json(plant))
     .catch(err =>
-        res.status(404).json({ noplantfound: 'No plants found with that id' }))
+        res.status(404).json({ noplantfound: 'No plants found with that id, fail delete' }))
     
 })
 
