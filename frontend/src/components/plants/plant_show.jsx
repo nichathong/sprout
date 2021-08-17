@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import NavbarContainer from "../nav/navbar_container";
 
 class PlantShow extends React.Component {
     constructor(props) {
@@ -13,6 +13,9 @@ class PlantShow extends React.Component {
         
         return (
             <div className="plant-show-container">
+                <div className="navbar-container">
+                    <NavbarContainer/>
+                </div>
                 All the plant info goes here
                 {plant.name}
 
