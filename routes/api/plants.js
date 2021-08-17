@@ -38,5 +38,14 @@ router.get("/:id",(req,res)=>{
     );
 })
 
+router.get("/:tag",(req,res)=>{
+    Plant.find({tags: req.params.tag})
+    .then(plant => res.json(plant))
+    .catch(err =>
+        res.status(404).json({ noplantfound: 'No plants found with that tag' })
+    );
+        
+})
+
 
 module.exports = router;
