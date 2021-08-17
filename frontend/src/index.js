@@ -8,6 +8,9 @@ import { logout } from './actions/session_actions';
 import './index.css';
 // import axios from 'axios';
 
+// Development window stuff
+import { fetchAllPlants } from "./actions/plant_actions";
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
 
@@ -29,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore({});
   }
   const root = document.getElementById('root');
+
+  // Development window stuff
   window.getState = store.getState;
 
   ReactDOM.render(<Root store={store} />, root);
