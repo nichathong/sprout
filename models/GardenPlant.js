@@ -22,4 +22,7 @@ const GardenPlantSchema = new Schema({
         type: Date,
         default: Date.now
       }
-})
+});
+
+const GardenPlant = mongoose.model('garden_plants',GardenPlantSchema);
+module.exports(GardenPlant);
