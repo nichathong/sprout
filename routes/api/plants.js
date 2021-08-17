@@ -47,5 +47,21 @@ router.get("/search/:tag",(req,res)=>{
         
 })
 
+router.get("/user/:user_id",(req,res)=>{
+    Plant.find({author: req.params.user_id})
+    .then(plant => res.json(plant))
+    .catch(err =>
+        res.status(404).json({ noplantfound: 'No plants found with that author' })
+    );
+        
+})
+
+
+
+// router.delete("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
+//     Plant.findById(req.params.id).
+    
+// })
+
 
 module.exports = router;
