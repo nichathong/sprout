@@ -58,10 +58,14 @@ router.get("/user/:user_id",(req,res)=>{
 
 
 
-// router.delete("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
-//     Plant.findById(req.params.id).
+router.delete("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
+    Plant.deleteOne({_id: req.params.id})
+    .then(plant => res.json(plant))
+    .catch(err =>
+        res.status(404).json({ noplantfound: 'No plants found with that id' }))
     
-// })
+})
+
 
 
 module.exports = router;
