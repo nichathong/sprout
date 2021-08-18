@@ -74,6 +74,7 @@ class SessionForm extends React.Component {
             <img className="logo-session" src="sprout2.png" alt=""></img>
           </div>
           <form className="session-form" onSubmit={this.handleSubmit}>
+            {this.renderErrors()}
             {formType === "Login" ? null : (
               <div className="login-form">
                 <label>

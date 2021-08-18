@@ -137,7 +137,6 @@ class PlantShow extends React.Component {
     }
 
 
-
     render() {
         const { plant, currentUser } = this.props;
         const preview = this.state.url ? <img src={this.state.url} /> : null;
@@ -146,7 +145,6 @@ class PlantShow extends React.Component {
                 <div className="edit-form-close" onClick={this.handleClose}>x</div>
 
                 <form className="edit-plant-form" onSubmit={this.handleSubmit}>
-
                     <label>Name
                         <input type="text" value={this.state.name} onChange={this.update("name")} />
                     </label>
