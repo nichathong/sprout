@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavbarContainer from "../nav/navbar_container";
+import './plant_index.css'
 
 class PlantIndex extends React.Component {
     constructor(props) {
@@ -122,80 +123,80 @@ class PlantIndex extends React.Component {
 
         const plantForm = (
             <form className="create-plant-form" onSubmit={this.handleSubmit}>
-                <div className="create-plant-form-close" onClick={this.handleClose}>x</div>
+                <div className="create-plant-form-close" onClick={this.handleClose}>  x </div>
 
-                <label>Name
-                    <input type="text" value={this.state.name} onChange={this.update("name")} />
-                </label>
+                <label className="name">Name
+                    <input className="nameText" type="text" value={this.state.name} onChange={this.update("name")} />
+                </label> <br /> <br />
 
-                <label>Difficulty
-                    <select onChange={this.update("level")} value={this.state.level}>
+                <label className="difficulty">Difficulty
+                    <select className="difficultyText" onChange={this.update("level")} value={this.state.level}>
                         <option value="Beginner">Beginner</option>
                         <option value="Intermediate">Intermediate</option>
                         <option value="Advanced">Advanced</option>
                     </select>
-                </label>
+                </label> <br /> <br />
 
-                <label>Watering Frequency
-                    <input type="radio" name="watering-frequency" value={1} onChange={this.update("waterLevel")} defaultChecked/>{1}
+                <label className="wateringFrequency">Watering Frequency
+                    <input className="wateringFrequencyInput" type="radio" name="watering-frequency" value={1} onChange={this.update("waterLevel")} defaultChecked />{1}
                     <input type="radio" name="watering-frequency" value={2} onChange={this.update("waterLevel")} />{2}
                     <input type="radio" name="watering-frequency" value={3} onChange={this.update("waterLevel")} />{3}
                     <input type="radio" name="watering-frequency" value={4} onChange={this.update("waterLevel")} />{4}
                     <input type="radio" name="watering-frequency" value={5} onChange={this.update("waterLevel")} />{5}
-                </label>
+                </label> <br /> <br />
 
-                <label>How often should the plant be watered (in days)?
-                    <input type="numbers" min="0" max="1000" value={this.state.waterFrequency} onChange={this.update("waterFrequency")} />
-                </label>
+                <label className="days">How often should the plant be watered (in days)?
+                    <input className="daysBox" type="numbers" min="0" max="1000" value={this.state.waterFrequency} onChange={this.update("waterFrequency")} />
+                </label> <br /> <br />
 
-                <label>Amount of Sunlight
-                    <input type="radio" name="sunlight" value={1} onChange={this.update("sunlight")} defaultChecked/>{1}
+                <label className="sunlight">Amount of Sunlight
+                    <input type="radio" name="sunlight" value={1} onChange={this.update("sunlight")} defaultChecked />{1}
                     <input type="radio" name="sunlight" value={2} onChange={this.update("sunlight")} />{2}
                     <input type="radio" name="sunlight" value={3} onChange={this.update("sunlight")} />{3}
                     <input type="radio" name="sunlight" value={4} onChange={this.update("sunlight")} />{4}
                     <input type="radio" name="sunlight" value={5} onChange={this.update("sunlight")} />{5}
-                </label>
+                </label> <br /> <br />
 
-                <label>Ideal Temperature Range
-                    <input type="numbers" min="0" max="300" value={this.state.temperatureMin} onChange={this.update("temperatureMin")}/>
+                <label className="temperature">Ideal Temperature Range (Fahrenheit) <br />
+                    <input className="temperature-input" type="numbers" min="0" max="300" value={this.state.temperatureMin} onChange={this.update("temperatureMin")} />
                     -
-                    <input type="numbers" min="0" max="300" value={this.state.temperatureMax} onChange={this.update("temperatureMax")}/>
-                </label>
+                    <input className="temperature-input" type="numbers" min="0" max="300" value={this.state.temperatureMax} onChange={this.update("temperatureMax")} />
+                </label> <br /> <br />
 
-                <label>Tags
+                <label className="tags">Tags <br />
                     <input type="checkbox" name="tags" onChange={this.update("isIndoor")} />Indoor
                     <input type="checkbox" name="tags" onChange={this.update("isOutdoor")} />Outdoor
                     <input type="checkbox" name="tags" onChange={this.update("isSucculent")} />Succulent
-                    <input type="checkbox" name="tags" onChange={this.update("isFlowering")} />Flowering
+                    <input type="checkbox" name="tags" onChange={this.update("isFlowering")} />Flowering <br />
                     <input type="checkbox" name="tags" onChange={this.update("isPoisonous")} />Poisonous
                     <input type="checkbox" name="tags" onChange={this.update("isExotic")} />Exotic
                     <input type="checkbox" name="tags" onChange={this.update("isMultiColored")} />Multi-colored
                     <input type="checkbox" name="tags" onChange={this.update("isHanging")} />Hanging
-                </label>
+                </label> <br /> <br />
 
-                <input type="submit" value="Create Plant"/>
+                <input className="submit-create-plant" type="submit" value="Create Plant" />
             </form>
         );
 
         return(
             <div className="plant-index-container">
-                {this.state.showForm ? plantForm : null}
-                
+                <img className="plantsBackground" src="plantsBackground.jpeg" />
                 <div className="navbar-contianer">
-                    <NavbarContainer/>
+                    <NavbarContainer />
                 </div>
 
+                <div className="addPlantForm">{this.state.showForm ? plantForm : null}</div>
 
-                <h1 className="plant-index-header">Plants</h1>
-                <button className="create-plant-button" onClick={() => this.setState({ showForm: true })}>+</button>
+                <h1 className="plant-index-header">Types of Plants</h1>
+                <button className="create-plant-button" onClick={() => this.setState({ showForm: true })}>Add Plant</button>
 
                 <ul className="plant-index-list">
                     {plants.map((plant, idx) => 
                         <Link key={idx} to={`/plants/${plant._id}`}>
                             <li className="plant-index-item" key={plant._id}>
-                                Image here
-                                {plant.name}
-                                <button>Add</button>
+                                <img className="plantPhoto" src="plantFiller.jpeg" />
+                                <div className="plantName">{plant.name}</div>
+                                <button className="button">Add</button>
                             </li>
                         </Link>
                     )}
