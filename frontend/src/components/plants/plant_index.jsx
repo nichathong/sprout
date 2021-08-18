@@ -97,7 +97,6 @@ class PlantIndex extends React.Component {
             if (tags[i]) selectedTags.push(i);
         }
 
-        console.log(this.state)
         this.props.createPlant({
             author: this.props.currentUser.id,
             name: this.state.name,
@@ -180,11 +179,12 @@ class PlantIndex extends React.Component {
 
         return(
             <div className="plant-index-container">
+                {this.state.showForm ? plantForm : null}
+                
                 <div className="navbar-contianer">
                     <NavbarContainer/>
                 </div>
 
-                {this.state.showForm ? plantForm : null}
 
                 <h1 className="plant-index-header">Plants</h1>
                 <button className="create-plant-button" onClick={() => this.setState({ showForm: true })}>+</button>
