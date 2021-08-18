@@ -13,20 +13,5 @@ code {
 }
 
 
-.logo{
-  width: 10%;
-  align-self: center;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%);
-}
-
-.main{
-  align-items: center;
-  align-content: center;
-  display: inline;
-  float: top;
-  text-align: center;
-}
 
 

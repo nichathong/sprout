@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import './session_form.css'
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -61,76 +61,94 @@ class SessionForm extends React.Component {
     const { formType } = this.props;
 
     return (
-      <div className="session-form-container">
-        <form className="session-form" onSubmit={this.handleSubmit}>
-          {formType === "Login" ? null : (
-            <div>
-              <label>
-                Firstname
-                <input
-                  type="text"
-                  value={this.state.firstname}
-                  placeholder="First Name"
-                  onChange={this.update("firstname")}
-                />
-              </label>
+      <div className="main-session-form">
+        <div className="background-container">
+          <img
+            className="background-img"
+            src="vadim-kaipov-8ZELrodSvTc-unsplash.jpg"
+            alt=""
+          ></img>
+        </div>
+        <div className="session-form-continer">
+          <div className="logo-container-session">
+            <img className="logo-session" src="sprout2.png" alt=""></img>
+          </div>
+          <form className="session-form" onSubmit={this.handleSubmit}>
+            {formType === "Login" ? null : (
+              <div className="login-form">
+                <label>
+                  <input
+                    className="input-box"
+                    type="text"
+                    value={this.state.firstname}
+                    placeholder="First Name"
+                    onChange={this.update("firstname")}
+                  />
+                </label>
+                <br />
 
-              <label>
-                Lastname
-                <input
-                  type="text"
-                  value={this.state.lastname}
-                  placeholder="Last Name"
-                  onChange={this.update("lastname")}
-                />
-              </label>
-            </div>
-          )}
+                <label>
+                  <input
+                    className="input-box"
+                    type="text"
+                    value={this.state.lastname}
+                    placeholder="Last Name"
+                    onChange={this.update("lastname")}
+                  />
+                </label>
+                <br />
+              </div>
+            )}
 
-          <label>
-            Email
-            <input
-              type="email"
-              value={this.state.email}
-              placeholder="Email"
-              onChange={this.update("email")}
-            />
-          </label>
-
-          <label>
-            Password
-            <input
-              type="password"
-              value={this.state.password}
-              placeholder="Password"
-              onChange={this.update("password")}
-            />
-          </label>
-
-          {formType === "Login" ? null : (
             <label>
-              Re-enter Password
               <input
-                type="password"
-                value={this.state.password2}
-                placeholder="Re-enter Password"
-                onChange={this.update("password2")}
+                className="input-box"
+                type="email"
+                value={this.state.email}
+                placeholder="Email"
+                onChange={this.update("email")}
               />
             </label>
-          )}
+            <br />
 
-          <input type="submit" value="Submit" />
-        </form>
+            <label>
+              <input
+                className="input-box"
+                type="password"
+                value={this.state.password}
+                placeholder="Password"
+                onChange={this.update("password")}
+              />
+            </label>
+            <br />
 
-        {formType === "Login" ? (
-          <h3>
-            Need an account? <Link to="/signup">Register</Link>
-          </h3>
-        ) : (
-          <h3>
-            <Link to="/login">Already have an account?</Link>
-          </h3>
-        )}
+            {formType === "Login" ? null : (
+              <label>
+                <input
+                  className="input-box"
+                  type="password"
+                  value={this.state.password2}
+                  placeholder="Re-enter Password"
+                  onChange={this.update("password2")}
+                />
+              </label>
+            )}
+            <br />
+
+            <input type="submit" value="Submit" />
+          </form>
+          <div className="bottom-text">
+            {formType === "Login" ? (
+              <div className="need-an-account">
+                Need an account? <Link to="/signup">Register</Link>
+              </div>
+            ) : (
+              <div className="already-have-account">
+                <Link to="/login">Already have an account?</Link>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     );
   }

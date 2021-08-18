@@ -1,6 +1,6 @@
 # Sprout
 
-[Live Demo](not available)
+[Live Demo](https://sprout-plant-app.herokuapp.com/)
 
 ## Background and Overview
 

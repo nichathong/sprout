@@ -1,0 +1,97 @@
+.main-session-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.session-form-continer{
+    width: 600px;
+    height: 650px;
+    position: relative;
+    background-color: rgb(250, 225, 212);
+    /* justify-content: center; */
+    margin-top: 25px;
+    border-radius: 20px;
+    padding-left: 5px;
+
+}
+.logo-container-session {
+    width: 300px;
+    margin-top: 50px;
+    position:absolute;
+    left: 50%;
+    margin-left: -150px;
+}
+
+.logo-session {
+    width: 300px;
+    height: auto;
+}
+
+
+.session-form{
+    width: 500px;
+    height: fit-content;
+    margin: auto;
+    position:absolute;
+    margin-top: 300px;
+    left: 50%;
+    margin-left: -250px;
+    line-height: 2;
+}
+.input-box{
+    margin: 7px 0;
+    padding:10px;
+    border: none;
+    background: transparent;
+    border-bottom: thin solid;
+    width: 95%;
+    /* border-radius:10px; */
+}
+.login-form{
+
+}
+
+.bottom-text {
+    width: 200px;
+    position: absolute;
+    /* left: 50%; */
+    /* margin-left: -100px; */
+    bottom: 70px;
+    right: 60px;
+    /* text-align: right; */
+
+}
+
+.already-have-account a {
+    text-decoration: none;
+    font-family:Arial, Helvetica, sans-serif;
+    color:gray;
+
+}
+
+.need-an-account a {
+    text-decoration: none;
+    font-family:Arial, Helvetica, sans-serif;
+    color:gray;
+}
+
+input[type="submit"] {
+    padding: 5px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+
+}
+
+input[type="submit"]:hover {
+    transition:all .5s ease-in-out;
+    background: rgb(255, 211, 163);
+    font-weight: bolder;
+}
+
+
+
+
+
