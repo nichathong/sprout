@@ -77,7 +77,7 @@ class PlantShow extends React.Component {
 
     update(field) {
         return e => {
-            if (field === "waterLevel" || field === "sunlight") {
+            if (field === "waterLevel" || field === "light") {
                 this.setState({ [field]: parseInt(e.currentTarget.value) });
             } else if (field === "level") {
                 this.setState({ [field]: e.target.value });
@@ -109,12 +109,15 @@ class PlantShow extends React.Component {
         formData.append("photoUrls",this.state.photoUrls);
         formData.append("file",this.state.file)
 
+        console.log(this.props.plant._id)
+
         let tags = this.state.tags;
         let selectedTags = [];
         for (let i in tags) {
             if (tags[i]) selectedTags.push(i);
         }
 
+<<<<<<< HEAD
         formData.append("tags", selectedTags)
         this.props.updatePlant(formData).then(() => (this._resetForm()));
         this.stateChange()
@@ -141,6 +144,20 @@ class PlantShow extends React.Component {
         setTimeout(function () {
             window.location.reload() 
         }, 1200);
+=======
+        this.props.updatePlant({
+            id: this.props.plant._id ? this.props.plant._id : this.props.plant.id,
+            author: this.props.currentUser.id,
+            name: this.state.name,
+            level: this.state.level,
+            waterLevel: this.state.waterLevel,
+            waterFrequency: this.state.waterFrequency,
+            light: this.state.light,
+            temperature: `${this.state.temperatureMin}-${this.state.temperatureMax}`,
+            photoUrls: this.state.photoUrls,
+            tags: selectedTags
+        }).then(() => (this._resetForm()));
+>>>>>>> e26f4e7f7b9f3220eb6738a978c17c2620e69cbe
     }
 
 
@@ -197,11 +214,11 @@ class PlantShow extends React.Component {
                     </label>
 
                     <label>Watering Frequency
-                        <input type="radio" name="watering-frequency" value={1} onChange={this.update("waterLevel")} checked={1 === plant.waterLevel} />{1}
-                        <input type="radio" name="watering-frequency" value={2} onChange={this.update("waterLevel")} checked={2 === plant.waterLevel} />{2}
-                        <input type="radio" name="watering-frequency" value={3} onChange={this.update("waterLevel")} checked={3 === plant.waterLevel} />{3}
-                        <input type="radio" name="watering-frequency" value={4} onChange={this.update("waterLevel")} checked={4 === plant.waterLevel} />{4}
-                        <input type="radio" name="watering-frequency" value={5} onChange={this.update("waterLevel")} checked={5 === plant.waterLevel} />{5}
+                        <input type="radio" name="watering-frequency" value={1} onChange={this.update("waterLevel")} defaultChecked={1 === plant.waterLevel} />{1}
+                        <input type="radio" name="watering-frequency" value={2} onChange={this.update("waterLevel")} defaultChecked={2 === plant.waterLevel} />{2}
+                        <input type="radio" name="watering-frequency" value={3} onChange={this.update("waterLevel")} defaultChecked={3 === plant.waterLevel} />{3}
+                        <input type="radio" name="watering-frequency" value={4} onChange={this.update("waterLevel")} defaultChecked={4 === plant.waterLevel} />{4}
+                        <input type="radio" name="watering-frequency" value={5} onChange={this.update("waterLevel")} defaultChecked={5 === plant.waterLevel} />{5}
                     </label>
 
                     <label>How often should the plant be watered (in days)?
@@ -209,11 +226,11 @@ class PlantShow extends React.Component {
                     </label>
 
                     <label>Amount of Sunlight
-                        <input type="radio" name="sunlight" value={1} onChange={this.update("sunlight")} checked={1 === plant.light} />{1}
-                        <input type="radio" name="sunlight" value={2} onChange={this.update("sunlight")} checked={2 === plant.light} />{2}
-                        <input type="radio" name="sunlight" value={3} onChange={this.update("sunlight")} checked={3 === plant.light} />{3}
-                        <input type="radio" name="sunlight" value={4} onChange={this.update("sunlight")} checked={4 === plant.light} />{4}
-                        <input type="radio" name="sunlight" value={5} onChange={this.update("sunlight")} checked={5 === plant.light} />{5}
+                        <input type="radio" name="light" value={1} onChange={this.update("light")} defaultChecked={1 === plant.light} />{1}
+                        <input type="radio" name="light" value={2} onChange={this.update("light")} defaultChecked={2 === plant.light} />{2}
+                        <input type="radio" name="light" value={3} onChange={this.update("light")} defaultChecked={3 === plant.light} />{3}
+                        <input type="radio" name="light" value={4} onChange={this.update("light")} defaultChecked={4 === plant.light} />{4}
+                        <input type="radio" name="light" value={5} onChange={this.update("light")} defaultChecked={5 === plant.light} />{5}
                     </label>
 
                     <label>Ideal Temperature Range
@@ -223,14 +240,14 @@ class PlantShow extends React.Component {
                     </label>
 
                     <label>Tags
-                        <input type="checkbox" name="tags" onChange={this.update("isIndoor")} checked={plant.tags.includes("isIndoor")} />Indoor
-                        <input type="checkbox" name="tags" onChange={this.update("isOutdoor")} checked={plant.tags.includes("isOutdoor")} />Outdoor
-                        <input type="checkbox" name="tags" onChange={this.update("isSucculent")} checked={plant.tags.includes("isSucculent")} />Succulent
-                        <input type="checkbox" name="tags" onChange={this.update("isFlowering")} checked={plant.tags.includes("isFlowering")} />Flowering
-                        <input type="checkbox" name="tags" onChange={this.update("isPoisonous")} checked={plant.tags.includes("isPoisonous")} />Poisonous
-                        <input type="checkbox" name="tags" onChange={this.update("isExotic")} checked={plant.tags.includes("isExotic")} />Exotic
-                        <input type="checkbox" name="tags" onChange={this.update("isMultiColored")} checked={plant.tags.includes("isMultiColored")} />Multi-colored
-                        <input type="checkbox" name="tags" onChange={this.update("isHanging")} checked={plant.tags.includes("isHanging")} />Hanging
+                        <input type="checkbox" name="tags" onChange={this.update("isIndoor")} defaultChecked={plant.tags.includes("isIndoor")} />Indoor
+                        <input type="checkbox" name="tags" onChange={this.update("isOutdoor")} defaultChecked={plant.tags.includes("isOutdoor")} />Outdoor
+                        <input type="checkbox" name="tags" onChange={this.update("isSucculent")} defaultChecked={plant.tags.includes("isSucculent")} />Succulent
+                        <input type="checkbox" name="tags" onChange={this.update("isFlowering")} defaultChecked={plant.tags.includes("isFlowering")} />Flowering
+                        <input type="checkbox" name="tags" onChange={this.update("isPoisonous")} defaultChecked={plant.tags.includes("isPoisonous")} />Poisonous
+                        <input type="checkbox" name="tags" onChange={this.update("isExotic")} defaultChecked={plant.tags.includes("isExotic")} />Exotic
+                        <input type="checkbox" name="tags" onChange={this.update("isMultiColored")} defaultChecked={plant.tags.includes("isMultiColored")} />Multi-colored
+                        <input type="checkbox" name="tags" onChange={this.update("isHanging")} defaultChecked={plant.tags.includes("isHanging")} />Hanging
                     </label>
 
                     {preview}
@@ -276,7 +293,7 @@ class PlantShow extends React.Component {
                     }
 
                     <Link to="/plants">Back to List</Link>
-                </div> : <div></div>
+                </div> : <div className="plant-show-loading"></div>
         );
     }
 }
