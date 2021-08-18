@@ -4,18 +4,49 @@ const jwt = require("jsonwebtoken");
 const passport  = require("passport");
 const Plant = require("../../models/Plant")
 const validPlant =  require("../../validation/plant")
+const multer = require("multer");
+const keys = require("../../config/keys")
+var AWS = require("aws-sdk");
+
+
+var storage = multer.memoryStorage();
+var upload = multer({ storage: storage });
+
+
 
 router.get("/test",(req,res)=>{
     res.json({msg: "this is plant routes"})
 })
 
 //create
-router.post("/new",passport.authenticate('jwt', { session: false }),(req,res)=>{
+router.post("/new",passport.authenticate('jwt', { session: false }),upload.single("file"),(req,res)=>{
     const {errors, isValid} = validPlant(req.body)
 
     if(!isValid){
       return res.status(400).json(errors);
     }
+
+
+
+
+    const S3_BUCKET = "sprout-app",
+    const file = req.file;
+    const s3FileURL = `https://${S3_BUCKET}.s3.amazonaws.com/`;
+    
+    let s3bucket = new AWS.S3({
+        accessKeyId: keys.awsAccessKeyId,
+        secretAccessKey: keys.awsSecretAccessKey,
+        region: 'us-east-2'
+      });
+
+      var params = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: file.originalname,
+        Body: file.buffer,
+        ContentType: file.mimetype,
+        ACL: "public-read"
+      };  
+
 
     Plant.findOne({name: req.body.name.toLowerCase()})
     .then( plant => {
