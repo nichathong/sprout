@@ -83,7 +83,6 @@ router.post("/new",passport.authenticate('jwt', { session: false }),upload.singl
             }
             
            }
-
       })
 })
 

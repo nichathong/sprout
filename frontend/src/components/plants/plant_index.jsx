@@ -17,6 +17,7 @@ class PlantIndex extends React.Component {
             temperatureMin: 0,
             temperatureMax: 0,
             photoUrls: [],
+            file: null,
             
             tags: {
                 isIndoor: false,
@@ -34,6 +35,7 @@ class PlantIndex extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this._resetForm = this._resetForm.bind(this);
+        this.handleSelectedFile = this.handleSelectedFile.bind(this)
     }
 
 
@@ -54,6 +56,7 @@ class PlantIndex extends React.Component {
             temperatureMin: 0,
             temperatureMax: 0,
             photoUrls: [],
+            file:null,
             
             tags: {
                 isIndoor: false,
@@ -92,35 +95,71 @@ class PlantIndex extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        let tags = this.state.tags;
-        let selectedTags = [];
-        for (let i in tags) {
-            if (tags[i]) selectedTags.push(i);
-        }
+        const formData = new FormData();
+        
+        formData.append("author", this.props.currentUser.id);
+        formData.append("name",this.state.name);
+        formData.append("level",this.state.level);
+        formData.append("waterLevel", this.state.waterLevel);
+        formData.append("waterFrequency",this.state.waterFrequency);
+        formData.append("light",this.state.light);
+        formData.append("temperature",`${this.state.temperatureMin}-${this.state.temperatureMax}`);
+        formData.append("photoUrls",this.state.photoUrls);
+        formData.append("file",this.state.file)
+        formData.append("tags",[])
 
-        this.props.createPlant({
-            author: this.props.currentUser.id,
-            name: this.state.name,
-            level: this.state.level,
-            waterLevel: this.state.waterLevel,
-            waterFrequency: this.state.waterFrequency,
-            light: this.state.light,
-            temperature: `${this.state.temperatureMin}-${this.state.temperatureMax}`,
-            photoUrls: this.state.photoUrls,
-            tags: selectedTags
-        }).then(() => (this._resetForm()));
+        // let tags = this.state.tags;
+        // let selectedTags = [];
+        // for (let i in tags) {
+        //     if (tags[i]) selectedTags.push(i);
+        // }
+
+        // if(selectedTags!==null){
+        //     for (let i = 0; i < tags.length; i++) {
+        //         formData.append("tags[]", selectedTags[i]);
+        //       }
+        // }
+
+
+
+
+        // this.props.createPlant({
+        //     author: this.props.currentUser.id,
+        //     name: this.state.name,
+        //     level: this.state.level,
+        //     waterLevel: this.state.waterLevel,
+        //     waterFrequency: this.state.waterFrequency,
+        //     light: this.state.light,
+        //     temperature: `${this.state.temperatureMin}-${this.state.temperatureMax}`,
+        //     photoUrls: this.state.photoUrls,
+        //     tags: selectedTags,
+        // }).then(() => (this._resetForm()));
+
+        this.props.createPlant(formData).then(()=> (this._resetForm()))
+        this.stateChange()
     }
 
+    stateChange() {
+        setTimeout(function () {
+            window.location.reload() 
+        }, 1200);
+    }
 
     handleClose(e) {
         e.preventDefault();
         this._resetForm();
     }
 
+    handleSelectedFile(e){
+        e.preventDefault();
+        this.setState({
+            file: e.target.files[0]
+          });
+    }
+
 
     render() {
         const { plants } = this.props;
-
         const plantForm = (
             <form className="create-plant-form" onSubmit={this.handleSubmit}>
                 <div className="create-plant-form-close" onClick={this.handleClose}>  x </div>
@@ -174,10 +213,11 @@ class PlantIndex extends React.Component {
                     <input type="checkbox" name="tags" onChange={this.update("isHanging")} />Hanging
                 </label> <br /> <br />
 
+                <input type="file" onChange={this.handleSelectedFile}/>
+
                 <input className="submit-create-plant" type="submit" value="Create Plant" />
             </form>
         );
-
         return(
             <div className="plant-index-container">
                 <img className="plantsBackground" src="plantsBackground.jpeg" />

@@ -136,6 +136,7 @@ class PlantShow extends React.Component {
 
     render() {
         const { plant, currentUser } = this.props;
+        if (plant===undefined) return null;
         
         const editForm = plant ?
             <div className="plant-show-edit-form-container">
