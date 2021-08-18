@@ -1,0 +1,63 @@
+.nav-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 150px;
+
+}
+
+.all-nav-bttn {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    min-width: 800px;
+    background-color: rgb(101, 116, 104);
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+.explore-plant-link {
+    height: fit-content;
+    padding-top: 27px;
+    text-decoration: none;
+    color: white;
+
+}
+
+.explore-plant-link:hover {
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+
+}
+.logo-nave {
+    padding-top: 5px;
+
+}
+
+.logout-bttn {
+    cursor: pointer;
+    margin-top: 20px;
+    width: 70px;
+    height: 35px;
+    border:white 1px solid; 
+    border-radius: 10px;
+    background: rgb(255, 211, 163);
+    font-weight: bolder;
+}
+
+.logout-bttn:hover {
+    transition:all .5s ease-in-out;
+    background: rgb(177, 177, 177);
+    font-weight: bolder;
+    color: white;
+}
+
+.explore-plant-link {
+    
+}
+
+img {
+    width: 100px;
+    height: auto;
+}
+
