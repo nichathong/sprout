@@ -105,7 +105,7 @@ router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>
         _id: req.params.id,
         author: req.user.id,
         name: req.body.name.toLowerCase(),
-        tags: req.body.tags.toLowerCase(),
+        tags: req.body.tags,
         waterLevel: req.body.waterLevel,
         light: req.body.light,
         temperature: req.body.temperature,

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import NavbarContainer from "../nav/navbar_container";
 
 class PlantShow extends React.Component {
     constructor(props) {
@@ -45,8 +45,10 @@ class PlantShow extends React.Component {
 
         return (
             <div className="plant-show-container">
+          
                 Plant image here
                 <h1>{plant.name}</h1>
+
                 <ul>
                     <li>Difficulty: {plant.level.charAt(0).toUpperCase() + plant.level.slice(1)}</li>
                     <li>Watering Frequency: {plant.waterLevel}</li>

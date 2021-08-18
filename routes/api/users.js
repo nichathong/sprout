@@ -2,7 +2,7 @@ const express  = require("express");
 const router = express.Router();
 const User = require("../../models/User")
 const bcrypt = require("bcryptjs")
-const keys = require('../../config/keys')
+const keys = require('../../config/keys_dev')
 const jwt = require("jsonwebtoken")
 const passport  = require("passport")
 
@@ -18,7 +18,9 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
     id: req.user.id,
     firstname: req.user.firstname,
     lastname: req.user.lastname,
-    email: req.user.email
+    email: req.user.email,
+    garden: req.user.garden,
+    public: req.user.public
   })
 })
 
@@ -45,7 +47,23 @@ router.post("/register",(req,res) =>{
             bcrypt.hash(newUser.password,salt,(err,hash)=>{
                 if (err) throw err;
                 newUser.password =hash;
-                newUser.save().then(user => res.json(user)).catch(err => console.log(err));
+                newUser.save().then(user => {
+                  const payload={
+                    id: user.id,
+                    email: user.email
+                  }
+                  jwt.sign(
+                    payload,
+                    keys.secretOrKey,
+                    {expiresIn: 3600},
+                    (err, token) => {
+                    res.json({
+                        success: true,
+                        token: 'Bearer ' + token
+                    });
+                  });          
+
+                }).catch(err => console.log(err));
             })
         })
 
@@ -67,7 +85,6 @@ router.post("/login",(req,res)=>{
     if(!user){
       return res.status(404).json({email: 'This user does not exist'});
     }
-
     bcrypt.compare(password, user.password)
      .then(isMatch =>{
        if(isMatch){
@@ -91,6 +108,34 @@ router.post("/login",(req,res)=>{
        }
      })
   })
+})
+
+router.patch("/:id", passport.authenticate('jwt', {session: false}),(req,res)=>{
+   const updateUser =new User({
+      _id: req.params.id,
+      firstname: req.user.firstname,
+      lastname: req.user.lastname,
+      email: req.user.email,
+      password: req.user.password,
+      garden: req.body.garden,
+      public: req.body.public
+   })
+
+   User.updateOne({_id: req.params.id}, updateUser)
+   .then(user => res.json(user))
+    .catch(err =>
+        res.status(404).json({ nouserfound: 'update failed' })
+    );
+
+})
+
+//index all users 
+router.get("/publicGardens",passport.authenticate('jwt', {session: false}),(req,res)=>{
+    User.find({public: true })
+    .then(user => res.json(user))
+    .catch(err =>
+        res.status(404).json({ nouserfound: 'no public gardens' })
+    );
 })
 
 
