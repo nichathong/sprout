@@ -116,7 +116,8 @@ router.patch("/:id", passport.authenticate('jwt', {session: false}),(req,res)=>{
       lastname: req.user.lastname,
       email: req.user.email,
       password: req.user.password,
-      garden: req.body.garden 
+      garden: req.body.garden,
+      public: req.body.public
    })
 
    User.updateOne({_id: req.params.id}, updateUser)
@@ -129,7 +130,11 @@ router.patch("/:id", passport.authenticate('jwt', {session: false}),(req,res)=>{
 
 //index all users 
 router.get("/",passport.authenticate('jwt', {session: false}),(req,res)=>{
-    
+    User.find({public: true })
+    .then(user => res.json(user))
+    .catch(err =>
+        res.status(404).json({ nouserfound: 'no public gardens' })
+    );
 })
 
 module.exports = router;
