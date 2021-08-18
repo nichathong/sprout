@@ -129,7 +129,7 @@ router.patch("/:id", passport.authenticate('jwt', {session: false}),(req,res)=>{
 })
 
 //index all users 
-router.get("/",passport.authenticate('jwt', {session: false}),(req,res)=>{
+router.get("/publicGardens",passport.authenticate('jwt', {session: false}),(req,res)=>{
     User.find({public: true })
     .then(user => res.json(user))
     .catch(err =>
