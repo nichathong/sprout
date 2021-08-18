@@ -14,7 +14,7 @@ module.exports = function validPlant(data){
       if (Validator.isEmpty(data.level)) {
         errors.level = 'Level field is required';
       }
-      if (Validator.isEmpty(data.waterFrequency)) {
+      if (Validator.isEmpty(data.waterFrequency.toString())) {
         errors.waterFrequency = 'Water Frequency field is required';
       }
     

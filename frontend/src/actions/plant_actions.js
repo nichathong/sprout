@@ -3,9 +3,16 @@ import * as PlantAPIUtil from "../util/plant_api_util";
 export const RECEIVE_PLANT = "RECEIVE_PLANT";
 export const RECEIVE_ALL_PLANTS = "RECEIVE_ALL_PLANTS";
 export const REMOVE_PLANT = "REMOVE_PLANT";
+export const UPDATE_PLANT = "UPDATE_PLANT";
 
 const receivePlant = plant => ({
     type: RECEIVE_PLANT,
+    plant
+});
+
+
+const updatePlantAction = plant => ({
+    type: UPDATE_PLANT,
     plant
 });
 
@@ -23,7 +30,7 @@ export const createPlant = plant => dispatch => PlantAPIUtil.createPlant(plant)
     .then(plant => dispatch(receivePlant(plant)));
 
 export const updatePlant = plant => dispatch => PlantAPIUtil.updatePlant(plant)
-    .then(plant => dispatch(receivePlant(plant)));
+    .then(plant => dispatch(updatePlantAction(plant)));
 
 export const deletePlant = plantId => dispatch => PlantAPIUtil.deletePlant(plantId)
     .then(() => dispatch(removePlant(plantId)));

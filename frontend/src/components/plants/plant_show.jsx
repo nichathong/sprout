@@ -10,24 +10,24 @@ class PlantShow extends React.Component {
         this.state = {
             showForm: false,
 
-            name: props.plant.name,
-            level: props.plant.level,
-            waterLevel: props.plant.waterLevel,
-            waterFrequency: props.plant.waterFrequency,
-            light: props.plant.light,
-            temperatureMin: props.plant.temperature === "" ? undefined : parseInt(props.plant.temperature.split("-")[0]),
-            temperatureMax: props.plant.temperature === "" ? undefined : parseInt(props.plant.temperature.split("-")[1]),
+            name: "",
+            level: "",
+            waterLevel: "",
+            waterFrequency: "",
+            light: "",
+            temperatureMin: "",
+            temperatureMax: "",
             photoUrls: [],
 
             tags: {
-                isIndoor: props.plant.tags.includes("isIndoor") ? true : false,
-                isOutdoor: props.plant.tags.includes("isOutdoor") ? true : false,
-                isSucculent: props.plant.tags.includes("isSucculent") ? true : false,
-                isFlowering: props.plant.tags.includes("isFlowering") ? true : false,
-                isPoisonous: props.plant.tags.includes("isPoisonous") ? true : false,
-                isExotic: props.plant.tags.includes("isExotic") ? true : false,
-                isMultiColored: props.plant.tags.includes("isMultiColored") ? true : false,
-                isHanging: props.plant.tags.includes("isHanging") ? true : false
+                isIndoor: false,
+                isOutdoor: false,
+                isSucculent: false,
+                isFlowering: false,
+                isPoisonous: false,
+                isExotic: false,
+                isMultiColored: false,
+                isHanging: false
             }
         };
 
@@ -36,6 +36,12 @@ class PlantShow extends React.Component {
         this.handleClose = this.handleClose.bind(this);
         this._resetForm = this._resetForm.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+    }
+
+    
+    componentDidMount() {
+        this.props.fetchAllPlants();
     }
 
 
@@ -121,11 +127,17 @@ class PlantShow extends React.Component {
             .then(() => this.props.history.push("/plants"));
     }
 
+    handleOpen(e) {
+        e.preventDefault();
+        this._resetForm();
+        this.setState({ showForm: true });
+    }
+
 
     render() {
         const { plant, currentUser } = this.props;
         
-        const editForm = (
+        const editForm = plant ?
             <div className="plant-show-edit-form-container">
                 <div className="edit-form-close" onClick={this.handleClose}>x</div>
 
@@ -182,44 +194,44 @@ class PlantShow extends React.Component {
 
                     <input type="submit" value="Update Plant" />
                 </form>
-            </div>
-        );
+            </div> : null;
 
         return (
-            <div className="plant-show-container">
-                {this.state.showForm ? editForm : null}
+            plant ? 
+                <div className="plant-show-container">
+                    {this.state.showForm ? editForm : null}
 
-                <div className="navbar-contianer">
-                    <NavbarContainer />
-                </div>
-          
-                Plant image here
-                <h1>{plant.name}</h1>
-
-                <ul>
-                    <li>Difficulty: {plant.level.charAt(0).toUpperCase() + plant.level.slice(1)}</li>
-                    <li>Watering Frequency: {plant.waterLevel}</li>
-                    <li>Hours Between Watering: {plant.waterFrequency * 24}</li>
-                    <li>Amount of Sunlight: {plant.light}</li>
-                    {plant.temperature === "" ? null : <li>Ideal Temperature Range: {plant.temperature}</li>}
-                </ul>
-
-                {plant.tags.length < 1 ? null : 
-                    <div>
-                        {plant.tags.map((tag, idx) => <div key={idx}>{tag.slice(2)}</div>)}
+                    <div className="navbar-contianer">
+                        <NavbarContainer />
                     </div>
-                }
+            
+                    Plant image here
+                    <h1>{plant.name}</h1>
 
-                {currentUser.id === plant.author ? 
-                    <div className="plant-show-edit-buttons-container">
-                        <button className="plant-show-edit-button" onClick={() => this.setState({ showForm: true })}>Edit</button>
-                        <button className="plant-show-delete-button" onClick={this.handleDelete}>Delete</button>
-                    </div> :
-                    null
-                }
+                    <ul>
+                        <li>Difficulty: {plant.level.charAt(0).toUpperCase() + plant.level.slice(1)}</li>
+                        <li>Watering Frequency: {plant.waterLevel}</li>
+                        <li>Hours Between Watering: {plant.waterFrequency * 24}</li>
+                        <li>Amount of Sunlight: {plant.light}</li>
+                        {plant.temperature === "0-0" ? null : <li>Ideal Temperature Range: {plant.temperature}</li>}
+                    </ul>
 
-                <Link to="/plants">Back to List</Link>
-            </div>
+                    {plant.tags.length < 1 ? null : 
+                        <div>
+                            {plant.tags.map((tag, idx) => <div key={idx}>{tag.slice(2)}</div>)}
+                        </div>
+                    }
+
+                    {currentUser.id === plant.author ? 
+                        <div className="plant-show-edit-buttons-container">
+                            <button className="plant-show-edit-button" onClick={this.handleOpen}>Edit</button>
+                            <button className="plant-show-delete-button" onClick={this.handleDelete}>Delete</button>
+                        </div> :
+                        null
+                    }
+
+                    <Link to="/plants">Back to List</Link>
+                </div> : <div></div>
         );
     }
 }
