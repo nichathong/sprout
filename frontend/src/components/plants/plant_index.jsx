@@ -18,6 +18,7 @@ class PlantIndex extends React.Component {
             temperatureMax: 0,
             photoUrls: [],
             file: null,
+            url:null,
             
             tags: {
                 isIndoor: false,
@@ -153,14 +154,20 @@ class PlantIndex extends React.Component {
 
     handleSelectedFile(e){
         e.preventDefault();
-        this.setState({
-            file: e.target.files[0]
-          });
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader();
+        fileReader.onloadend = () => {
+            this.setState({ file: file, url: fileReader.result });
+        };
+        if (file) {
+        fileReader.readAsDataURL(file);
+        }
     }
 
 
     render() {
         const { plants } = this.props;
+        const preview = this.state.url ? <img src={this.state.url} /> : null;
         const plantForm = (
             <form className="create-plant-form" onSubmit={this.handleSubmit}>
                 <div className="create-plant-form-close" onClick={this.handleClose}>  x </div>
@@ -213,7 +220,9 @@ class PlantIndex extends React.Component {
                     <input type="checkbox" name="tags" onChange={this.update("isMultiColored")} />Multi-colored
                     <input type="checkbox" name="tags" onChange={this.update("isHanging")} />Hanging
                 </label> <br /> <br />
-
+                
+                {/* upload photo here*/}
+                 {preview}
                 <input type="file" onChange={this.handleSelectedFile}/>
 
                 <input className="submit-create-plant" type="submit" value="Create Plant" />

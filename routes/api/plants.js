@@ -179,7 +179,7 @@ router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>
                 temperature: req.body.temperature,
                 level: req.body.level,
                 waterFrequency: req.body.waterFrequency,
-                photoUrls: req.body.photoUrls.concat(`https://${S3_BUCKET}.s3.amazonaws.com/${file.originalname}`)
+                photoUrls: req.body.photoUrls
               };
               const updatePlant = new Plant(newFileUploaded);
                 Plant.updateOne({_id: req.params.id}, updatePlant)

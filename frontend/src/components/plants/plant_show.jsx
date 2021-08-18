@@ -37,6 +37,7 @@ class PlantShow extends React.Component {
         this._resetForm = this._resetForm.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
+        this.handleSelectedFile = this.handleSelectedFile.bind(this)
     }
 
     
@@ -57,6 +58,8 @@ class PlantShow extends React.Component {
             temperatureMin: this.props.plant.temperature === "" ? undefined : parseInt(this.props.plant.temperature.split("-")[0]),
             temperatureMax: this.props.plant.temperature === "" ? undefined : parseInt(this.props.plant.temperature.split("-")[1]),
             photoUrls: [],
+            url:null,
+            file:null,
 
             tags: {
                 isIndoor: this.props.plant.tags.includes("isIndoor") ? true : false,
@@ -94,6 +97,17 @@ class PlantShow extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append("id",this.props.plant._id)
+        formData.append("author", this.props.currentUser.id);
+        formData.append("name",this.state.name);
+        formData.append("level",this.state.level);
+        formData.append("waterLevel", this.state.waterLevel);
+        formData.append("waterFrequency",this.state.waterFrequency);
+        formData.append("light",this.state.light);
+        formData.append("temperature",`${this.state.temperatureMin}-${this.state.temperatureMax}`);
+        formData.append("photoUrls",this.state.photoUrls);
+        formData.append("file",this.state.file)
 
         let tags = this.state.tags;
         let selectedTags = [];
@@ -101,17 +115,32 @@ class PlantShow extends React.Component {
             if (tags[i]) selectedTags.push(i);
         }
 
-        this.props.updatePlant({
-            id: this.props.plant._id,
-            name: this.state.name,
-            level: this.state.level,
-            waterLevel: this.state.waterLevel,
-            waterFrequency: this.state.waterFrequency,
-            light: this.state.light,
-            temperature: `${this.state.temperatureMin}-${this.state.temperatureMax}`,
-            photoUrls: this.state.photoUrls,
-            tags: selectedTags
-        }).then(() => (this._resetForm()));
+        formData.append("tags", selectedTags)
+        this.props.updatePlant(formData).then(() => (this._resetForm()));
+        this.stateChange()
+        // let tags = this.state.tags;
+        // let selectedTags = [];
+        // for (let i in tags) {
+        //     if (tags[i]) selectedTags.push(i);
+        // }
+
+        // this.props.updatePlant({
+        //     id: this.props.plant._id,
+        //     name: this.state.name,
+        //     level: this.state.level,
+        //     waterLevel: this.state.waterLevel,
+        //     waterFrequency: this.state.waterFrequency,
+        //     light: this.state.light,
+        //     temperature: `${this.state.temperatureMin}-${this.state.temperatureMax}`,
+        //     photoUrls: this.state.photoUrls,
+        //     tags: selectedTags
+        // }).then(() => (this._resetForm()));
+    }
+
+    stateChange() {
+        setTimeout(function () {
+            window.location.reload() 
+        }, 1200);
     }
 
 
@@ -133,11 +162,22 @@ class PlantShow extends React.Component {
         this.setState({ showForm: true });
     }
 
+    handleSelectedFile(e){
+        e.preventDefault();
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader();
+        fileReader.onloadend = () => {
+            this.setState({ file: file, url: fileReader.result });
+        };
+        if (file) {
+        fileReader.readAsDataURL(file);
+        }
+    }
+
 
     render() {
         const { plant, currentUser } = this.props;
-        if (plant===undefined) return null;
-        
+        const preview = this.state.url ? <img src={this.state.url} /> : null;
         const editForm = plant ?
             <div className="plant-show-edit-form-container">
                 <div className="edit-form-close" onClick={this.handleClose}>x</div>
@@ -192,6 +232,9 @@ class PlantShow extends React.Component {
                         <input type="checkbox" name="tags" onChange={this.update("isMultiColored")} checked={plant.tags.includes("isMultiColored")} />Multi-colored
                         <input type="checkbox" name="tags" onChange={this.update("isHanging")} checked={plant.tags.includes("isHanging")} />Hanging
                     </label>
+
+                    {preview}
+                    <input type="file" onChange={this.handleSelectedFile}/>
 
                     <input type="submit" value="Update Plant" />
                 </form>
