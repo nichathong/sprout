@@ -18,7 +18,7 @@ router.get("/test",(req,res)=>{
     res.json({msg: "this is plant routes"})
 })
 
-//create
+// //create
 router.post("/new",passport.authenticate('jwt', { session: false }),upload.single("file"),(req,res)=>{
     const {errors, isValid} = validPlant(req.body)
 
@@ -26,27 +26,22 @@ router.post("/new",passport.authenticate('jwt', { session: false }),upload.singl
       return res.status(400).json(errors);
     }
 
-
-
-
-   
-
-
     Plant.findOne({name: req.body.name.toLowerCase()})
     .then( plant => {
         if(plant){
             return res.status(400).json({name: "this plant name already exist"})
         }else{
-
-            const S3_BUCKET = "sprout-app",
-            const file = req.file;
-        
             let s3bucket = new AWS.S3({
                 accessKeyId: keys.awsAccessKeyId,
                 secretAccessKey: keys.awsSecretAccessKey,
                 region: 'us-east-2'
               });
-        
+
+            let file;
+            const S3_BUCKET = "sprout-app";
+            if(req.file!==undefined){
+                file = req.file;
+            }
               var params = {
                 Bucket: S3_BUCKET,
                 Key: file.originalname,
@@ -55,7 +50,7 @@ router.post("/new",passport.authenticate('jwt', { session: false }),upload.singl
                 ACL: "public-read"
               }; 
               
-              s3bucket.upload(params, function(err, data) {
+              s3bucket.upload(params, (err, data) => {
                 if (err) {
                   res.status(500).json({ error: true, Message: err });
                 } else {
@@ -71,12 +66,14 @@ router.post("/new",passport.authenticate('jwt', { session: false }),upload.singl
                     waterFrequency: req.body.waterFrequency,
                     photoUrls: [`https://${S3_BUCKET}.s3.amazonaws.com/${file.originalname}`]
                   };
+                  const newPlant = new Plant(newFileUploaded);
+                  newPlant.save().then(plant => res.json(plant))
+                }
+              })
+            
+           }
 
-            const newPlant = new Plant(newFileUploaded);
-            newPlant.save().then(plant => res.json(plant))
-        }
-    })
-    
+      })
 })
 
 //index
