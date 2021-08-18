@@ -106,13 +106,14 @@ class PlantIndex extends React.Component {
         formData.append("temperature",`${this.state.temperatureMin}-${this.state.temperatureMax}`);
         formData.append("photoUrls",this.state.photoUrls);
         formData.append("file",this.state.file)
-        formData.append("tags",[])
 
-        // let tags = this.state.tags;
-        // let selectedTags = [];
-        // for (let i in tags) {
-        //     if (tags[i]) selectedTags.push(i);
-        // }
+        let tags = this.state.tags;
+        let selectedTags = [];
+        for (let i in tags) {
+            if (tags[i]) selectedTags.push(i);
+        }
+
+        formData.append("tags", selectedTags)
 
         // if(selectedTags!==null){
         //     for (let i = 0; i < tags.length; i++) {
