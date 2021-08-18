@@ -1,33 +1,32 @@
 import React from 'react';
-// import { Link } from 'react-router-dom'
 import NavbarContainer from '../nav/navbar_container';
+
 
 class Home extends React.Component{
     constructor(props){
         super(props);
-        this.logoutUser = this.logoutUser.bind(this);
+        this.state = {};
     }
 
-    logoutUser(e) {
-        e.preventDefault();
-        this.props.logout();
-    }
 
-    render(){
-        if (this.props.loggedIn) {
-            return (
-                <div>
-                    <div className="navbar-container">
-                        <NavbarContainer/>
-                    </div>
-                    <h1>Hello</h1>
-                    <button onClick={this.logoutUser}>Logout</button>
+    componentDidMount() {
+        this.props.fetchCurrentUserGarden(this.props.currentUser);
+    }
+    
+
+    render() {
+        return (
+            <div>
+                <div className="navbar-container">
+                    <NavbarContainer/>
                 </div>
-            )
 
-        }
+                <h1>Hello garden graphics go here</h1>
+            </div>
+        )
     }
 }
+
 
 export default Home;
 

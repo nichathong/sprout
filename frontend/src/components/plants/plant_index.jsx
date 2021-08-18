@@ -192,13 +192,15 @@ class PlantIndex extends React.Component {
 
                 <ul className="plant-index-list">
                     {plants.map((plant, idx) => 
-                        <Link key={idx} to={`/plants/${plant._id}`}>
-                            <li className="plant-index-item" key={plant._id}>
-                                <img className="plantPhoto" src="plantFiller.jpeg" />
-                                <div className="plantName">{plant.name}</div>
-                                <button className="button">Add</button>
-                            </li>
-                        </Link>
+                        <div>
+                            <Link key={idx} to={`/plants/${plant._id}`}>
+                                <li className="plant-index-item" key={plant._id}>
+                                    <img className="plantPhoto" src="plantFiller.jpeg" />
+                                    <div className="plantName">{plant.name}</div>
+                                </li>
+                            </Link>
+                            <button className="button">Add</button>
+                        </div>
                     )}
                 </ul>
 
