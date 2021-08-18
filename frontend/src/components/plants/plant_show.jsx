@@ -105,6 +105,7 @@ class PlantShow extends React.Component {
 
         this.props.updatePlant({
             id: this.props.plant._id,
+            author: this.props.currentUser.id,
             name: this.state.name,
             level: this.state.level,
             waterLevel: this.state.waterLevel,
