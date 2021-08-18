@@ -22,6 +22,10 @@ const UserSchema = new Schema({
         type: [{type: Schema.Types.ObjectId}],
         ref: 'gardens'
     },
+    public:{
+        type: Boolean,
+        default: false
+    },
     date: {
         type: Date,
         default: Date.now
