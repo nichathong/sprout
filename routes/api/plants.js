@@ -29,23 +29,7 @@ router.post("/new",passport.authenticate('jwt', { session: false }),upload.singl
 
 
 
-    const S3_BUCKET = "sprout-app",
-    const file = req.file;
-    const s3FileURL = `https://${S3_BUCKET}.s3.amazonaws.com/`;
-    
-    let s3bucket = new AWS.S3({
-        accessKeyId: keys.awsAccessKeyId,
-        secretAccessKey: keys.awsSecretAccessKey,
-        region: 'us-east-2'
-      });
-
-      var params = {
-        Bucket: process.env.AWS_BUCKET_NAME,
-        Key: file.originalname,
-        Body: file.buffer,
-        ContentType: file.mimetype,
-        ACL: "public-read"
-      };  
+   
 
 
     Plant.findOne({name: req.body.name.toLowerCase()})
@@ -53,17 +37,42 @@ router.post("/new",passport.authenticate('jwt', { session: false }),upload.singl
         if(plant){
             return res.status(400).json({name: "this plant name already exist"})
         }else{
-            const newPlant = new Plant({
-                author: req.user.id,
-                name: req.body.name.toLowerCase(),
-                tags: req.body.tags,
-                waterLevel: req.body.waterLevel,
-                light: req.body.light,
-                temperature: req.body.temperature,
-                level: req.body.level,
-                waterFrequency: req.body.waterFrequency,
-                photoUrls: req.body.photoUrls
-            });
+
+            const S3_BUCKET = "sprout-app",
+            const file = req.file;
+        
+            let s3bucket = new AWS.S3({
+                accessKeyId: keys.awsAccessKeyId,
+                secretAccessKey: keys.awsSecretAccessKey,
+                region: 'us-east-2'
+              });
+        
+              var params = {
+                Bucket: S3_BUCKET,
+                Key: file.originalname,
+                Body: file.buffer,
+                ContentType: file.mimetype,
+                ACL: "public-read"
+              }; 
+              
+              s3bucket.upload(params, function(err, data) {
+                if (err) {
+                  res.status(500).json({ error: true, Message: err });
+                } else {
+                  res.send({ data });
+                  var newFileUploaded = {
+                    author: req.user.id,
+                    name: req.body.name.toLowerCase(),
+                    tags: req.body.tags,
+                    waterLevel: req.body.waterLevel,
+                    light: req.body.light,
+                    temperature: req.body.temperature,
+                    level: req.body.level,
+                    waterFrequency: req.body.waterFrequency,
+                    photoUrls: `https://${S3_BUCKET}.s3.amazonaws.com/${file.originalname}`
+                  };
+
+            const newPlant = new Plant(newFileUploaded);
             newPlant.save().then(plant => res.json(plant))
         }
     })
