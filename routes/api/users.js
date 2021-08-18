@@ -18,7 +18,9 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
     id: req.user.id,
     firstname: req.user.firstname,
     lastname: req.user.lastname,
-    email: req.user.email
+    email: req.user.email,
+    garden: req.user.garden,
+    public: req.user.public
   })
 })
 
@@ -136,5 +138,8 @@ router.get("/publicGardens",passport.authenticate('jwt', {session: false}),(req,
         res.status(404).json({ nouserfound: 'no public gardens' })
     );
 })
+
+//user show 
+
 
 module.exports = router;
