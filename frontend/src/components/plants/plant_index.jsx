@@ -13,8 +13,8 @@ class PlantIndex extends React.Component {
             waterLevel: 1,
             waterFrequency: 4,
             light: 1,
-            temperatureMin: undefined,
-            temperatureMax: undefined,
+            temperatureMin: 0,
+            temperatureMax: 0,
             photoUrls: [],
             
             tags: {
@@ -50,8 +50,8 @@ class PlantIndex extends React.Component {
             waterLevel: 1,
             waterFrequency: 4,
             light: 1,
-            temperatureMin: "",
-            temperatureMax: "",
+            temperatureMin: 0,
+            temperatureMax: 0,
             photoUrls: [],
             
             tags: {
@@ -190,8 +190,8 @@ class PlantIndex extends React.Component {
                 <button className="create-plant-button" onClick={() => this.setState({ showForm: true })}>+</button>
 
                 <ul className="plant-index-list">
-                    {plants.map(plant => 
-                        <Link key={plant._id} to={`/plants/${plant._id}`}>
+                    {plants.map((plant, idx) => 
+                        <Link key={idx} to={`/plants/${plant._id}`}>
                             <li className="plant-index-item" key={plant._id}>
                                 Image here
                                 {plant.name}
