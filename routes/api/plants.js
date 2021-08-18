@@ -25,7 +25,7 @@ router.post("/new",passport.authenticate('jwt', { session: false }),(req,res)=>{
             const newPlant = new Plant({
                 author: req.user.id,
                 name: req.body.name.toLowerCase(),
-                tags: req.body.tags.toLowerCase(),
+                tags: req.body.tags,
                 waterLevel: req.body.waterLevel,
                 light: req.body.light,
                 temperature: req.body.temperature,
