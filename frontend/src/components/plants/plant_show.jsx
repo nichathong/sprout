@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import NavbarContainer from "../nav/navbar_container";
-
+import './plant_show.css'
 
 class PlantShow extends React.Component {
     constructor(props) {
@@ -143,19 +143,19 @@ class PlantShow extends React.Component {
 
                 <form className="edit-plant-form" onSubmit={this.handleSubmit}>
 
-                    <label>Name
-                        <input type="text" value={this.state.name} onChange={this.update("name")} />
+                    <label className = "name2">Name
+                        <input className = "nameText2" type="text" value={this.state.name} onChange={this.update("name")} />
                     </label>
 
-                    <label>Difficulty
-                        <select onChange={this.update("level")} value={this.state.level}>
+                    <label className = "difficulty2">Difficulty
+                        <select className = "difficultyText2" onChange={this.update("level")} value={this.state.level}>
                             <option value="Beginner">Beginner</option>
                             <option value="Intermediate">Intermediate</option>
                             <option value="Advanced">Advanced</option>
                         </select>
                     </label>
 
-                    <label>Watering Frequency
+                    <label className = "wateringFrequency2">Watering Frequency
                         <input type="radio" name="watering-frequency" value={1} onChange={this.update("waterLevel")} checked={1 === plant.waterLevel} />{1}
                         <input type="radio" name="watering-frequency" value={2} onChange={this.update("waterLevel")} checked={2 === plant.waterLevel} />{2}
                         <input type="radio" name="watering-frequency" value={3} onChange={this.update("waterLevel")} checked={3 === plant.waterLevel} />{3}
@@ -163,11 +163,11 @@ class PlantShow extends React.Component {
                         <input type="radio" name="watering-frequency" value={5} onChange={this.update("waterLevel")} checked={5 === plant.waterLevel} />{5}
                     </label>
 
-                    <label>How often should the plant be watered (in days)?
-                        <input type="numbers" min="0" max="1000" value={this.state.waterFrequency} onChange={this.update("waterFrequency")} />
+                    <label className = "days2">How often should the plant be watered (in days)?
+                        <input className = "daysBox2" type="numbers" min="0" max="1000" value={this.state.waterFrequency} onChange={this.update("waterFrequency")} />
                     </label>
 
-                    <label>Amount of Sunlight
+                    <label className = "sunlight2">Amount of Sunlight
                         <input type="radio" name="sunlight" value={1} onChange={this.update("sunlight")} checked={1 === plant.light} />{1}
                         <input type="radio" name="sunlight" value={2} onChange={this.update("sunlight")} checked={2 === plant.light} />{2}
                         <input type="radio" name="sunlight" value={3} onChange={this.update("sunlight")} checked={3 === plant.light} />{3}
@@ -175,13 +175,13 @@ class PlantShow extends React.Component {
                         <input type="radio" name="sunlight" value={5} onChange={this.update("sunlight")} checked={5 === plant.light} />{5}
                     </label>
 
-                    <label>Ideal Temperature Range
+                    <label className = "temperature2">Ideal Temperature Range
                         <input type="numbers" min="0" max="300" value={this.state.temperatureMin} onChange={this.update("temperatureMin")} />
                         -
                         <input type="numbers" min="0" max="300" value={this.state.temperatureMax} onChange={this.update("temperatureMax")} />
                     </label>
 
-                    <label>Tags
+                    <label className = "tags2">Tags
                         <input type="checkbox" name="tags" onChange={this.update("isIndoor")} checked={plant.tags.includes("isIndoor")} />Indoor
                         <input type="checkbox" name="tags" onChange={this.update("isOutdoor")} checked={plant.tags.includes("isOutdoor")} />Outdoor
                         <input type="checkbox" name="tags" onChange={this.update("isSucculent")} checked={plant.tags.includes("isSucculent")} />Succulent
@@ -192,7 +192,7 @@ class PlantShow extends React.Component {
                         <input type="checkbox" name="tags" onChange={this.update("isHanging")} checked={plant.tags.includes("isHanging")} />Hanging
                     </label>
 
-                    <input type="submit" value="Update Plant" />
+                    <input className = "submit-create-plant2" type="submit" value="Update Plant" />
                 </form>
             </div> : null;
 
@@ -205,22 +205,24 @@ class PlantShow extends React.Component {
                         <NavbarContainer />
                     </div>
             
-                    Plant image here
+                    <img className = "plant-image" src="plantFiller.jpeg"/>
+                    <div className = "plant-info">
                     <h1>{plant.name}</h1>
 
-                    <ul>
+                    <ul className = "information">
                         <li>Difficulty: {plant.level.charAt(0).toUpperCase() + plant.level.slice(1)}</li>
                         <li>Watering Frequency: {plant.waterLevel}</li>
                         <li>Hours Between Watering: {plant.waterFrequency * 24}</li>
                         <li>Amount of Sunlight: {plant.light}</li>
-                        {plant.temperature === "0-0" ? null : <li>Ideal Temperature Range: {plant.temperature}</li>}
+                        {plant.temperature === "0-0" ? null : <li>Ideal Temperature Range (F): {plant.temperature}</li>}
                     </ul>
 
-                    {plant.tags.length < 1 ? null : 
+                    Tags: {plant.tags.length < 1 ? null : 
                         <div>
                             {plant.tags.map((tag, idx) => <div key={idx}>{tag.slice(2)}</div>)}
                         </div>
                     }
+                    <br/>
 
                     {currentUser.id === plant.author ? 
                         <div className="plant-show-edit-buttons-container">
@@ -228,9 +230,11 @@ class PlantShow extends React.Component {
                             <button className="plant-show-delete-button" onClick={this.handleDelete}>Delete</button>
                         </div> :
                         null
-                    }
+                        }  <br />
 
                     <Link to="/plants">Back to List</Link>
+                   
+                    </div>
                 </div> : <div></div>
         );
     }
