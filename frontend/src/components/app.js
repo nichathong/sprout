@@ -9,11 +9,9 @@ import SignupFormContainer from './session/signup_form_container';
 import HomeContainer from './home/home_container';
 import PlantIndexContainer from "./plants/plant_index_container";
 import PlantShowContainer from "./plants/plant_show_container";
-// import NavbarContainer from './nav/navbar_container';
 
 const App = () => (
   <div>
-    {/* <NavbarContainer /> */}
     <Switch>
         <Route exact path="/" component={MainPage} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
