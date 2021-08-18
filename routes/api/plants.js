@@ -149,24 +149,89 @@ router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>
       return res.status(400).json(errors);
     }
 
-    const updatePlant = new Plant({
-        _id: req.params.id,
-        author: req.user.id,
-        name: req.body.name.toLowerCase(),
-        tags: req.body.tags,
-        waterLevel: req.body.waterLevel,
-        light: req.body.light,
-        temperature: req.body.temperature,
-        level: req.body.level,
-        waterFrequency: req.body.waterFrequency,
-        photoUrls: req.body.photoUrls
-    }); 
+    if(req.file!==undefined){
+        let s3bucket = new AWS.S3({
+            accessKeyId: keys.awsAccessKeyId,
+            secretAccessKey: keys.awsSecretAccessKey,
+            region: 'us-east-2'
+          });
+        let file;
+        const S3_BUCKET = "sprout-app";
+        file = req.file;
+        var params = {
+            Bucket: S3_BUCKET,
+            Key: file.originalname,
+            Body: file.buffer,
+            ContentType: file.mimetype,
+            ACL: "public-read"
+          }; 
+          s3bucket.upload(params, (err, data) => {
+            if (err) {
+              res.status(500).json({ error: true, Message: err });
+            } else {
+              res.send({ data });
+              var newFileUploaded = {
+                _id: req.params.id,
+                author: req.user.id,
+                name: req.body.name.toLowerCase(),
+                tags: req.body.tags,
+                waterLevel: req.body.waterLevel,
+                light: req.body.light,
+                temperature: req.body.temperature,
+                level: req.body.level,
+                waterFrequency: req.body.waterFrequency,
+                photoUrls: req.body.photoUrls.concat(`https://${S3_BUCKET}.s3.amazonaws.com/${file.originalname}`)
+              };
+              const updatePlant = new Plant(newFileUploaded);
+                Plant.updateOne({_id: req.params.id}, updatePlant)
+                .then(plant => res.json(plant))
+                .catch(err =>
+                    res.status(404).json({ noplantfound: 'fail update' })
+                );
+        
+            }
+          })
+    }else{
 
-    Plant.updateOne({_id: req.params.id}, updatePlant)
-    .then(plant => res.json(plant))
-    .catch(err =>
-        res.status(404).json({ noplantfound: 'fail update' })
-    );
+        const updatePlant = new Plant({
+            _id: req.params.id,
+            author: req.user.id,
+            name: req.body.name.toLowerCase(),
+            tags: req.body.tags,
+            waterLevel: req.body.waterLevel,
+            light: req.body.light,
+            temperature: req.body.temperature,
+            level: req.body.level,
+            waterFrequency: req.body.waterFrequency,
+            photoUrls: req.body.photoUrls
+        }); 
+    
+        Plant.updateOne({_id: req.params.id}, updatePlant)
+        .then(plant => res.json(plant))
+        .catch(err =>
+            res.status(404).json({ noplantfound: 'fail update' })
+        );
+      
+    }
+
+    // const updatePlant = new Plant({
+    //     _id: req.params.id,
+    //     author: req.user.id,
+    //     name: req.body.name.toLowerCase(),
+    //     tags: req.body.tags,
+    //     waterLevel: req.body.waterLevel,
+    //     light: req.body.light,
+    //     temperature: req.body.temperature,
+    //     level: req.body.level,
+    //     waterFrequency: req.body.waterFrequency,
+    //     photoUrls: req.body.photoUrls
+    // }); 
+
+    // Plant.updateOne({_id: req.params.id}, updatePlant)
+    // .then(plant => res.json(plant))
+    // .catch(err =>
+    //     res.status(404).json({ noplantfound: 'fail update' })
+    // );
         
 })
 
