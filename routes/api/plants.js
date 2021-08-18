@@ -114,9 +114,11 @@ router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>
         photoUrls: req.body.photoUrls
     }); 
 
+    console.log(updatePlant);
+
     Plant.updateOne({_id: req.params.id}, updatePlant)
     .then(plant => res.json(plant))
-    .catch(err =>
+    .catch(err => 
         res.status(404).json({ noplantfound: 'fail update' })
     );
         

@@ -74,7 +74,7 @@ class PlantShow extends React.Component {
 
     update(field) {
         return e => {
-            if (field === "waterLevel" || field === "sunlight") {
+            if (field === "waterLevel" || field === "light") {
                 this.setState({ [field]: parseInt(e.currentTarget.value) });
             } else if (field === "level") {
                 this.setState({ [field]: e.target.value });
@@ -95,6 +95,8 @@ class PlantShow extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
+        console.log(this.props.plant._id)
+
         let tags = this.state.tags;
         let selectedTags = [];
         for (let i in tags) {
@@ -102,7 +104,7 @@ class PlantShow extends React.Component {
         }
 
         this.props.updatePlant({
-            id: this.props.plant._id,
+            id: this.props.plant._id ? this.props.plant._id : this.props.plant.id,
             author: this.props.currentUser.id,
             name: this.state.name,
             level: this.state.level,
@@ -169,11 +171,11 @@ class PlantShow extends React.Component {
                     </label>
 
                     <label>Amount of Sunlight
-                        <input type="radio" name="sunlight" value={1} onChange={this.update("sunlight")} defaultChecked={1 === plant.light} />{1}
-                        <input type="radio" name="sunlight" value={2} onChange={this.update("sunlight")} defaultChecked={2 === plant.light} />{2}
-                        <input type="radio" name="sunlight" value={3} onChange={this.update("sunlight")} defaultChecked={3 === plant.light} />{3}
-                        <input type="radio" name="sunlight" value={4} onChange={this.update("sunlight")} defaultChecked={4 === plant.light} />{4}
-                        <input type="radio" name="sunlight" value={5} onChange={this.update("sunlight")} defaultChecked={5 === plant.light} />{5}
+                        <input type="radio" name="light" value={1} onChange={this.update("light")} defaultChecked={1 === plant.light} />{1}
+                        <input type="radio" name="light" value={2} onChange={this.update("light")} defaultChecked={2 === plant.light} />{2}
+                        <input type="radio" name="light" value={3} onChange={this.update("light")} defaultChecked={3 === plant.light} />{3}
+                        <input type="radio" name="light" value={4} onChange={this.update("light")} defaultChecked={4 === plant.light} />{4}
+                        <input type="radio" name="light" value={5} onChange={this.update("light")} defaultChecked={5 === plant.light} />{5}
                     </label>
 
                     <label>Ideal Temperature Range
