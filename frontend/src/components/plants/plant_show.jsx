@@ -56,7 +56,9 @@ class PlantShow extends React.Component {
             light: this.props.plant.light,
             temperatureMin: this.props.plant.temperature === "" ? undefined : parseInt(this.props.plant.temperature.split("-")[0]),
             temperatureMax: this.props.plant.temperature === "" ? undefined : parseInt(this.props.plant.temperature.split("-")[1]),
-            photoUrls: [],
+            photoUrls: this.props.plant.photoUrls,
+            url:null,
+            file:null,
 
             tags: {
                 isIndoor: this.props.plant.tags.includes("isIndoor") ? true : false,
@@ -94,9 +96,7 @@ class PlantShow extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
-        console.log(this.props.plant._id)
-
+       
         let tags = this.state.tags;
         let selectedTags = [];
         for (let i in tags) {
@@ -104,8 +104,7 @@ class PlantShow extends React.Component {
         }
 
         this.props.updatePlant({
-            id: this.props.plant._id ? this.props.plant._id : this.props.plant.id,
-            author: this.props.currentUser.id,
+            id: this.props.plant._id,
             name: this.state.name,
             level: this.state.level,
             waterLevel: this.state.waterLevel,
@@ -116,6 +115,7 @@ class PlantShow extends React.Component {
             tags: selectedTags
         }).then(() => (this._resetForm()));
     }
+
 
 
     handleClose(e) {
@@ -137,9 +137,10 @@ class PlantShow extends React.Component {
     }
 
 
+
     render() {
         const { plant, currentUser } = this.props;
-        
+        const preview = this.state.url ? <img src={this.state.url} /> : null;
         const editForm = plant ?
             <div className="plant-show-edit-form-container">
                 <div className="edit-form-close" onClick={this.handleClose}>x</div>
@@ -210,7 +211,8 @@ class PlantShow extends React.Component {
                         <NavbarContainer />
                     </div>
             
-                    <img className = "plant-image" src="plantFiller.jpeg"/>
+                    Plant image here
+                    <img className = "plant-image" src={plant.photoUrls[0]} />
                     <div className = "plant-info">
                     <h1>{plant.name}</h1>
 
