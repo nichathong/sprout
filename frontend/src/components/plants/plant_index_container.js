@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import PlantIndex from "./plant_index";
 import { fetchAllPlants, createPlant } from "../../actions/plant_actions";
+import { addGardenPlant } from "../../actions/garden_actions";
 
 const mstp = state => ({
     currentUser: state.session.user,
@@ -9,7 +10,8 @@ const mstp = state => ({
 
 const mdtp = dispatch => ({
     fetchAllPlants: () => dispatch(fetchAllPlants()),
-    createPlant: plant => dispatch(createPlant(plant))
+    createPlant: plant => dispatch(createPlant(plant)),
+    addGardenPlant: gardenPlantId => dispatch(addGardenPlant(gardenPlantId))
 });
 
 export default connect(mstp, mdtp)(PlantIndex);

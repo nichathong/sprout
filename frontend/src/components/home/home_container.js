@@ -1,16 +1,16 @@
 import { connect } from "react-redux";
 import Home from './home';
+import { fetchCurrentUserGarden, deleteGardenPlant } from "../../actions/garden_actions";
+import { getCurrentUserPlants } from "../../helpers/selectors";
 
-import { logout } from '../../actions/session_actions';
+const mstp = state => ({
+    currentUser: state.session.user,
+    plants: getCurrentUserPlants(state)
+});
 
-const mapStateToProps = (state) => {
-    return {
-        loggedIn: state.session.isAuthenticated
-    }
-}
+const mdtp = dispatch => ({
+    fetchCurrentUserGarden: user => dispatch(fetchCurrentUserGarden(user)),
+    deleteGardenPlant: gardenPlantId => dispatch(deleteGardenPlant(gardenPlantId))
+});
 
-const mapDispatchToProps = dispatch => ({
-    logout: () => dispatch(logout())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mstp, mdtp)(Home);
