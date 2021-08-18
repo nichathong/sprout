@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import NavbarContainer from "../nav/navbar_container";
 
 class PlantIndex extends React.Component {
     constructor(props) {
@@ -57,6 +57,9 @@ class PlantIndex extends React.Component {
 
         return(
             <div className="plant-index-container">
+                <div className="navbar-contianer">
+                    <NavbarContainer/>
+                </div>
 
                 {this.state.showForm ? plantForm : null}
 
