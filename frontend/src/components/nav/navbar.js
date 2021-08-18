@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './nav.css'
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -9,11 +10,21 @@ class Navbar extends React.Component {
     logoutUser(e) {
       e.preventDefault();
       this.props.logout();
-  }
+    }
+
     render() {
-        return (
-            <div>this is a navbar</div>
-        );
+        if (this.props.loggedIn) {
+            return (
+                <div className="nav-container">
+                    <div className="all-nav-bttn">
+                        <Link className="explore-plant-link"to={'/plants'}>Explore plants</Link>
+                        <Link className="logo-nave" to={'/home'}><img src="sprout2.png" alt=""></img></Link>
+                        <button className="logout-bttn" onClick={this.logoutUser}>Log out</button>
+                    </div>
+                </div>
+            );
+
+        }
     }
 
 }
