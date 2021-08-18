@@ -139,7 +139,5 @@ router.get("/publicGardens",passport.authenticate('jwt', {session: false}),(req,
     );
 })
 
-//user show 
-
 
 module.exports = router;
