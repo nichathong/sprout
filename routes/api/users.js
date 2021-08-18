@@ -18,7 +18,9 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
     id: req.user.id,
     firstname: req.user.firstname,
     lastname: req.user.lastname,
-    email: req.user.email
+    email: req.user.email,
+    garden: req.user.garden,
+    public: req.user.public
   })
 })
 
@@ -106,6 +108,34 @@ router.post("/login",(req,res)=>{
        }
      })
   })
+})
+
+router.patch("/:id", passport.authenticate('jwt', {session: false}),(req,res)=>{
+   const updateUser =new User({
+      _id: req.params.id,
+      firstname: req.user.firstname,
+      lastname: req.user.lastname,
+      email: req.user.email,
+      password: req.user.password,
+      garden: req.body.garden,
+      public: req.body.public
+   })
+
+   User.updateOne({_id: req.params.id}, updateUser)
+   .then(user => res.json(user))
+    .catch(err =>
+        res.status(404).json({ nouserfound: 'update failed' })
+    );
+
+})
+
+//index all users 
+router.get("/publicGardens",passport.authenticate('jwt', {session: false}),(req,res)=>{
+    User.find({public: true })
+    .then(user => res.json(user))
+    .catch(err =>
+        res.status(404).json({ nouserfound: 'no public gardens' })
+    );
 })
 
 
