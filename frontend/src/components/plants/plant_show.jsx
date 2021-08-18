@@ -207,6 +207,7 @@ class PlantShow extends React.Component {
                     </div>
             
                     Plant image here
+                    <img src={plant.photoUrls[0]} />
                     <h1>{plant.name}</h1>
 
                     <ul>
