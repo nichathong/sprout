@@ -16,7 +16,7 @@ const plantsReducer = (state = {}, action) => {
 
         case REMOVE_PLANT:
             nextState = Object.assign({}, state);
-            delete nextState[action.plant.data._id];
+            delete nextState[action.plantId.data];
             return nextState;
 
         default:
