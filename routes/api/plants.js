@@ -69,7 +69,7 @@ router.post("/new",passport.authenticate('jwt', { session: false }),upload.singl
                     temperature: req.body.temperature,
                     level: req.body.level,
                     waterFrequency: req.body.waterFrequency,
-                    photoUrls: `https://${S3_BUCKET}.s3.amazonaws.com/${file.originalname}`
+                    photoUrls: [`https://${S3_BUCKET}.s3.amazonaws.com/${file.originalname}`]
                   };
 
             const newPlant = new Plant(newFileUploaded);
