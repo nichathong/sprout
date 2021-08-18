@@ -1,4 +1,4 @@
-import { RECEIVE_PLANT, RECEIVE_ALL_PLANTS, REMOVE_PLANT } from "../actions/plant_actions";
+import { RECEIVE_PLANT, RECEIVE_ALL_PLANTS, REMOVE_PLANT, UPDATE_PLANT } from "../actions/plant_actions";
 
 const plantsReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -13,6 +13,10 @@ const plantsReducer = (state = {}, action) => {
             
         case RECEIVE_PLANT:
             return Object.assign({}, state, { [action.plant.data._id]: action.plant.data })
+
+        case UPDATE_PLANT:
+            let plant = JSON.parse(action.plant.config.data);
+            return Object.assign({}, state, { [plant.id]: plant });
 
         case REMOVE_PLANT:
             nextState = Object.assign({}, state);
