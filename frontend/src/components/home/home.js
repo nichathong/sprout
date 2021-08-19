@@ -16,7 +16,6 @@ class Home extends React.Component{
 
     render() {
         const { plants, gardenPlants } = this.props;
-        console.log(plants);
 
         return (
             <div>
