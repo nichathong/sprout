@@ -144,7 +144,7 @@ class PlantIndex extends React.Component {
     stateChange() {
         setTimeout(function () {
             window.location.reload() 
-        }, 1200);
+        }, 2000);
     }
 
     handleClose(e) {
