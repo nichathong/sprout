@@ -36,6 +36,8 @@ class MainPage extends React.Component {
     this.props.login(user)
   }
 
+  
+
   render() {
     return (
       <div className="main-page">
