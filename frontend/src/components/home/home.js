@@ -32,14 +32,27 @@ class Home extends React.Component{
                 <div className = "home-page-container">
                 <h1 className="hello">Welcome to your garden!</h1>
                 <img className = "dirt" src="dirt.jpeg"/>
+
                 
 
                 <ul className = "plantList">
                     {plants.map((plant, idx) => {
                         return <li className = "individual-sprout" key={idx}>
                             <img src="plant-5.png"/>
+                             
+
                             <button onClick={() => {this.handleClick(plant._id)}}>Delete</button>
                             {plant.name}
+
+                            {/* plantdetail */}
+                            <div>
+                                {plant.waterLevel}
+                                {plant.level}
+                                {gardenPlants[idx].waterDate}
+                                {gardenPlants[idx].nickname}
+                                {gardenPlants[idx].date}
+                            </div>
+                            
                             </li>
                     })}
                 </ul>
