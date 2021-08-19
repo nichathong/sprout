@@ -1,5 +1,6 @@
 import React from 'react';
 import NavbarContainer from '../nav/navbar_container';
+import './home.css'
 
 
 class Home extends React.Component{
@@ -11,6 +12,8 @@ class Home extends React.Component{
 
     componentDidMount() {
         this.props.fetchCurrentUserGardenPlants();
+        console.log(this.props.plants);
+        
     }
     
 
@@ -22,14 +25,20 @@ class Home extends React.Component{
                 <div className="navbar-container">
                     <NavbarContainer/>
                 </div>
+                <div className = "home-page-container">
+                <h1 className="hello">Welcome to your garden!</h1>
+                <img className = "dirt" src="dirt.jpeg"/>
+                
 
-                <h1>Hello garden graphics go here</h1>
-
-                <ul>
+                <ul className = "plantList">
                     {plants.map((plant, idx) => {
-                        return <li key={idx}>{plant.name}</li>
+                        return <li className = "individual-sprout" key={idx}>
+                            <img src="plant-5.png"/>
+                            {plant.name}
+                            </li>
                     })}
                 </ul>
+                </div>
             </div>
         )
     }

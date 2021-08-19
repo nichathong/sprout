@@ -1,0 +1,46 @@
+.home-page-container{
+  
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  
+}
+
+.home-page-container::before{
+  background-image: url("dirt.jpeg");
+  background-repeat: repeat; 
+  margin-top: -95px;
+  opacity: 70%;
+}
+
+.plantList{
+  opacity: 100%;
+  float: left;
+}
+
+.dirt{
+  width: 95vw;
+  height: 40vw;
+  border-radius: 200px;
+  z-index: -10000;
+  position: relative;
+  align-self: center;
+}
+
+.plantList{
+  position: absolute;
+  z-index: 100;
+  left: 10%; top: 30%; 
+}
+
+.individual-sprout{
+  float: left;
+}
+
+.hello{
+  margin-top: -20px;
+}
+
+
