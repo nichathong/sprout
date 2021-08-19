@@ -8,7 +8,8 @@ class PlantIndex extends React.Component {
         super(props);
         this.state = {
             showForm: false,
-            
+            showErrors: false,
+
             name: "",
             level: "Intermediate",
             waterLevel: 1,
@@ -48,6 +49,7 @@ class PlantIndex extends React.Component {
     _resetForm() {
         this.setState({
             showForm: false,
+            showErrors: false,
 
             name: "",
             level: "Intermediate",
@@ -137,8 +139,14 @@ class PlantIndex extends React.Component {
         //     tags: selectedTags,
         // }).then(() => (this._resetForm()));
 
-        this.props.createPlant(formData).then(()=> (this._resetForm()))
-        this.stateChange()
+        this.props.createPlant(formData)
+        if(this.props.errors){
+            this.setState({showErrors: true})
+        }else{
+            this._resetForm()
+            this.stateChange() 
+        }
+        
     }
 
     stateChange() {
