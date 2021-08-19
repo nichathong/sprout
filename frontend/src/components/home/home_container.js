@@ -1,15 +1,16 @@
 import { connect } from "react-redux";
 import Home from './home';
-import { fetchCurrentUserGarden, deleteGardenPlant } from "../../actions/garden_actions";
-import { getCurrentUserPlants } from "../../helpers/selectors";
+import { fetchCurrentUserGardenPlants, deleteGardenPlant } from "../../actions/garden_actions";
+import { getCurrentUserPlants, getCurrentUserGardenPlants } from "../../helpers/selectors";
 
 const mstp = state => ({
     currentUser: state.session.user,
-    plants: getCurrentUserPlants(state)
+    plants: getCurrentUserPlants(state),
+    gardenPlants: getCurrentUserGardenPlants(state)
 });
 
 const mdtp = dispatch => ({
-    fetchCurrentUserGarden: user => dispatch(fetchCurrentUserGarden(user)),
+    fetchCurrentUserGardenPlants: () => dispatch(fetchCurrentUserGardenPlants()),
     deleteGardenPlant: gardenPlantId => dispatch(deleteGardenPlant(gardenPlantId))
 });
 
