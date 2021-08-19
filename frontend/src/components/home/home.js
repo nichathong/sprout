@@ -68,13 +68,13 @@ class Home extends React.Component{
             <div className = "render-update-form">
                 <button onClick={()=>this.setState({showUpdateForm: false})}>x</button>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Nickname
+                    <label className = "nickname">Nickname
                          <input  type="text" value={this.state.nickname} onChange={this.update("nickname")} />
                     </label>
-                    <label>Date
+                    <label className="date">Date
                          <input  type="text" value={this.state.date} onChange={this.update("date")} />
                     </label>
-                    <label>WaterDate
+                    <label className="waterdate">WaterDate
                          <input  type="text" value={this.state.waterDate} onChange={this.update("waterDate")} />
                     </label>
                     <input type="submit" value="Update" />
@@ -90,7 +90,7 @@ class Home extends React.Component{
         for( let i=0;i< plants.length;i++){
             if(plants[i]._id === gardenPlant.plant){
                 return(
-                     <Link to={`/plants/${gardenPlant.plant}`}><img src={plants[i].photoUrls[0]}/></Link> 
+                    <Link to={`/plants/${gardenPlant.plant}`}><img className="garden-plant-image" src={plants[i].photoUrls[0]}/></Link>
                 )
             }
         }
@@ -113,17 +113,21 @@ class Home extends React.Component{
                 <ul className = "plantList">
                     {gardenPlants.map((plant, idx) => {
                         return <li className = "individual-sprout" key={idx}>
+                            
                             <div className="plantName2"> {plant.nickname} </div> 
                             Days alive: {(days = Math.round(Math.ceil(new Date() - new Date(plant.date.split("T")[0])) / (1000 * 60 * 60 * 24)))} <br />
                             {Math.round(Math.ceil(new Date() - new Date(plant.waterDate.split("T")[0])) / (1000 * 60 * 60 * 24)) === 1 ? <img className="watering-can" src="watering-can.png"/> : <div></div>}
+                            
                             {days < 3 ? <img className="sprout-image" src="plant-10.png" /> : (days < 6 ? <img className="sprout-image" src="plant-20.png" /> : (days < 9 ? <img className="sprout-image" src="plant-3.png" /> : (days < 12 ? <img className="sprout-image" src="plant-4.png" /> : <img className="sprout-image" src="plant-5.png" />)))}
-
+                            <br/>
+                            {this.renderPlantDetail(plant)}
                             <button className = "update-button" onClick={()=>this.showUpdate(plant)}>update</button>
                              {(this.state.showUpdateForm && this.state._id===plant._id) ? this.renderUpdateForm(plant):null }
 
-                             {this.renderPlantDetail(plant)}
+                             
 
                             <button className = "delete-button" onClick={() => {this.handleClick(plant._id)}}>Delete</button>                           
+                            
                             </li>
                     })}
                 </ul>
