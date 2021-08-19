@@ -27,9 +27,9 @@ const removePlant = plantId => ({
     plantId
 });
 
-const receivePlantErrors = err => ({
+const receivePlantErrors = errors => ({
     type: RECEIVE_PLANT_ERRORS,
-    err
+    errors
 })
 
 
