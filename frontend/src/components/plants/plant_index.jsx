@@ -189,7 +189,7 @@ class PlantIndex extends React.Component {
   stateChange() {
     setTimeout(function () {
       window.location.reload();
-    }, 2000);
+    }, 1500);
   }
 
   handleClose(e) {
@@ -242,6 +242,16 @@ class PlantIndex extends React.Component {
       )
     }
 
+  }
+
+  renderName(plant){
+    if(plant.name===undefined){
+      return null
+    }else{
+      return(
+         <div className="plantName">{capitalizeName(plant.name)}</div>
+      )
+    }
   }
 
   render() {
@@ -360,7 +370,8 @@ class PlantIndex extends React.Component {
                                         alt=""
                                     /> */}
                                     {this.renderImg(plant)}
-                                    <div className="plantName">{capitalizeName(plant.name)}</div>
+                                    {this.renderName(plant)}
+                                    {/* <div className="plantName">{capitalizeName(plant.name)}</div> */}
                                 </div>
                             </Link>
                             <button className="add-plant-button" id={plant._id} onClick={this.handleAdd(plant)}>Add</button>
