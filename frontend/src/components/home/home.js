@@ -65,7 +65,7 @@ class Home extends React.Component{
 
     renderUpdateForm(gardenPlant){
         return(
-            <div>
+            <div className = "render-update-form">
                 <button onClick={()=>this.setState({showUpdateForm: false})}>x</button>
                 <form onSubmit={this.handleSubmit}>
                     <label>Nickname
@@ -99,33 +99,35 @@ class Home extends React.Component{
 
     render() {
         const { plants, gardenPlants } = this.props;
-
+        var today = new Date();
+        var days = 0;
         return (
             <div>
                 <div className="navbar-container">
                     <NavbarContainer/>
                 </div>
                 <div className = "home-page-container">
-                <h1 className="hello">Welcome to your garden!</h1>
-                <img className = "dirt" src="dirt.jpeg"/>
-
                 
+                <img className = "dirt" src="dirt.jpeg"/>
 
                 <ul className = "plantList">
                     {gardenPlants.map((plant, idx) => {
                         return <li className = "individual-sprout" key={idx}>
-                            <img src="plant-5.png"/>
+                            <div className="plantName2"> {plant.nickname} </div> 
+                            Days alive: {(days = Math.round(Math.ceil(new Date() - new Date(plant.date.split("T")[0])) / (1000 * 60 * 60 * 24)))} <br />
+                            {Math.round(Math.ceil(new Date() - new Date(plant.waterDate.split("T")[0])) / (1000 * 60 * 60 * 24)) === 1 ? <img className="watering-can" src="watering-can.png"/> : <div></div>}
+                            {days < 3 ? <img className="sprout-image" src="plant-10.png" /> : (days < 6 ? <img className="sprout-image" src="plant-20.png" /> : (days < 9 ? <img className="sprout-image" src="plant-3.png" /> : (days < 12 ? <img className="sprout-image" src="plant-4.png" /> : <img className="sprout-image" src="plant-5.png" />)))}
 
-
-                            <button onClick={()=>this.showUpdate(plant)}>update</button>
-                             {this.state.showUpdateForm ? this.renderUpdateForm(plant):null }
+                            <button className = "update-button" onClick={()=>this.showUpdate(plant)}>update</button>
+                             {(this.state.showUpdateForm && this.state._id===plant._id) ? this.renderUpdateForm(plant):null }
 
                              {this.renderPlantDetail(plant)}
 
-                            <button onClick={() => {this.handleClick(plant._id)}}>Delete</button>                           
+                            <button className = "delete-button" onClick={() => {this.handleClick(plant._id)}}>Delete</button>                           
                             </li>
                     })}
                 </ul>
+               
                 </div>
             </div>
         )
