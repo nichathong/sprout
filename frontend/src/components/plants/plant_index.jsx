@@ -429,7 +429,6 @@ class PlantIndex extends React.Component {
               <div className="plant-index-header">do we need this text</div>
             </div>
 
-<<<<<<< HEAD
             <h1 className="plant-index-header">Types of Plants</h1>
             <button
               className="create-plant-button"
@@ -442,97 +441,6 @@ class PlantIndex extends React.Component {
               <div className="plant-index-list">
                 <div>
                   {plants.map((plant, idx) => (
-=======
-    render() {
-        const { plants } = this.props;
-        const preview = this.state.url ? <img src={this.state.url} /> : null;
-        const plantForm = (
-            <form className="create-plant-form" onSubmit={this.handleSubmit}>
-                <div className="create-plant-form-close" onClick={this.handleClose}>  x </div>
-
-                {this.renderErrors()}
-                <label className="name">Name
-                    <input className="nameText" type="text" value={this.state.name} onChange={this.update("name")} />
-                </label> <br /> <br />
-
-                <label className="difficulty">Difficulty
-                    <select className="difficultyText" onChange={this.update("level")} value={this.state.level}>
-                        <option value="Beginner">Beginner</option>
-                        <option value="Intermediate">Intermediate</option>
-                        <option value="Advanced">Advanced</option>
-                    </select>
-                </label> <br /> <br />
-
-                <label className="wateringFrequency">Watering Frequency
-                    <input className="wateringFrequencyInput" type="radio" name="watering-frequency" value={1} onChange={this.update("waterLevel")} defaultChecked />{1}
-                    <input type="radio" name="watering-frequency" value={2} onChange={this.update("waterLevel")} />{2}
-                    <input type="radio" name="watering-frequency" value={3} onChange={this.update("waterLevel")} />{3}
-                    <input type="radio" name="watering-frequency" value={4} onChange={this.update("waterLevel")} />{4}
-                    <input type="radio" name="watering-frequency" value={5} onChange={this.update("waterLevel")} />{5}
-                </label> <br /> <br />
-
-                <label className="days">How often should the plant be watered (in days)?
-                    <input className="daysBox" type="numbers" min="0" max="1000" value={this.state.waterFrequency} onChange={this.update("waterFrequency")} />
-                </label> <br /> <br />
-
-                <label className="sunlight">Amount of Sunlight
-                    <input type="radio" name="sunlight" value={1} onChange={this.update("sunlight")} defaultChecked />{1}
-                    <input type="radio" name="sunlight" value={2} onChange={this.update("sunlight")} />{2}
-                    <input type="radio" name="sunlight" value={3} onChange={this.update("sunlight")} />{3}
-                    <input type="radio" name="sunlight" value={4} onChange={this.update("sunlight")} />{4}
-                    <input type="radio" name="sunlight" value={5} onChange={this.update("sunlight")} />{5}
-                </label> <br /> <br />
-
-                <label className="temperature">Ideal Temperature Range (Fahrenheit) <br />
-                    <input className="temperature-input" type="numbers" min="0" max="300" value={this.state.temperatureMin} onChange={this.update("temperatureMin")} />
-                    -
-                    <input className="temperature-input" type="numbers" min="0" max="300" value={this.state.temperatureMax} onChange={this.update("temperatureMax")} />
-                </label> <br /> <br />
-
-                <label className="tags">Tags <br />
-                    <input type="checkbox" name="tags" onChange={this.update("isIndoor")} />Indoor
-                    <input type="checkbox" name="tags" onChange={this.update("isOutdoor")} />Outdoor
-                    <input type="checkbox" name="tags" onChange={this.update("isSucculent")} />Succulent
-                    <input type="checkbox" name="tags" onChange={this.update("isFlowering")} />Flowering <br />
-                    <input type="checkbox" name="tags" onChange={this.update("isPoisonous")} />Poisonous
-                    <input type="checkbox" name="tags" onChange={this.update("isExotic")} />Exotic
-                    <input type="checkbox" name="tags" onChange={this.update("isMultiColored")} />Multi-colored
-                    <input type="checkbox" name="tags" onChange={this.update("isHanging")} />Hanging
-                </label> <br /> <br />
-                
-                {/* upload photo here*/}
-                <div className="preview">{preview}</div>
-                <input className = "file-submit" type="file" onChange={this.handleSelectedFile}/>
-
-                <input className="submit-create-plant" type="submit" value="Create Plant" />
-            </form>
-        );
-        return (
-          <div>
-            <div className="plant-index-item">
-              <div className="navbar-contianer">
-                <NavbarContainer />
-              </div>
-              <div className="background-contiainer-plant-index">
-                <img className="plantsBackground" src="wallpaper.png" alt="" />
-              </div>
-
-              <div className="addPlantForm">
-                {this.state.showForm ? plantForm : null}
-              </div>
-              <div className="main-content-plant-index-container">
-                <div className="index-header-container">
-                  <div className="plant-index-header">do we need this text</div>
-                </div>
-
-                <h1 className="plant-index-header">Types of Plants</h1>
-                <button className="create-plant-button" onClick={() => this.setState({ showForm: true })}>Add Plant</button>
-
-                <div className="each-plant-index-container">
-                  <div className="plant-index-list">
-                    <div>
-                    {plants.map((plant, idx) => (
->>>>>>> 8834c39aa35eb323b1844a3a1c328ef1a6de1cbe
                     <div>
                       <Link
                         className="plant-index-item"
