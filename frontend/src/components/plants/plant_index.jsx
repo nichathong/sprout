@@ -329,7 +329,8 @@ class PlantIndex extends React.Component {
                                     <div className="plantName">{capitalizeName(plant.name)}</div>
                                 </div>
                             </Link>
-                            <button className="button" onClick={this.handleAdd(plant)}>Add</button>
+                            <button className="add-plant-button" id={plant._id} onClick={this.handleAdd(plant)}>Add</button>
+                            {this.state.showPopup && this.state.popupId === plant._id ? plantAddedPopup : null}
                         </li>
                     ))}
                   </div>
