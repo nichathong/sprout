@@ -1,4 +1,5 @@
 .nav-container{
+    position: sticky;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -27,7 +28,7 @@
 }
 
 .explore-garden {
-    margin-left: -50vh;
+    margin-left: -30vh;
 }
 
 
@@ -38,7 +39,7 @@
 
 .explore-garden-link {
     height: fit-content;
-    padding-top: 27px;
+    padding-top: 5vh;
     text-decoration: none;
     color: rgb(5, 5, 5);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -55,8 +56,9 @@
 }
 
 .logo-nave {
-    padding-top: 3vh;
-    margin-left: -10vw;
+    padding-top: 1vh;
+    padding-right: 6vw;
+    
 }
 
 .logout-bttn {
