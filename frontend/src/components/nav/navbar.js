@@ -7,6 +7,11 @@ class Navbar extends React.Component {
         super(props);
         this.logoutUser = this.logoutUser.bind(this);
     }
+
+    componentDidMount() {
+        this.props.fetchAllPlants();
+    }
+
     logoutUser(e) {
       e.preventDefault();
       this.props.logout();
