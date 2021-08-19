@@ -232,7 +232,7 @@ class PlantIndex extends React.Component {
   render() {
     const { plants } = this.props;
     const preview = this.state.url ? <img src={this.state.url} /> : null;
-      const plantForm = (
+    const plantForm = (
           <div className="create-plant-form-anchor">
               <form className="create-plant-form" onSubmit={this.handleSubmit}>
                   <div className="create-plant-form-close" onClick={this.handleClose}>x</div>

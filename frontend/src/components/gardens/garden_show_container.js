@@ -8,8 +8,4 @@ const mstp = (state, ownProps) => ({
     gardenPlants: getUserGardenPlants(state, ownProps.user._id)
 });
 
-const mdtp = dispatch => ({
-   // action to fetch current user's garden plants
-});
-
-export default connect(mstp, mdtp)(GardenShow);
+export default connect(mstp)(GardenShow);
