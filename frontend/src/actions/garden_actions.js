@@ -1,15 +1,9 @@
 import * as GardenAPIUtil from "../util/garden_util";
 
-// export const RECEIVE_CURRENT_USER_GARDEN = "RECEIVE_CURRENT_USER_GARDEN";
 export const RECEIVE_USER_GARDENS = "RECEIVE_USER_GARDENS";
 export const RECEIVE_GARDEN_PLANT = "RECEIVE_GARDEN_PLANT";
 export const RECEIVE_GARDEN_PLANTS = "RECEIVE_GARDEN_PLANTS";
 export const REMOVE_GARDEN_PLANT = "REMOVE_GARDEN_PLANT";
-
-// const receiveCurrentUserGarden = data => ({
-//     type: RECEIVE_CURRENT_USER_GARDEN,
-//     data
-// });
 
 const receiveUserGardens = data => ({
     type: RECEIVE_USER_GARDENS,
@@ -30,9 +24,6 @@ const removeGardenPlant = data => ({
     type: REMOVE_GARDEN_PLANT,
     data
 });
-
-// export const fetchCurrentUserGarden = user => dispatch => GardenAPIUtil.fetchCurrentUserGarden(user)
-//     .then(data => dispatch(receiveCurrentUserGarden(data)));
 
 export const fetchCurrentUserGardenPlants = () => dispatch => GardenAPIUtil.fetchCurrentUserGardenPlants()
     .then(data => dispatch(receiveGardenPlants(data)));

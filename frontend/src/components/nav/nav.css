@@ -12,8 +12,8 @@
     height: 80px;
     min-width: 800px;
     background-color: rgb(101, 116, 104);
-    padding-right: 100px;
-    padding-left: 100px;
+    padding-right: 3vw;
+    padding-left: 3.5vw;
 }
 
 .explore-plant-link {
@@ -21,6 +21,7 @@
     padding-top: 27px;
     text-decoration: none;
     color: white;
+    margin-right: 2vw;
 
 }
 
@@ -29,9 +30,27 @@
     padding-bottom: 5px;
 
 }
+
+.explore-garden-link {
+    height: fit-content;
+    padding-top: 27px;
+    text-decoration: none;
+    color: white;
+}
+
+.explore-garden-link:hover {
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+
+}
+
+.explore-links {
+    display: flex;
+}
+
 .logo-nave {
     padding-top: 5px;
-
+    padding-right: 15vw;
 }
 
 .logout-bttn {
