@@ -226,3 +226,18 @@
   transform: translate(-50%);
   margin-top: 30px; */
 }
+
+.file-submit{
+  float: right;
+  position: absolute;
+  left: 25%; top: 72%;
+  
+  margin-top: 30px;
+}
+
+.preview{
+  float: right;
+  position: absolute;
+  left: 5%; top: 5%;
+  margin-top: 30px;
+}
