@@ -8,6 +8,6 @@ export const addGardenPlant = gardenPlantId => axios.post(`/api/gardens/new/${ga
 
 export const deleteGardenPlant = gardenPlantId => axios.delete(`/api/gardens/${gardenPlantId}`);
 
-export const updateGardenPlant = gardenPlantId => axios.patch(`/api/gardens/${gardenPlantId}`);
+export const updateGardenPlant = gardenPlant => axios.patch(`/api/gardens/${gardenPlant.id}`,gardenPlant);
 
 export const fetchGardenPlant = gardenPlantId => axios.get(`/api/gardens/detail/${gardenPlantId}`);

@@ -37,6 +37,7 @@ export const getCurrentUserGardenPlants = state => {
         }
     }
 
+   
     return userGardenPlants;
 }
 
