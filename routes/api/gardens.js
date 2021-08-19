@@ -36,7 +36,7 @@ router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>
     );
 })
 
-router.get("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
+router.get("/detail/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
     GardenPlant.findById(req.params.id)
     .then(gardenPlant => res.json(gardenPlant))
     .catch(err =>
