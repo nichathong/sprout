@@ -136,7 +136,7 @@ class SessionForm extends React.Component {
             )}
             <br />
 
-            <input type="submit" value="Submit" />
+            <input className="session-form-submit" type="submit" value="Submit" />
           </form>
           <div className="bottom-text">
             {formType === "Login" ? (
