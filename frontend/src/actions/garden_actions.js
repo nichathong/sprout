@@ -27,7 +27,7 @@ const removeGardenPlant = data => ({
     data
 });
 
-const updateGardenPlant = data => ({
+const updateGardenPlantAction = data => ({
     type: UPDATE_GARDEN_PLANT,
     data
 })
@@ -46,7 +46,7 @@ export const deleteGardenPlant = gardenPlantId => dispatch => GardenAPIUtil.dele
     .then(data => dispatch(removeGardenPlant(data)));
 
 export const updateGardenPlant = gardenPlant => dispatch => GardenAPIUtil.updateGardenPlant(gardenPlant)
-      .then(data => dispatch(updateGardenPlant(data)))
+      .then(data => dispatch(updateGardenPlantAction(data)))
 
 export const fetchGardenPlant = gardenPlantId => dispatch => GardenAPIUtil.fetchGardenPlant(gardenPlantId)
     .then(data => dispatch(receiveGardenPlant(data)))
