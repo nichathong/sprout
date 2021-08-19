@@ -18,12 +18,20 @@
   text-decoration: none;
 }
 
-.button{
-  width: 100px;
+.add-plant-button{
+  width: 5vw;
+  height: 6vh;
   background-color: rgb(0, 128, 55);
   color: white;
   font-weight: bold;
-  
+  border-width: 0;
+  margin-top: -5vh;
+  border-radius: 1vh;
+}
+
+.add-plant-button:hover {
+    cursor: pointer;
+    background-color: #72c254;
 }
 
 
@@ -40,8 +48,8 @@
 .plant-index-header{
   align-items: center;
   text-align: center;
-  margin-top: -30px;
-  font-size: 170%;
+  margin-top: -4vh;
+  font-size: 5vh;
  
 }
 
@@ -59,98 +67,229 @@
   position: absolute;
   left: 50%; top: 20%;
   transform: translate(-50%);
-  height: 50vh;
-  width: 50vw;
-  background-color: white;
+  height: 60vh;
+  width: 40vw;
+  background-color: #fae0d4;
   border-radius: 15px;
   box-shadow: 0px 0px 20px black;
   padding: 10px;
+
+  display: flex;
 }
 
 .create-plant-button{
-  align-self: center;
   position: relative;
-  left: 50%;
-  transform: translate(-50%);
+  width: 2vw;
+  left: 94%;
+  top: 1.8vh;
+  font-size: 7vh;
 }
 
 .create-plant-form-close{
-  cursor: pointer;
+  position: relative;
+  left: 38vw;
+  bottom: 1vh;
+  height: 4vh;
+
+  font-size: 4vh;
 }
 
-.name{
-  float: right;
-  position: absolute;
-  left: 25%;
+.create-plant-form-close:hover {
+    cursor: pointer;
+    color: #657468;
 }
 
-.nameText{
-  float: left;
-  position: absolute;
-  margin-left: 10px;
+.create-plant-button:hover {
+    cursor: pointer;
+    color: #657468;
 }
 
-.difficulty{
-  float: right;
-  position: absolute;
-  left: 25%;
-  
+.name {
+    display: block;
+    margin-top: 3vh;
+    margin-left: 1vw;
 }
 
-.difficultyText{
-  float: left;
-  position: absolute;
-  margin-left: 10px;
+.nameText {
+    display: block;
+    margin-top: 0.4vh;
 }
 
-.wateringFrequency{
-  float: right;
-  position: absolute;
-  left: 25%;
+.difficulty {
+    display: block;
+    margin-left: 1vw;
+    margin-top: -2.5vh;
 }
 
-.days{
-  float: right;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
+.difficultyText {
+    display: block;
+    margin-top: 0.4vh;
 }
 
-.daysBox{
-  width: 100%;
-  margin-top: 10px;
+.sunlight {
+    display: block;
+    margin-left: 1vw;
+    margin-top: -2.5vh;
 }
 
-.sunlight{
-  float: right;
-  position: absolute;
-  left: 25%;
-  margin-top: 20px;
+.wateringFrequency {
+    display: block;
+    margin-left: 1vw;
+    margin-top: -2.5vh;
 }
 
-.temperature{
-  float: right;
-  position: absolute;
-  left: 25%;
-  margin-top: 10px;
+.days {
+    display: block;
+    margin-left: 1vw;
+    margin-top: -2.5vh;
+
+    width: 15vw;
 }
 
-.temperature-input{
-  width: 45%;
-  margin-top: 10px;
-}
-.tags{
-  float: right;
-  position: absolute;
-  left: 25%;
-  width: 55%;
-  margin-top: 30px;
+.daysBox {
+    width: 1vw;
+    margin-left: 0.5vw;
+    margin-top: 0.5vh;
+    padding-left: 0.5vw;
 }
 
-.submit-create-plant{
-  float: right;
-  position: absolute;
-  left: 50%; bottom: 5%;
-  transform: translate(-50%);
-  margin-top: 30px;
+.temperature {
+    display: block;
+    margin-left: 1vw;
+    margin-top: -2.5vh;
+    line-height: 3.2vh;
 }
+
+.temperature-input {
+    width: 1.5vw;
+    margin-top: 1vh;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    padding-left: 0.5vw;
+}
+
+.create-plant-form-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.tags {
+    margin-top: 5vh;
+}
+
+.tags-checkboxes {
+    border-color: #fae0d4;
+    box-shadow: none;
+}
+
+.submit-create-plant {
+    margin-top: 4vh;
+    margin-bottom: 2vh;
+    margin-left: 12vw;
+    background-color: rgb(0, 128, 55);
+    color: white;
+    font-weight: bold;
+    height: 5vh;
+    width: 4vw;
+}
+
+.submit-create-plant:hover {
+    background-color: #72c254;
+    cursor: pointer;
+}
+
+.plant-index-item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6vw;
+    margin-bottom: 4vh;
+    width: 16vw;
+    flex-direction: column;
+}
+
+.plant-index-list {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-top: 5vh;
+    margin-bottom: 7vh;
+}
+
+.plant-index-sub-container {
+    height: 89vh;
+    overflow-y: auto;
+}
+
+.plant-show-link {
+    cursor: auto;
+}
+
+.plantPhoto:hover {
+    border-style: solid;
+    border-width: 0.3vh;
+    border-color: #72c254;
+    cursor: pointer;
+}
+
+.plant-added-popup-anchor {
+    position: relative;
+    width: 0;
+    height: 0;
+}
+
+.plant-added-popup {
+        position: absolute;
+        bottom: 7.5vh;
+        right: -1vw;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 4.5vh;
+        padding: 0vh 1.5vh 0vh 1.5vh;
+        border-radius: 1vh;
+
+        background-color: rgb(0, 128, 55);
+
+        font-family: 'Nunito', sans-serif;
+        color: white;
+        font-size: 12px;
+        font-weight: 900;
+
+        animation: fadeAddedMessage 1.5s linear infinite;
+}
+
+.plant-added-popup-arrow {
+    position: absolute;
+    bottom: 6.5vh;
+    right: 2vh;
+
+    width: 0; 
+    height: 0; 
+    border-left: 1vh solid transparent;
+    border-right: 1vh solid transparent;
+    
+    border-top: 1vh solid rgb(0, 128, 55);
+
+    animation: fadeAddedMessage 1.5s linear infinite;
+}
+
+@keyframes fadeAddedMessage {
+    0% { opacity: 1; }
+    10% { opacity: 1; }
+    20% { opacity: 1; }
+    30% { opacity: 1; }
+    40% { opacity: 1; }
+    50% { opacity: 1; }
+    60% { opacity: 0.8; }
+    70% { opacity: 0.6; }
+    80% { opacity: 0.4; }
+    90% { opacity: 0.2; }
+    100% { opacity: 0; }
+}
+
