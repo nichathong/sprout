@@ -3,25 +3,27 @@
     flex-direction: column;
     width: 100%;
     height: 150px;
+    border-bottom: solid 1px;
 
 }
 
 .all-nav-bttn {
     display: flex;
     justify-content: space-between;
-    height: 80px;
+    height: 150px;
     min-width: 800px;
-    background-color: rgb(101, 116, 104);
+    background-color: #fae1d4;
     padding-right: 100px;
     padding-left: 100px;
 }
 
 .explore-plant-link {
     height: fit-content;
-    padding-top: 27px;
+    padding-top: 70px;
     text-decoration: none;
-    color: white;
-
+    color: rgb(5, 5, 5);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 22px;
 }
 
 .explore-plant-link:hover {
@@ -30,18 +32,18 @@
 
 }
 .logo-nave {
-    padding-top: 5px;
+    padding-top: 10px;
 
 }
 
 .logout-bttn {
     cursor: pointer;
-    margin-top: 20px;
-    width: 70px;
-    height: 35px;
-    border:white 1px solid; 
-    border-radius: 10px;
-    background: rgb(255, 211, 163);
+    margin-top: 50px;
+    width: 100px;
+    height: 55px;
+    border:rgb(0, 0, 0) 1px solid; 
+    border-radius: 1px;
+    background-color: transparent;
     font-weight: bolder;
 }
 
@@ -57,7 +59,7 @@
 }
 
 img {
-    width: 100px;
+    width: 150px;
     height: auto;
 }
 

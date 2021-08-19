@@ -228,33 +228,52 @@ class PlantIndex extends React.Component {
                 <input className="submit-create-plant" type="submit" value="Create Plant" />
             </form>
         );
-        return(
-            <div className="plant-index-container">
-                <img className="plantsBackground" src="plantsBackground.jpeg" />
-                <div className="navbar-contianer">
-                    <NavbarContainer />
+        return (
+          <div>
+            <div className="plant-index-item">
+              <div className="navbar-contianer">
+                <NavbarContainer />
+              </div>
+              <div className="background-contiainer-plant-index">
+                <img className="plantsBackground" src="wallpaper.png" alt="" />
+              </div>
+
+              <div className="addPlantForm">
+                {this.state.showForm ? plantForm : null}
+              </div>
+              <div className="main-content-plant-index-container">
+                <div className="index-header-container">
+                  <div className="plant-index-header">do we need this text</div>
                 </div>
+                <button
+                  className="create-plant-button"
+                  onClick={() => this.setState({ showForm: true })}
+                >
+                  Add Plant
+                </button>
 
-                <div className="addPlantForm">{this.state.showForm ? plantForm : null}</div>
-
-                <h1 className="plant-index-header">Types of Plants</h1>
-                <button className="create-plant-button" onClick={() => this.setState({ showForm: true })}>Add Plant</button>
-
-                <ul className="plant-index-list">
-                    {plants.map((plant, idx) => 
-                        <div>
-                            <Link key={idx} to={`/plants/${plant._id}`}>
-                                <li className="plant-index-item" key={plant._id}>
-                                    <img className="plantPhoto" src="plantFiller.jpeg" />
-                                    <div className="plantName">{plant.name}</div>
-                                </li>
+                <div className="each-plant-index-container">
+                  <div className="plant-index-list">
+                    <div>
+                    {plants.map((plant, idx) => (
+                            <Link className="plant-index-item" key={idx} to={`/plants/${plant._id}`}>
+                            <div className="plant-content-index"key={plant._id}>
+                                <img
+                                className="plantPhoto"
+                                src={plant.photoUrls[0]}
+                                alt=""
+                                />
+                                <div className="plantName">{plant.name}</div>
+                                <button className="button">Add</button>
+                            </div>
                             </Link>
-                            <button className="button">Add</button>
-                        </div>
-                    )}
-                </ul>
-
+                    ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         );
     }
 }
