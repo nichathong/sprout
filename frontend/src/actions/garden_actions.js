@@ -35,4 +35,4 @@ export const addGardenPlant = gardenPlantId => dispatch => GardenAPIUtil.addGard
     .then(data => dispatch(receiveGardenPlant(data)));
 
 export const deleteGardenPlant = gardenPlantId => dispatch => GardenAPIUtil.deleteGardenPlant(gardenPlantId)
-    .then(data => dispatch(removeGardenPlant(data)));
+    .then(data => dispatch(removeGardenPlant(gardenPlantId)));

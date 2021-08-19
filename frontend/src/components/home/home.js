@@ -24,6 +24,7 @@ class Home extends React.Component{
 
     render() {
         const { plants, gardenPlants } = this.props;
+        var today = new Date();
 
         return (
             <div>
@@ -36,11 +37,12 @@ class Home extends React.Component{
                 
 
                 <ul className = "plantList">
-                    {plants.map((plant, idx) => {
+                    {gardenPlants.map((plant, idx) => {
                         return <li className = "individual-sprout" key={idx}>
-                            <img src="plant-5.png"/>
+                            <img src="plant-1.png"/>
                             <button onClick={() => {this.handleClick(plant._id)}}>Delete</button>
-                            {plant.name}
+                            {console.log(Math.ceil(new Date() - new Date(plant.date.split("T")[0])) / (1000 * 60 * 60 * 24))}
+                           
                             </li>
                     })}
                 </ul>
