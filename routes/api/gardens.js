@@ -24,23 +24,30 @@ router.patch("/:garden_plant_id",passport.authenticate('jwt', { session: false }
         _id: req.params.garden_plant_id,
         owner: req.user.id,
         plant: req.body.plant_id,
-
-
+        nickname: req.body.nickname,
+        waterDate: req.body.waterDate,
+        date: req.body.date
     })
+
+    GardenPlant.updateOne({_id: req.params.id})
+    .then(gardenPlant => res.json(gardenPlant))
+    .catch(err =>
+        res.status(404).json({ nogardenplantfound: 'fail update' })
+    );
 })
 
 router.delete("/:id",passport.authenticate('jwt', { session: false }),(req,res) =>{
     GardenPlant.deleteOne({_id: req.params.id})
     .then(gardenPlant => res.json(gardenPlant))
     .catch(err =>
-        res.status(404).json({ noplantfound: 'No garden plants found with that id, fail delete' }))
+        res.status(404).json({ nogardenplantfound: 'No garden plants found with that id, fail delete' }))
 })
 
 router.get("/mine",passport.authenticate('jwt', { session: false }),(req,res)=>{
     GardenPlant.find({owner: req.user.id})
     .then(gardenPlant => res.json(gardenPlant))
     .catch(err =>
-        res.status(404).json({ noplantfound: 'No garden plants found with that user' })
+        res.status(404).json({ nogardenplantfound: 'No garden plants found with that user' })
     ); 
 })
 
@@ -48,7 +55,7 @@ router.get("/", passport.authenticate('jwt', { session: false }), (req,res)=>{
     GardenPlant.find()
     .then(gardenPlant => res.json(gardenPlant))
     .catch(err =>
-        res.status(404).json({ noplantfound: 'No garden plants found' })
+        res.status(404).json({ nogardenplantfound: 'No garden plants found' })
     ); 
 })
 
