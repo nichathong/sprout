@@ -9,6 +9,7 @@ class PlantIndex extends React.Component {
         this.state = {
             showForm: false,
             errors:{},
+
             name: "",
             level: "Intermediate",
             waterLevel: 1,
@@ -54,6 +55,7 @@ class PlantIndex extends React.Component {
         this.setState({
             showForm: false,
             errors:{},
+
             name: "",
             level: "Intermediate",
             waterLevel: 1,
@@ -152,8 +154,6 @@ class PlantIndex extends React.Component {
         if(Object.keys(this.state.errors).length === 0){
             this._resetForm();
             this.stateChange(); 
-         }else{
-             console.log(`running${this.state.errors}`)
          }
     }
 

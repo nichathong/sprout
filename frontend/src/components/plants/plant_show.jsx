@@ -9,6 +9,7 @@ class PlantShow extends React.Component {
         super(props);
         this.state = {
             showForm: false,
+            errors:{},
 
             name: "",
             level: "",
@@ -37,6 +38,7 @@ class PlantShow extends React.Component {
         this._resetForm = this._resetForm.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
+        this.handleError = this.handleError.bind(this);
     }
 
     
@@ -44,10 +46,14 @@ class PlantShow extends React.Component {
         this.props.fetchAllPlants();
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({ errors: nextProps.errors });
+    }
 
     _resetForm() {
         this.setState({
             showForm: false,
+            errors:{},
 
             name: this.props.plant.name,
             level: this.props.plant.level,
@@ -90,6 +96,7 @@ class PlantShow extends React.Component {
             } else {
                 this.setState({ [field]: e.currentTarget.value });
             }
+            this.setState({errors: {}})
         }
     }
 
@@ -113,8 +120,24 @@ class PlantShow extends React.Component {
             temperature: `${this.state.temperatureMin}-${this.state.temperatureMax}`,
             photoUrls: this.state.photoUrls,
             tags: selectedTags
-        }).then(() => (this._resetForm()));
+        }).then(() => (this.handleError()));
     }
+
+    handleError(){
+        if(Object.keys(this.state.errors).length === 0){
+            this._resetForm();
+         }
+    }
+
+    renderErrors() {
+        return (
+          <ul>
+            {Object.keys(this.state.errors).map((error, i) => (
+              <li key={`error-${i}`}>{this.state.errors[error]}</li>
+            ))}
+          </ul>
+        );
+      }
 
 
 
@@ -143,7 +166,7 @@ class PlantShow extends React.Component {
         const editForm = plant ?
             <div className="plant-show-edit-form-container">
                 <div className="edit-form-close" onClick={this.handleClose}>x</div>
-
+                {this.renderErrors()}
                 <form className="edit-plant-form" onSubmit={this.handleSubmit}>
                     <label>Name
                         <input type="text" value={this.state.name} onChange={this.update("name")} />
