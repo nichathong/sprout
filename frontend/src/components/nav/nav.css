@@ -1,4 +1,5 @@
 .nav-container{
+    position: sticky;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -11,16 +12,14 @@
     justify-content: space-between;
     height: 150px;
     min-width: 800px;
-    background-color: #fae1d4;
-
-    background-color: rgb(101, 116, 104);
-    padding-right: 3vw;
-    padding-left: 3.5vw;
+    background-color:rgb(250, 225, 212);
+    padding-right: 10vw;
+    padding-left: 8vw;
 }
 
-.explore-plant-link {
+.explore-plant-link, .explore-garden {
     height: fit-content;
-    padding-top: 70px;
+    padding-top: 9vh;
     text-decoration: none;
     color: rgb(5, 5, 5);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -28,17 +27,22 @@
 
 }
 
+.explore-garden {
+    margin-left: -30vh;
+}
+
+
 .explore-plant-link:hover {
     border-bottom-style: solid;
-    padding-bottom: 5px;
 
 }
 
 .explore-garden-link {
     height: fit-content;
-    padding-top: 27px;
+    padding-top: 5vh;
     text-decoration: none;
-    color: white;
+    color: rgb(5, 5, 5);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .explore-garden-link:hover {
@@ -52,7 +56,9 @@
 }
 
 .logo-nave {
-    padding-top: 10px;
+    padding-top: 1vh;
+    padding-right: 6vw;
+    
 }
 
 .logout-bttn {
