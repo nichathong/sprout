@@ -47,7 +47,7 @@ React-redux cycle would be implemented to manage the data visualization for the 
 * implement a search function 
 * sending alerts when the user needs to water the plants
 
-## Group Members & Work Breakdown
+## Group Members
 
 * **Patrick Campbell** - Team leader
 * **Annie Yang** -  Frontend/Backend Asst.
