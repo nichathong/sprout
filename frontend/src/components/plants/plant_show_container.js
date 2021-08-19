@@ -4,7 +4,8 @@ import { updatePlant, deletePlant, fetchAllPlants } from "../../actions/plant_ac
 
 const mstp = (state, ownProps) => ({
     currentUser: state.session.user,
-    plant: state.entities.plants[ownProps.match.params.plantId]
+    plant: state.entities.plants[ownProps.match.params.plantId],
+    errors: state.errors.plants
 });
 
 const mdtp = dispatch => ({

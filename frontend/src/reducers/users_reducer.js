@@ -5,8 +5,9 @@ const usersReducer = (state = {}, action) => {
 
     switch(action.type) {
         case RECEIVE_USER_GARDENS:
-            // fix this...
-            return action.data;
+            let nextState = {};
+            action.data.data.forEach(user => nextState[user._id] = user);
+            return nextState;
     
         default:
             return state;

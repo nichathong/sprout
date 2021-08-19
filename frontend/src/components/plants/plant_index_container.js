@@ -5,7 +5,8 @@ import { addGardenPlant } from "../../actions/garden_actions";
 
 const mstp = state => ({
     currentUser: state.session.user,
-    plants: Object.values(state.entities.plants)
+    plants: Object.values(state.entities.plants),
+    errors: state.errors.plants
 });
 
 const mdtp = dispatch => ({

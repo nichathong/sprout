@@ -8,7 +8,8 @@ class PlantIndex extends React.Component {
         super(props);
         this.state = {
             showForm: false,
-            
+            errors:{},
+
             name: "",
             level: "Intermediate",
             waterLevel: 1,
@@ -36,7 +37,8 @@ class PlantIndex extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this._resetForm = this._resetForm.bind(this);
-        this.handleSelectedFile = this.handleSelectedFile.bind(this);
+        this.handleSelectedFile = this.handleSelectedFile.bind(this)
+        this.handleError = this.handleError.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
     }
 
@@ -45,10 +47,15 @@ class PlantIndex extends React.Component {
         this.props.fetchAllPlants();
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({ errors: nextProps.errors });
+    }
+
 
     _resetForm() {
         this.setState({
             showForm: false,
+            errors:{},
 
             name: "",
             level: "Intermediate",
@@ -90,6 +97,7 @@ class PlantIndex extends React.Component {
             } else {
                 this.setState({ [field]: e.currentTarget.value });
             }
+            this.setState({errors: {}})
         }
     }
 
@@ -138,15 +146,23 @@ class PlantIndex extends React.Component {
         //     tags: selectedTags,
         // }).then(() => (this._resetForm()));
 
-        this.props.createPlant(formData).then(()=> (this._resetForm()))
-        this.stateChange()
+        this.props.createPlant(formData).then(()=>this.handleError())
+       
+        
+    }
+
+    handleError(){
+        if(Object.keys(this.state.errors).length === 0){
+            this._resetForm();
+            this.stateChange(); 
+         }
     }
 
 
     stateChange() {
         setTimeout(function () {
             window.location.reload() 
-        }, 1200);
+        }, 2000);
     }
 
 
@@ -168,6 +184,17 @@ class PlantIndex extends React.Component {
         }
     }
 
+    renderErrors() {
+        return (
+          <ul>
+            {Object.keys(this.state.errors).map((error, i) => (
+              <li key={`error-${i}`}>{this.state.errors[error]}</li>
+            ))}
+          </ul>
+        );
+      }
+
+
 
     handleAdd(plant) {
         return e => {
@@ -184,6 +211,7 @@ class PlantIndex extends React.Component {
             <form className="create-plant-form" onSubmit={this.handleSubmit}>
                 <div className="create-plant-form-close" onClick={this.handleClose}>  x </div>
 
+                {this.renderErrors()}
                 <label className="name">Name
                     <input className="nameText" type="text" value={this.state.name} onChange={this.update("name")} />
                 </label> <br /> <br />
@@ -240,33 +268,54 @@ class PlantIndex extends React.Component {
                 <input className="submit-create-plant" type="submit" value="Create Plant" />
             </form>
         );
-        return(
-            <div className="plant-index-container">
-                <img className="plantsBackground" src="plantsBackground.jpeg" />
-                <div className="navbar-contianer">
-                    <NavbarContainer />
-                </div>
+        return (
+          <div>
+            <div className="plant-index-item">
+              <div className="navbar-contianer">
+                <NavbarContainer />
+              </div>
+              <div className="background-contiainer-plant-index">
+                <img className="plantsBackground" src="wallpaper.png" alt="" />
+              </div>
 
-                <div className="addPlantForm">{this.state.showForm ? plantForm : null}</div>
+              <div className="addPlantForm">
+                {this.state.showForm ? plantForm : null}
+              </div>
+              <div className="main-content-plant-index-container">
+                <div className="index-header-container">
+                  <div className="plant-index-header">do we need this text</div>
+                </div>
 
                 <h1 className="plant-index-header">Types of Plants</h1>
                 <button className="create-plant-button" onClick={() => this.setState({ showForm: true })}>Add Plant</button>
 
-                <ul className="plant-index-list">
-                    {plants.map((plant, idx) => 
-                        <div key={idx}>
-                            <Link to={`/plants/${plant._id}`}>
-                                <li className="plant-index-item" key={plant._id}>
-                                    <img className="plantPhoto" src="plantFiller.jpeg" />
-                                    <div className="plantName">{plant.name}</div>
-                                </li>
+                <div className="each-plant-index-container">
+                  <div className="plant-index-list">
+                    <div>
+                    {plants.map((plant, idx) => (
+                    <div>
+                            <Link className="plant-index-item" key={idx} to={`/plants/${plant._id}`}>
+                            <div className="plant-content-index"key={plant._id}>
+                                <img
+                                className="plantPhoto"
+                                src={plant.photoUrls[0]}
+                                alt=""
+                                />
+                                <div className="plantName">{plant.name}</div>
+                            </div>
                             </Link>
                             <button className="button" onClick={this.handleAdd(plant)}>Add</button>
-                        </div>
-                    )}
-                </ul>
+                     </div>
+                    ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
 
+
+               
             </div>
+          </div>
         );
     }
 }
