@@ -12,7 +12,7 @@ const GardenPlantSchema = new Schema({
     },
     nickname:{
         type: String,
-        default: ''
+        default: 'My Plant'
     },
     waterDate:{
         type: Date,
