@@ -16,7 +16,7 @@ class SessionForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
       this.props.history.push("/home"); //or /login?
@@ -50,7 +50,7 @@ class SessionForm extends React.Component {
   renderErrors() {
     return (
       <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
+        {Object.keys(this.props.errors).map((error, i) => (
           <li key={`error-${i}`}>{this.state.errors[error]}</li>
         ))}
       </ul>
@@ -74,6 +74,7 @@ class SessionForm extends React.Component {
             <img className="logo-session" src="sprout2.png" alt=""></img>
           </div>
           <form className="session-form" onSubmit={this.handleSubmit}>
+            {this.renderErrors()}
             {formType === "Login" ? null : (
               <div className="login-form">
                 <label>

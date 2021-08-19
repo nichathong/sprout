@@ -34,4 +34,12 @@ router.get("/mine",passport.authenticate('jwt', { session: false }),(req,res)=>{
     ); 
 })
 
+router.get("/", passport.authenticate('jwt', { session: false }), (req,res)=>{
+    GardenPlant.find()
+    .then(gardenPlant => res.json(gardenPlant))
+    .catch(err =>
+        res.status(404).json({ noplantfound: 'No garden plants found' })
+    ); 
+})
+
 module.exports = router;

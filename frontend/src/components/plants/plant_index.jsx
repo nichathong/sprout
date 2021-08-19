@@ -12,6 +12,8 @@ class PlantIndex extends React.Component {
             showPopup: false,
             popupId: undefined,
             
+            errors:{},
+
             name: "",
             level: "Intermediate",
             waterLevel: 1,
@@ -39,7 +41,8 @@ class PlantIndex extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this._resetForm = this._resetForm.bind(this);
-        this.handleSelectedFile = this.handleSelectedFile.bind(this);
+        this.handleSelectedFile = this.handleSelectedFile.bind(this)
+        this.handleError = this.handleError.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
     }
 
@@ -48,10 +51,15 @@ class PlantIndex extends React.Component {
         this.props.fetchAllPlants();
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({ errors: nextProps.errors });
+    }
+
 
     _resetForm() {
         this.setState({
             showForm: false,
+            errors:{},
 
             name: "",
             level: "Intermediate",
@@ -93,6 +101,7 @@ class PlantIndex extends React.Component {
             } else {
                 this.setState({ [field]: e.currentTarget.value });
             }
+            this.setState({errors: {}})
         }
     }
 
@@ -141,15 +150,23 @@ class PlantIndex extends React.Component {
         //     tags: selectedTags,
         // }).then(() => (this._resetForm()));
 
-        this.props.createPlant(formData).then(()=> (this._resetForm()))
-        this.stateChange()
+        this.props.createPlant(formData).then(()=>this.handleError())
+       
+        
+    }
+
+    handleError(){
+        if(Object.keys(this.state.errors).length === 0){
+            this._resetForm();
+            this.stateChange(); 
+         }
     }
 
 
     stateChange() {
         setTimeout(function () {
             window.location.reload() 
-        }, 1200);
+        }, 2000);
     }
 
 
@@ -170,6 +187,17 @@ class PlantIndex extends React.Component {
         fileReader.readAsDataURL(file);
         }
     }
+
+    renderErrors() {
+        return (
+          <ul>
+            {Object.keys(this.state.errors).map((error, i) => (
+              <li key={`error-${i}`}>{this.state.errors[error]}</li>
+            ))}
+          </ul>
+        );
+      }
+
 
 
     handleAdd(plant) {
@@ -195,6 +223,7 @@ class PlantIndex extends React.Component {
                         <h1 className="create-plant-form-header">Create a Plant</h1>
                     </div>
 
+                    {this.renderErrors()}
                     <div className="create-plant-form-left">
                         <label className="name">Name
                             <input className="nameText" type="text" value={this.state.name} onChange={this.update("name")} />
@@ -265,40 +294,49 @@ class PlantIndex extends React.Component {
             </div>
         );
 
-        return(
-            <div className="plant-index-container">
-                <img className="plantsBackground" src="plantsBackground.jpeg" />
-                <div className="navbar-contianer">
-                    <NavbarContainer />
-                </div>
+        return (
+          <div>
+            <div className="plant-index-item-mega-container">
+              <div className="navbar-contianer">
+                <NavbarContainer />
+              </div>
 
-                <div className="addPlantForm">{this.state.showForm ? plantForm : null}</div>
+              <div className="background-contiainer-plant-index">
+                <img className="plantsBackground" src="wallpaper.png" alt="" />
+              </div>
 
-                <div className="plant-index-sub-container">
+              <div className="addPlantForm">
+                {this.state.showForm ? plantForm : null}
+              </div>
 
-                    <div className="create-plant-button" onClick={() => this.setState({ showForm: true })}>+</div>
+              <div className="main-content-plant-index-container">
+
+                <div className="create-plant-button" onClick={() => this.setState({ showForm: true })}>+</div>
+
+                <div className="each-plant-index-container">
                     <h1 className="plant-index-header">Types of Plants</h1>
 
-                    <ul className="plant-index-list">
-                        {plants.map((plant, idx) => 
-                            <div key={idx} className="plant-index-item-container">
-
-                                <Link to={`/plants/${plant._id}`} className="plant-show-link">
-                                    <li className="plant-index-item" key={plant._id}>
-                                        <img className="plantPhoto" src="plantFiller.jpeg" />
-                                        <div className="plantName">{capitalizeName(plant.name)}</div>
-                                    </li>
-                                </Link>
-
-                                <button className="add-plant-button" id={plant._id} onClick={this.handleAdd(plant)}>Add</button>
-                                {this.state.showPopup && this.state.popupId === plant._id ? plantAddedPopup : null}
-
-                            </div>
-                        )}
-                    </ul>
-
+                  <div className="plant-index-list">
+                    {plants.map((plant, idx) => (
+                        <li className="plant-index-item-container">
+                            <Link className="plant-index-item" key={idx} to={`/plants/${plant._id}`}>
+                                <div className="plant-content-index"key={plant._id}>
+                                    <img
+                                        className="plantPhoto"
+                                        src={plant.photoUrls[0]}
+                                        alt=""
+                                    />
+                                    <div className="plantName">{capitalizeName(plant.name)}</div>
+                                </div>
+                            </Link>
+                            <button className="button" onClick={this.handleAdd(plant)}>Add</button>
+                        </li>
+                    ))}
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         );
     }
 }
