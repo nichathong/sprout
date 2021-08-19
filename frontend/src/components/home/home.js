@@ -83,31 +83,20 @@ class Home extends React.Component{
         )
     }
 
-    // renderPlantDetail(plants,gardenPlant){
-    //     for( let plant in plants){
-    //         console.log(plant._id)
-    //         if(plant.id === gardenPlant.plant){
-    //             return(
-    //                 <div>
-    //                     <p>there is the detail</p>
-    //                     <ul>
-    //                     <li>Name: {plant.name}</li>
-    //                     <li>Nickname: {gardenPlant.nickname}</li>
-    //                     <li>level: {plant.level}</li>
-    //                     <li>Amount of Sunlight: {plant.light}</li>
-    //                     <li>Date: {gardenPlant.date}</li>
-    //                     <li>WaterDate: {gardenPlant.waterDate}</li>
-    //                     </ul>
-    //                     {plant.tags.length < 1 ? null : 
-    //                     <div className = "plant-tags"> Tags: 
-    //                         {plant.tags.map((tag, idx) => <div key={idx}>{tag.slice(2)} </div>)}
-    //                     </div>
-    //                 }
-    //                 </div>
-    //             )
-    //         }
-    //     }
-    // }
+    renderPlantDetail(gardenPlant){
+        const {plants} = this.props 
+        console.log(plants[0])
+        for( let i=0;i< plants.length;i++){
+            if(plants[i]._id === gardenPlant.plant){
+                return(
+                    <div>
+                        <p>there is the detail</p>
+                        <img src={plants[i].photoUrls[0]}/>
+                    </div>
+                )
+            }
+        }
+    }
     
 
     render() {
@@ -132,8 +121,8 @@ class Home extends React.Component{
 
                             <button onClick={()=>this.showUpdate(plant)}>update</button>
                              {this.state.showUpdateForm ? this.renderUpdateForm(plant):null }
-{/* 
-                             {this.renderPlantDetail(plants,plant)} */}
+
+                             {this.renderPlantDetail(plant)}
 
                             <button onClick={() => {this.handleClick(plant._id)}}>Delete</button>                           
                             </li>
