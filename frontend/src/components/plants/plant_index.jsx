@@ -229,6 +229,21 @@ class PlantIndex extends React.Component {
     };
   }
 
+  renderImg(plant){
+    if(plant.photoUrls===undefined){
+      return null
+    }else{
+      return(
+        <img
+        className="plantPhoto"
+        src={plant.photoUrls[0]}
+        alt=""
+    />
+      )
+    }
+
+  }
+
   render() {
     const { plants } = this.props;
     const preview = this.state.url ? <img src={this.state.url} /> : null;
@@ -339,11 +354,12 @@ class PlantIndex extends React.Component {
                         <li className="plant-index-item-container" key={idx}>
                             <Link className="plant-index-item" to={`/plants/${plant._id}`}>
                                 <div className="plant-content-index"key={plant._id}>
-                                    <img
+                                    {/* <img
                                         className="plantPhoto"
                                         src={plant.photoUrls[0]}
                                         alt=""
-                                    />
+                                    /> */}
+                                    {this.renderImg(plant)}
                                     <div className="plantName">{capitalizeName(plant.name)}</div>
                                 </div>
                             </Link>

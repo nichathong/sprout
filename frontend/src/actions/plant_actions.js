@@ -35,7 +35,9 @@ const receivePlantErrors = errors => ({
 
 export const createPlant = plant => dispatch => PlantAPIUtil.createPlant(plant)
     .then(plant => dispatch(receivePlant(plant)))
-    .catch(err => dispatch(receivePlantErrors(err.response.data)));
+    .catch(err => { 
+        if(err.response!==undefined){
+            return dispatch(receivePlantErrors(err.response.data))}});
 
 export const updatePlant = plant => dispatch => PlantAPIUtil.updatePlant(plant)
     .then(plant => dispatch(updatePlantAction(plant)))
