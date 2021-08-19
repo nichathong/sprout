@@ -1,10 +1,15 @@
-import { RECEIVE_GARDEN_PLANT, REMOVE_GARDEN_PLANT, RECEIVE_GARDEN_PLANTS, UPDATE_GARDEN_PLANT } from "../actions/garden_actions";
+import { RECEIVE_GARDEN_PLANT, REMOVE_GARDEN_PLANT, RECEIVE_GARDEN_PLANTS, UPDATE_GARDEN_PLANT, RECEIVE_ALL_GARDEN_PLANTS } from "../actions/garden_actions";
 
 const gardenPlantsReducer = (state = {}, action) => {
     Object.freeze(state);
 
     let nextState;
     switch(action.type) {
+        case RECEIVE_ALL_GARDEN_PLANTS:
+            nextState = {};
+            action.data.data.forEach(gardenPlant => nextState[gardenPlant._id] = gardenPlant);
+            return nextState;
+
         case RECEIVE_GARDEN_PLANTS:
             nextState = {};
             action.data.data.forEach(gardenPlant => nextState[gardenPlant._id] = gardenPlant);

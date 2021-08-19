@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+export const fetchAllGardenPlants = () => axios.get("/api/gardens");
+
 export const fetchCurrentUserGardenPlants = () => axios.get("/api/gardens/mine");
 
 export const fetchAllUserGardens = () => axios.get("/api/users/publicGardens");
