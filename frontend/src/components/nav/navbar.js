@@ -21,14 +21,16 @@ class Navbar extends React.Component {
         if (this.props.loggedIn) {
             return (
                 <div className="nav-container">
-                    <div className="all-nav-bttn">
+                    <nav className="all-nav-bttn">
                         <div className="explore-links">
-                            <Link className="explore-plant-link"to={'/plants'}>Explore Plants</Link>
-                            <Link className="explore-garden-link" to={"/feed"}>Explore Gardens</Link>
+                            <Link className="explore-plant-link"to={'/plants'}>All Plants</Link>
+                        </div>
+                        <div className="explore-garden">
+                            <Link className="explore-garden-link" to={"/feed"}>Gardens</Link>
                         </div>
                         <Link className="logo-nave" to={'/home'}><img src="sprout2.png" alt=""></img></Link>
                         <button className="logout-bttn" onClick={this.logoutUser}>Log out</button>
-                    </div>
+                    </nav>
                 </div>
             );
 

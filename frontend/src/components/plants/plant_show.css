@@ -1,6 +1,26 @@
+.plant-show-content-container {
+  position: relative;
+  /* width: 80vw; */
+  display: flex;
+  justify-content: center;
+}
+
+.show-content  {
+  position: absolute;
+  background-color: white;
+  width: 65vw;
+  height: 80vh;
+  min-width: 65vw;
+  margin-top: 20vh;
+  border: rgb(0, 0, 0) solid 2px;
+  box-shadow: 0px 0px 10px rgb(70, 70, 70);
+}
+
 .plant-image{
+  margin-top: 13vh;
   height: 400px;
   width: 400px;
+  object-fit: cover;
   overflow: hidden;
   border-radius: 200px;
   float: left;
@@ -13,19 +33,24 @@
   float: left;
   margin: 20px;
   position: relative;
-  left: 35%;
+  left: 50%;
   transform: translate(-50%);
   list-style-type: none;
   margin-left: -15px;
+  font-family: 'Gowun Batang', serif;
+  font-size: 18px;
 }
 
 .plant-name{
   margin: 15px;
   position: relative;
-  left: 35%;
-  transform: translate(-50%)
+  left: 50%;
+  transform: translate(-50%);
+  font-family: 'Gowun Batang', serif;
 }
+
 .information{
+  margin-top: 13vh;
   list-style-type: none;
   margin-left: -40px;
   float: left;
@@ -46,9 +71,10 @@
   left: 35%;
   
   list-style-type: none;
-  top: 65%; left: -2%;
+  top: 75%; left: 15%;
   margin-top: 30px;
-  width: 50px;
+  width: 12vh;
+  height: 2vw;
   
 }
 
@@ -57,18 +83,19 @@
   color: white;
   background-color: rgb(5, 73, 5);
   position: absolute;
-  left: 35%;
+  left: 55%;
   
   list-style-type: none;
-  top: 65%; left: 20%;
+  top: 75%; 
   margin-top: 30px;
-  width: 50px;
+  width: 12vh;
+  height: 2vw;
   
 }
 
 .plant-show-edit-form-container{
   position: absolute;
-  left: 50%; top: 20%;
+  /* left: 50%; top: 50%; */
   transform: translate(-50%);
   height: 50vh;
   width: 50vw;
@@ -172,22 +199,36 @@
 .plant-tags{
   margin: 20px;
   position: absolute;
-  left: 35%;
-  
-  list-style-type: none;
-  top: 40%; left: -1%;
+  font-family: 'Gowun Batang', serif;
+  top: 55%; 
+  /* left: -15%; */
   margin-top: 30px;
+  left: 22%;
+  transform: translate(-50%);
+  list-style-type: none;
+  margin-left: -15px;
+  font-family: 'Gowun Batang', serif;
+  font-size: 18px;
   
 }
 
 .back-to-list{
   margin: 20px;
   position: absolute;
-  left: 35%;
+  left: 30%;
   list-style-type: none;
-  top: 75%; left: -10%;
+  top: 90%; 
   margin-top: 30px;
+  text-decoration: none;;
+  color: black;
 
+}
+
+.previous-icon {
+  height: 24px;
+  width: auto;
+  position: absolute;
+  right: 7vw;
 }
 
 

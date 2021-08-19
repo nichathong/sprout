@@ -189,7 +189,7 @@ class PlantIndex extends React.Component {
   stateChange() {
     setTimeout(function () {
       window.location.reload();
-    }, 2000);
+    }, 1500);
   }
 
   handleClose(e) {
@@ -229,10 +229,35 @@ class PlantIndex extends React.Component {
     };
   }
 
+  renderImg(plant){
+    if(plant.photoUrls===undefined){
+      return null
+    }else{
+      return(
+        <img
+        className="plantPhoto"
+        src={plant.photoUrls[0]}
+        alt=""
+    />
+      )
+    }
+
+  }
+
+  renderName(plant){
+    if(plant.name===undefined){
+      return null
+    }else{
+      return(
+         <div className="plantName">{capitalizeName(plant.name)}</div>
+      )
+    }
+  }
+
   render() {
     const { plants } = this.props;
     const preview = this.state.url ? <img src={this.state.url} /> : null;
-      const plantForm = (
+    const plantForm = (
           <div className="create-plant-form-anchor">
               <form className="create-plant-form" onSubmit={this.handleSubmit}>
                   <div className="create-plant-form-close" onClick={this.handleClose}>x</div>
@@ -339,12 +364,14 @@ class PlantIndex extends React.Component {
                         <li className="plant-index-item-container" key={idx}>
                             <Link className="plant-index-item" to={`/plants/${plant._id}`}>
                                 <div className="plant-content-index"key={plant._id}>
-                                    <img
+                                    {/* <img
                                         className="plantPhoto"
                                         src={plant.photoUrls[0]}
                                         alt=""
-                                    />
-                                    <div className="plantName">{capitalizeName(plant.name)}</div>
+                                    /> */}
+                                    {this.renderImg(plant)}
+                                    {this.renderName(plant)}
+                                    {/* <div className="plantName">{capitalizeName(plant.name)}</div> */}
                                 </div>
                             </Link>
                             <button className="add-plant-button" id={plant._id} onClick={this.handleAdd(plant)}>Add</button>

@@ -224,46 +224,74 @@ class PlantShow extends React.Component {
                 </form>
             </div> : null;
 
-        return (
-            plant ? 
-                <div className="plant-show-container">
-                    {this.state.showForm ? editForm : null}
+        return plant ? (
+          <div className="plant-show-container">
+            {this.state.showForm ? editForm : null}
 
-                    <div className="navbar-contianer">
-                        <NavbarContainer />
+            <div className="navbar-contianer">
+              <NavbarContainer />
+            </div>
+            <div className="background-contiainer-plant-index">
+              <img className="plantsBackground" src="wallpaper.png" alt="" />
+            </div>
+
+            <div className="plant-show-content-container">
+              <div className="show-content">
+                <img className="plant-image" src={plant.photoUrls[0]} alt="" />
+                <div className="information">
+                  <h1 className="plant-name">{plant.name}</h1>
+
+                  <ul className="plant-info">
+                    <li>
+                      Difficulty:{" "}
+                      {plant.level.charAt(0).toUpperCase() +
+                        plant.level.slice(1)}
+                    </li>
+                    <li>Watering Frequency: {plant.waterLevel}</li>
+                    <li>Hours Between Watering: {plant.waterFrequency * 24}</li>
+                    <li>Amount of Sunlight: {plant.light}</li>
+                    {plant.temperature === "0-0" ? null : (
+                      <li>Ideal Temperature Range: {plant.temperature}</li>
+                    )}
+                  </ul>
+
+                  {plant.tags.length < 1 ? null : (
+                    <div className="plant-tags">
+                      {" "}
+                      Tags:
+                      {plant.tags.map((tag, idx) => (
+                        <div key={idx}>{tag.slice(2) } </div>
+                      ))}
                     </div>
-            
-                    
-                    <img className = "plant-image" src={plant.photoUrls[0]} />
-                    <div className="information">
-                    <h1 className = "plant-name">{plant.name}</h1>
-                    
+                  )}
 
-                    <ul className = "plant-info">
-                        <li>Difficulty: {plant.level.charAt(0).toUpperCase() + plant.level.slice(1)}</li>
-                        <li>Watering Frequency: {plant.waterLevel}</li>
-                        <li>Hours Between Watering: {plant.waterFrequency * 24}</li>
-                        <li>Amount of Sunlight: {plant.light}</li>
-                        {plant.temperature === "0-0" ? null : <li>Ideal Temperature Range: {plant.temperature}</li>}
-                    </ul>
-                    
-                    {plant.tags.length < 1 ? null : 
-                        <div className = "plant-tags"> Tags: 
-                            {plant.tags.map((tag, idx) => <div key={idx}>{tag.slice(2)} </div>)}
-                        </div>
-                    }
-
-                    {currentUser.id === plant.author ? 
-                        <div className="plant-show-edit-buttons-container">
-                            <button className="plant-show-edit-button" onClick={this.handleOpen}>Edit</button>
-                            <button className="plant-show-delete-button" onClick={this.handleDelete}>Delete</button>
-                        </div> :
-                        null
-                    }
-                    <br/>
-                    <Link className = "back-to-list" to="/plants">Back to List</Link>
+                  {currentUser.id === plant.author ? (
+                    <div className="plant-show-edit-buttons-container">
+                      <button
+                        className="plant-show-edit-button"
+                        onClick={this.handleOpen}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="plant-show-delete-button"
+                        onClick={this.handleDelete}
+                      >
+                        Delete
+                      </button>
                     </div>
-                </div> : <div className="plant-show-loading"></div>
+                  ) : null}
+                  <br />
+                  <Link className="back-to-list" to="/plants">
+                    <img className="previous-icon"src="previous.png" alt="" />
+                    Back to List
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="plant-show-loading"></div>
         );
     }
 }
