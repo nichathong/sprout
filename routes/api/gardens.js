@@ -29,7 +29,7 @@ router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>
         date: req.body.date
     })
 
-    GardenPlant.updateOne({_id: req.params.id})
+    GardenPlant.updateOne({_id: req.params.id},updatePlant)
     .then(gardenPlant => res.json(gardenPlant))
     .catch(err =>
         res.status(404).json({ nogardenplantfound: 'fail update' })
@@ -37,7 +37,7 @@ router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>
 })
 
 router.get("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
-    GardenPlant.find({_id: req.params.id})
+    GardenPlant.findById(req.params.id)
     .then(gardenPlant => res.json(gardenPlant))
     .catch(err =>
         res.status(404).json({ nogardenplantfound: 'No garden plants found with that id' }))
