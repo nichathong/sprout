@@ -36,7 +36,8 @@ class PlantIndex extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this._resetForm = this._resetForm.bind(this);
-        this.handleSelectedFile = this.handleSelectedFile.bind(this)
+        this.handleSelectedFile = this.handleSelectedFile.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
     }
 
 
@@ -141,16 +142,19 @@ class PlantIndex extends React.Component {
         this.stateChange()
     }
 
+
     stateChange() {
         setTimeout(function () {
             window.location.reload() 
         }, 1200);
     }
 
+
     handleClose(e) {
         e.preventDefault();
         this._resetForm();
     }
+
 
     handleSelectedFile(e){
         e.preventDefault();
@@ -161,6 +165,14 @@ class PlantIndex extends React.Component {
         };
         if (file) {
         fileReader.readAsDataURL(file);
+        }
+    }
+
+
+    handleAdd(plant) {
+        return e => {
+            e.preventDefault();
+            this.props.addGardenPlant(plant._id ? plant._id : plant.id);
         }
     }
 
@@ -242,14 +254,14 @@ class PlantIndex extends React.Component {
 
                 <ul className="plant-index-list">
                     {plants.map((plant, idx) => 
-                        <div>
-                            <Link key={idx} to={`/plants/${plant._id}`}>
+                        <div key={idx}>
+                            <Link to={`/plants/${plant._id}`}>
                                 <li className="plant-index-item" key={plant._id}>
                                     <img className="plantPhoto" src="plantFiller.jpeg" />
                                     <div className="plantName">{plant.name}</div>
                                 </li>
                             </Link>
-                            <button className="button">Add</button>
+                            <button className="button" onClick={this.handleAdd(plant)}>Add</button>
                         </div>
                     )}
                 </ul>
