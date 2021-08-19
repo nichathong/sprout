@@ -19,9 +19,9 @@ router.post("/new/:plant_id",passport.authenticate('jwt', { session: false }),(r
 
 })
 
-router.patch("/:garden_plant_id",passport.authenticate('jwt', { session: false }),(req,res)=>{
+router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
     const updatePlant = new GardenPlant({
-        _id: req.params.garden_plant_id,
+        _id: req.params.id,
         owner: req.user.id,
         plant: req.body.plant_id,
         nickname: req.body.nickname,
@@ -34,6 +34,13 @@ router.patch("/:garden_plant_id",passport.authenticate('jwt', { session: false }
     .catch(err =>
         res.status(404).json({ nogardenplantfound: 'fail update' })
     );
+})
+
+router.get("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
+    GardenPlant.find({_id: req.params.id})
+    .then(gardenPlant => res.json(gardenPlant))
+    .catch(err =>
+        res.status(404).json({ nogardenplantfound: 'No garden plants found with that id' }))
 })
 
 router.delete("/:id",passport.authenticate('jwt', { session: false }),(req,res) =>{
