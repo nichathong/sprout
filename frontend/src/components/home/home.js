@@ -1,6 +1,7 @@
 import React from 'react';
 import NavbarContainer from '../nav/navbar_container';
 import './home.css'
+import { Link } from 'react-router-dom';
 
 
 class Home extends React.Component{
@@ -89,10 +90,7 @@ class Home extends React.Component{
         for( let i=0;i< plants.length;i++){
             if(plants[i]._id === gardenPlant.plant){
                 return(
-                    <div>
-                        <p>there is the detail</p>
-                        <img src={plants[i].photoUrls[0]}/>
-                    </div>
+                     <Link to={`/plants/${gardenPlant.plant}`}><img src={plants[i].photoUrls[0]}/></Link> 
                 )
             }
         }
