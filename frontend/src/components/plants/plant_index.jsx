@@ -184,70 +184,78 @@ class PlantIndex extends React.Component {
 
     render() {
         const { plants } = this.props;
+        
         const preview = this.state.url ? <img src={this.state.url} /> : null;
+
         const plantForm = (
-            <form className="create-plant-form" onSubmit={this.handleSubmit}>
-                <div className="create-plant-form-close" onClick={this.handleClose}>x</div>
+            <div className="create-plant-form-anchor">
+                <form className="create-plant-form" onSubmit={this.handleSubmit}>
+                    <div className="create-plant-form-close" onClick={this.handleClose}>x</div>
+                    <div className="create-plant-form-header-anchor">
+                        <h1 className="create-plant-form-header">Create a Plant</h1>
+                    </div>
 
-                <div className="create-plant-form-left">
-                    <label className="name">Name
-                        <input className="nameText" type="text" value={this.state.name} onChange={this.update("name")} />
-                    </label> <br /> <br />
+                    <div className="create-plant-form-left">
+                        <label className="name">Name
+                            <input className="nameText" type="text" value={this.state.name} onChange={this.update("name")} />
+                        </label> <br /> <br />
 
-                    <label className="difficulty">Difficulty
-                        <select className="difficultyText" onChange={this.update("level")} value={this.state.level}>
-                            <option value="Beginner">Beginner</option>
-                            <option value="Intermediate">Intermediate</option>
-                            <option value="Advanced">Advanced</option>
-                        </select>
-                    </label> <br /> <br />
+                        <label className="difficulty">Difficulty
+                            <select className="difficultyText" onChange={this.update("level")} value={this.state.level}>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
+                        </label> <br /> <br />
 
-                    <label className="sunlight">Amount of Sunlight <br />
-                        <input type="radio" name="sunlight" value={1} onChange={this.update("sunlight")} defaultChecked />{1}
-                        <input type="radio" name="sunlight" value={2} onChange={this.update("sunlight")} />{2}
-                        <input type="radio" name="sunlight" value={3} onChange={this.update("sunlight")} />{3}
-                        <input type="radio" name="sunlight" value={4} onChange={this.update("sunlight")} />{4}
-                        <input type="radio" name="sunlight" value={5} onChange={this.update("sunlight")} />{5}
-                    </label> <br /> <br />
+                        <label className="sunlight">Amount of Sunlight <br />
+                            <input type="radio" name="sunlight" value={1} onChange={this.update("sunlight")} defaultChecked />{1}
+                            <input type="radio" name="sunlight" value={2} onChange={this.update("sunlight")} />{2}
+                            <input type="radio" name="sunlight" value={3} onChange={this.update("sunlight")} />{3}
+                            <input type="radio" name="sunlight" value={4} onChange={this.update("sunlight")} />{4}
+                            <input type="radio" name="sunlight" value={5} onChange={this.update("sunlight")} />{5}
+                        </label> <br /> <br />
 
-                    <label className="wateringFrequency">Watering Frequency <br />
-                        <input className="wateringFrequencyInput" type="radio" name="watering-frequency" value={1} onChange={this.update("waterLevel")} defaultChecked />{1}
-                        <input type="radio" name="watering-frequency" value={2} onChange={this.update("waterLevel")} />{2}
-                        <input type="radio" name="watering-frequency" value={3} onChange={this.update("waterLevel")} />{3}
-                        <input type="radio" name="watering-frequency" value={4} onChange={this.update("waterLevel")} />{4}
-                        <input type="radio" name="watering-frequency" value={5} onChange={this.update("waterLevel")} />{5}
-                    </label> <br /> <br />
+                        <label className="wateringFrequency">Watering Frequency <br />
+                            <input className="wateringFrequencyInput" type="radio" name="watering-frequency" value={1} onChange={this.update("waterLevel")} defaultChecked />{1}
+                            <input type="radio" name="watering-frequency" value={2} onChange={this.update("waterLevel")} />{2}
+                            <input type="radio" name="watering-frequency" value={3} onChange={this.update("waterLevel")} />{3}
+                            <input type="radio" name="watering-frequency" value={4} onChange={this.update("waterLevel")} />{4}
+                            <input type="radio" name="watering-frequency" value={5} onChange={this.update("waterLevel")} />{5}
+                        </label> <br /> <br />
 
-                    <label className="days">How often should the plant be watered (in days)?
-                        <input className="daysBox" type="numbers" min="0" max="1000" value={this.state.waterFrequency} onChange={this.update("waterFrequency")} />
-                    </label> <br /> <br />
+                        <label className="days">How often should the plant be watered (in days)?
+                            <input className="daysBox" type="numbers" min="0" max="1000" value={this.state.waterFrequency} onChange={this.update("waterFrequency")} />
+                        </label> <br /> <br />
 
-                    <label className="temperature">Ideal Temperature Range (Fahrenheit) <br />
-                        <input className="temperature-input" type="numbers" min="0" max="300" value={this.state.temperatureMin} onChange={this.update("temperatureMin")} />
-                        -
-                        <input className="temperature-input" type="numbers" min="0" max="300" value={this.state.temperatureMax} onChange={this.update("temperatureMax")} />
-                    </label> <br /> <br />
-                </div>
+                        <label className="temperature">Ideal Temperature Range (Fahrenheit) <br />
+                            <input className="temperature-input" type="numbers" min="0" max="300" value={this.state.temperatureMin} onChange={this.update("temperatureMin")} />
+                            -
+                            <input className="temperature-input" type="numbers" min="0" max="300" value={this.state.temperatureMax} onChange={this.update("temperatureMax")} />
+                        </label> <br /> <br />
+                    </div>
 
-                <div className="create-plant-form-right">
-                    {/* upload photo here*/}
-                    {preview}
-                    <input type="file" onChange={this.handleSelectedFile} />
+                    <div className="create-plant-form-right">
+                        {/* upload photo here*/}
+                        {preview}
+                        <input type="file" onChange={this.handleSelectedFile} />
 
-                    <label className="tags">Tags <br />
-                        <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isIndoor")} />Indoor
-                        <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isOutdoor")} />Outdoor
-                        <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isSucculent")} />Succulent
-                        <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isFlowering")} />Flowering <br />
-                        <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isPoisonous")} />Poisonous
-                        <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isExotic")} />Exotic
-                        <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isMultiColored")} />Multi-colored
-                        <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isHanging")} />Hanging
-                    </label> <br /> <br />
-                    
-                    <input className="submit-create-plant" type="submit" value="Create Plant" />
-                </div>
-            </form>
+                        <label className="tags">Select all that apply! <br />
+                            <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isIndoor")} />Indoor
+                            <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isOutdoor")} />Outdoor
+                            <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isSucculent")} />Succulent
+                            <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isFlowering")} />Flowering <br />
+                            <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isPoisonous")} />Poisonous
+                            <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isExotic")} />Exotic
+                            <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isMultiColored")} />Multi-colored
+                            <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isHanging")} />Hanging
+                        </label> <br /> <br />
+                        
+                        <input className="submit-create-plant" type="submit" value="Create Plant" />
+                    </div>
+                </form>
+            </div>
+
         );
 
         const plantAddedPopup = (

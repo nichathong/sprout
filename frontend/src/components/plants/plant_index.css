@@ -63,18 +63,31 @@
    
 }
 
-.create-plant-form{
-  position: absolute;
-  left: 50%; top: 20%;
-  transform: translate(-50%);
-  height: 60vh;
-  width: 40vw;
-  background-color: #fae0d4;
-  border-radius: 15px;
-  box-shadow: 0px 0px 20px black;
-  padding: 10px;
+.create-plant-form-anchor {
+    position: fixed;
+    z-index: 300;
+    background-color: rgba(1, 1, 1, 0.7);
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
 
-  display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-plant-form{
+    height: 70vh;
+    width: 40vw;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px black;
+    padding: 10px;
+    
+    position: absolute;
+    background-color: #fae0d4;
+
+    display: flex;
 }
 
 .create-plant-button{
@@ -104,9 +117,21 @@
     color: #657468;
 }
 
+.create-plant-form-header-anchor {
+    position: relative;
+    width: 0;
+    height: 0;
+}
+.create-plant-form-header {
+    position: absolute;
+    left: 12vw;
+    top: 0vh;
+    width: 15vw;
+}
+
 .name {
     display: block;
-    margin-top: 3vh;
+    margin-top: 10vh;
     margin-left: 1vw;
 }
 
@@ -176,7 +201,7 @@
 }
 
 .tags {
-    margin-top: 5vh;
+    margin-top: 3.5vh;
 }
 
 .tags-checkboxes {
