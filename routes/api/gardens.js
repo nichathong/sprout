@@ -19,6 +19,16 @@ router.post("/new/:plant_id",passport.authenticate('jwt', { session: false }),(r
 
 })
 
+router.patch("/:garden_plant_id",passport.authenticate('jwt', { session: false }),(req,res)=>{
+    const updatePlant = new GardenPlant({
+        _id: req.params.garden_plant_id,
+        owner: req.user.id,
+        plant: req.body.plant_id,
+
+
+    })
+})
+
 router.delete("/:id",passport.authenticate('jwt', { session: false }),(req,res) =>{
     GardenPlant.deleteOne({_id: req.params.id})
     .then(gardenPlant => res.json(gardenPlant))
