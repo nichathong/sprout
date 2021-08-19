@@ -49,7 +49,7 @@ router.post("/new",passport.authenticate('jwt', { session: false }),upload.singl
                   }; 
                   s3bucket.upload(params, (err, data) => {
                     if (err) {
-                      res.status(500).json({ error: true, Message: err });
+                      return res.status(500).json({ error: true, Message: err });
                     } else {
                       res.send({ data });
                       var newFileUploaded = {
