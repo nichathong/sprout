@@ -42,17 +42,7 @@ class Home extends React.Component{
                              
 
                             <button onClick={() => {this.handleClick(plant._id)}}>Delete</button>
-                            {plant.name}
-
-                            {/* plantdetail */}
-                            <div>
-                                {plant.waterLevel}
-                                {plant.level}
-                                {gardenPlants[idx].waterDate}
-                                {gardenPlants[idx].nickname}
-                                {gardenPlants[idx].date}
-                            </div>
-                            
+                            {plant.name}                            
                             </li>
                     })}
                 </ul>
