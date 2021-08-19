@@ -65,6 +65,7 @@
   border-radius: 15px;
   box-shadow: 0px 0px 20px black;
   padding: 10px;
+  z-index: 10000;
 }
 
 .create-plant-button{
@@ -152,5 +153,20 @@
   position: absolute;
   left: 50%; bottom: 5%;
   transform: translate(-50%);
+  margin-top: 30px;
+}
+
+.file-submit{
+  float: right;
+  position: absolute;
+  left: 25%; top: 72%;
+  
+  margin-top: 30px;
+}
+
+.preview{
+  float: right;
+  position: absolute;
+  left: 5%; top: 5%;
   margin-top: 30px;
 }

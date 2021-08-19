@@ -222,8 +222,8 @@ class PlantIndex extends React.Component {
                 </label> <br /> <br />
                 
                 {/* upload photo here*/}
-                 {preview}
-                <input type="file" onChange={this.handleSelectedFile}/>
+                <div className="preview">{preview}</div>
+                <input className = "file-submit" type="file" onChange={this.handleSelectedFile}/>
 
                 <input className="submit-create-plant" type="submit" value="Create Plant" />
             </form>
