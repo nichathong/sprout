@@ -425,9 +425,6 @@ class PlantIndex extends React.Component {
             {this.state.showForm ? plantForm : null}
           </div>
           <div className="main-content-plant-index-container">
-            <div className="index-header-container">
-              <div className="plant-index-header">do we need this text</div>
-            </div>
 
             <h1 className="plant-index-header">Types of Plants</h1>
             <button
@@ -437,10 +434,12 @@ class PlantIndex extends React.Component {
               Add Plant
             </button>
 
-            <div className="each-plant-index-container">
-              <div className="plant-index-list">
-                <div>
-                  {plants.map((plant, idx) => (
+                <div className="each-plant-index-container">
+                <h1 className="plant-index-header">Types of Plants</h1>
+
+                  <div className="plant-index-list">
+                    <div>
+                    {plants.map((plant, idx) => (
                     <div>
                       <Link
                         className="plant-index-item"
