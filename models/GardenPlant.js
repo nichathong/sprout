@@ -10,6 +10,10 @@ const GardenPlantSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'plants'
     },
+    nickname:{
+        type: String,
+        default: ''
+    },
     waterDate:{
         type: Date,
         default: Date.now

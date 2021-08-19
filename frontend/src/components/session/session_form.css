@@ -85,7 +85,7 @@ input[type="submit"] {
 
 }
 
-input[type="submit"]:hover {
+.session-form-submit:hover {
     transition:all .5s ease-in-out;
     background: rgb(255, 211, 163);
     font-weight: bolder;
