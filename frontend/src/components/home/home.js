@@ -13,7 +13,6 @@ class Home extends React.Component{
     componentDidMount() {
         this.props.fetchCurrentUserGardenPlants();
 
-        
     }
 
     handleClick(plantId) {

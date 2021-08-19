@@ -19,18 +19,42 @@ router.post("/new/:plant_id",passport.authenticate('jwt', { session: false }),(r
 
 })
 
+router.patch("/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
+    const updatePlant = new GardenPlant({
+        _id: req.params.id,
+        owner: req.user.id,
+        plant: req.body.plant_id,
+        nickname: req.body.nickname,
+        waterDate: req.body.waterDate,
+        date: req.body.date
+    })
+
+    GardenPlant.updateOne({_id: req.params.id},updatePlant)
+    .then(gardenPlant => res.json(gardenPlant))
+    .catch(err =>
+        res.status(404).json({ nogardenplantfound: 'fail update' })
+    );
+})
+
+router.get("/detail/:id",passport.authenticate('jwt', { session: false }),(req,res)=>{
+    GardenPlant.findById(req.params.id)
+    .then(gardenPlant => res.json(gardenPlant))
+    .catch(err =>
+        res.status(404).json({ nogardenplantfound: 'No garden plants found with that id' }))
+})
+
 router.delete("/:id",passport.authenticate('jwt', { session: false }),(req,res) =>{
     GardenPlant.deleteOne({_id: req.params.id})
     .then(gardenPlant => res.json(gardenPlant))
     .catch(err =>
-        res.status(404).json({ noplantfound: 'No garden plants found with that id, fail delete' }))
+        res.status(404).json({ nogardenplantfound: 'No garden plants found with that id, fail delete' }))
 })
 
 router.get("/mine",passport.authenticate('jwt', { session: false }),(req,res)=>{
     GardenPlant.find({owner: req.user.id})
     .then(gardenPlant => res.json(gardenPlant))
     .catch(err =>
-        res.status(404).json({ noplantfound: 'No garden plants found with that user' })
+        res.status(404).json({ nogardenplantfound: 'No garden plants found with that user' })
     ); 
 })
 
@@ -38,7 +62,7 @@ router.get("/", passport.authenticate('jwt', { session: false }), (req,res)=>{
     GardenPlant.find()
     .then(gardenPlant => res.json(gardenPlant))
     .catch(err =>
-        res.status(404).json({ noplantfound: 'No garden plants found' })
+        res.status(404).json({ nogardenplantfound: 'No garden plants found' })
     ); 
 })
 
