@@ -10,11 +10,14 @@ class Home extends React.Component{
 
 
     componentDidMount() {
-        this.props.fetchCurrentUserGarden(this.props.currentUser);
+        this.props.fetchCurrentUserGardenPlants();
     }
     
 
     render() {
+        const { plants, gardenPlants } = this.props;
+        console.log(plants);
+
         return (
             <div>
                 <div className="navbar-container">
@@ -22,6 +25,12 @@ class Home extends React.Component{
                 </div>
 
                 <h1>Hello garden graphics go here</h1>
+
+                <ul>
+                    {plants.map((plant, idx) => {
+                        return <li key={idx}>{plant.name}</li>
+                    })}
+                </ul>
             </div>
         )
     }
