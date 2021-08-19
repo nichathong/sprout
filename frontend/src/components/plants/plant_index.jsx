@@ -221,8 +221,11 @@ class PlantIndex extends React.Component {
 
   handleAdd(plant) {
     return (e) => {
-      e.preventDefault();
-      this.props.addGardenPlant(plant._id ? plant._id : plant.id);
+        e.preventDefault();
+        this.props.addGardenPlant(plant._id ? plant._id : plant.id);
+        this.setState({ showPopup: true, popupId: plant._id ? plant._id : plant.id });
+        setTimeout(() => this.setState({ showPopup: false, popupId: plant._id ? plant._id : plant.id }), 1500);
+
     };
   }
 
