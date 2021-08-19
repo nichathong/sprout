@@ -7,6 +7,11 @@ class Navbar extends React.Component {
         super(props);
         this.logoutUser = this.logoutUser.bind(this);
     }
+
+    componentDidMount() {
+        this.props.fetchAllPlants();
+    }
+
     logoutUser(e) {
       e.preventDefault();
       this.props.logout();
@@ -17,7 +22,10 @@ class Navbar extends React.Component {
             return (
                 <div className="nav-container">
                     <div className="all-nav-bttn">
-                        <Link className="explore-plant-link"to={'/plants'}>Explore plants</Link>
+                        <div className="explore-links">
+                            <Link className="explore-plant-link"to={'/plants'}>Explore Plants</Link>
+                            <Link className="explore-garden-link" to={"/feed"}>Explore Gardens</Link>
+                        </div>
                         <Link className="logo-nave" to={'/home'}><img src="sprout2.png" alt=""></img></Link>
                         <button className="logout-bttn" onClick={this.logoutUser}>Log out</button>
                     </div>
