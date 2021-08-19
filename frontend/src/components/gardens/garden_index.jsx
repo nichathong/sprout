@@ -1,6 +1,7 @@
 import React from "react";
 import GardenShowContainer from "./garden_show_container";
 import NavBarContainer from "../nav/navbar_container";
+import "./garden_index.css"
 
 
 class GardenIndex extends React.Component {
@@ -13,6 +14,7 @@ class GardenIndex extends React.Component {
     componentDidMount() {
         this.props.fetchAllUserGardens();
         this.props.fetchAllPlants();
+        this.props.fetchAllGardenPlants();
     }
 
 
@@ -20,18 +22,18 @@ class GardenIndex extends React.Component {
         const { users } = this.props;
 
         return (
-            <div className="garden-index-container">
-
+            <div className="garden-index-outer-container">
                 <NavBarContainer />
 
-                <h1>Gardens :)</h1>
+                <div className="garden-index-container">
+                    <h1 className="garden-index-header">Public Gardens</h1>
 
-                <ul>
-                    {users.map((user, idx) => 
-                        <GardenShowContainer key={idx} user={user}/>
-                    )}
-                </ul>
-                
+                    <ul className="garden-index-list-container">
+                        {users.map((user, idx) => 
+                            <GardenShowContainer key={idx} user={user}/>
+                        )}
+                    </ul>
+                </div>
             </div>
         );
     }

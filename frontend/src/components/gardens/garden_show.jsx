@@ -1,4 +1,6 @@
 import React from "react";
+import "./garden_index.css";
+
 
 class GardenShow extends React.Component {
     constructor(props) {
@@ -7,20 +9,24 @@ class GardenShow extends React.Component {
     }
 
 
-    componentDidMount() {
-        // call action to get this user's garden plants
-    }
-
-
     render() {
         const { user, plants, gardenPlants } = this.props;
 
+        // console.log(`${user.firstname} ------- ${gardenPlants.length}`);
+
         return (
-            <li>
-                <h3>{user.firstname}'s Garden</h3>
-            </li>
+            gardenPlants.length > 0 ?
+                <li className="user-garden-container">
+                    <div className="user-garden-top-border"></div>
+
+                    <h3 className="user-garden-header">{user.firstname}'s Garden</h3>
+
+                    <img className="user-garden-dirt" src="dirt.jpeg" />
+                </li>
+                : null
         );
     }
 }
+
 
 export default GardenShow;

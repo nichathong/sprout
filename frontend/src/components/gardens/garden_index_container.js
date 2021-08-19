@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import GardenIndex from './garden_index';
-import { fetchAllUserGardens } from "../../actions/garden_actions";
+import { fetchAllUserGardens, fetchAllGardenPlants } from "../../actions/garden_actions";
 import { fetchAllPlants } from "../../actions/plant_actions";
 
 const mstp = state => ({
@@ -10,7 +10,8 @@ const mstp = state => ({
 
 const mdtp = dispatch => ({
     fetchAllUserGardens: () => dispatch(fetchAllUserGardens()),
-    fetchAllPlants: () => dispatch(fetchAllPlants())
+    fetchAllPlants: () => dispatch(fetchAllPlants()),
+    fetchAllGardenPlants: () => dispatch(fetchAllGardenPlants())
 });
 
 export default connect(mstp, mdtp)(GardenIndex);
