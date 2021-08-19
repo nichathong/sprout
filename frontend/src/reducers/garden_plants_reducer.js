@@ -14,8 +14,8 @@ const gardenPlantsReducer = (state = {}, action) => {
             return Object.assign({}, state, { [action.data.data._id]: action.data.data });
         
         case UPDATE_GARDEN_PLANT:
-            let gardenplant = JSON.parse(action.data.config.data);
-            return Object.assign({}, state, { [gardenplant.id]: gardenplant });
+            let plant = JSON.parse(action.data.config.data);
+            return Object.assign({}, state, { [plant.id]: plant });
 
         case REMOVE_GARDEN_PLANT:
             nextState = Object.assign({}, state);
