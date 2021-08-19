@@ -16,7 +16,7 @@ class SessionForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
       this.props.history.push("/home"); //or /login?
