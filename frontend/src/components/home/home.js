@@ -67,13 +67,13 @@ class Home extends React.Component{
             <div className = "render-update-form">
                 <button onClick={()=>this.setState({showUpdateForm: false})}>x</button>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Nickname
+                    <label className = "nickname">Nickname
                          <input  type="text" value={this.state.nickname} onChange={this.update("nickname")} />
                     </label>
-                    <label>Date
+                    <label className="date">Date
                          <input  type="text" value={this.state.date} onChange={this.update("date")} />
                     </label>
-                    <label>WaterDate
+                    <label className="waterdate">WaterDate
                          <input  type="text" value={this.state.waterDate} onChange={this.update("waterDate")} />
                     </label>
                     <input type="submit" value="Update" />
