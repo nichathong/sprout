@@ -31,7 +31,9 @@
   float: left;
   position: relative;
   left: 40%;
-  transform: translate(-50%)
+  transform: translate(-50%);
+  height: 400px;
+
 }
 
 .plant-show-edit-button{
@@ -40,12 +42,28 @@
   background-color: rgb(5, 73, 5);
   margin-top: 10px;
   margin-bottom: 10px;
+  position: absolute;
+  left: 35%;
+  
+  list-style-type: none;
+  top: 65%; left: -2%;
+  margin-top: 30px;
+  width: 50px;
+  
 }
 
 .plant-show-delete-button{
   margin-right: 10px;
   color: white;
   background-color: rgb(5, 73, 5);
+  position: absolute;
+  left: 35%;
+  
+  list-style-type: none;
+  top: 65%; left: 20%;
+  margin-top: 30px;
+  width: 50px;
+  
 }
 
 .plant-show-edit-form-container{
@@ -153,11 +171,23 @@
 
 .plant-tags{
   margin: 20px;
-  position: relative;
+  position: absolute;
   left: 35%;
-  transform: translate(-50%);
-  list-style-type: none;
   
+  list-style-type: none;
+  top: 40%; left: -1%;
+  margin-top: 30px;
+  
+}
+
+.back-to-list{
+  margin: 20px;
+  position: absolute;
+  left: 35%;
+  list-style-type: none;
+  top: 75%; left: -10%;
+  margin-top: 30px;
+
 }
 
 

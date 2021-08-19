@@ -11,6 +11,7 @@ class Home extends React.Component{
 
     componentDidMount() {
         this.props.fetchCurrentUserGarden(this.props.currentUser);
+        console.log(this.props.plants)
     }
     
 

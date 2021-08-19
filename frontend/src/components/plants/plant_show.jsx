@@ -227,7 +227,7 @@ class PlantShow extends React.Component {
                     
                     {plant.tags.length < 1 ? null : 
                         <div className = "plant-tags"> Tags: 
-                            {plant.tags.map((tag, idx) => <div key={idx}>{tag.slice(2)}</div>)}
+                            {plant.tags.map((tag, idx) => <div key={idx}>{tag.slice(2)} </div>)}
                         </div>
                     }
 
@@ -239,7 +239,7 @@ class PlantShow extends React.Component {
                         null
                     }
                     <br/>
-                    <Link to="/plants">Back to List</Link>
+                    <Link className = "back-to-list" to="/plants">Back to List</Link>
                     </div>
                 </div> : <div className="plant-show-loading"></div>
         );
