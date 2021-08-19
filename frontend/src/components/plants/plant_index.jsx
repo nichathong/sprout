@@ -256,7 +256,24 @@ class PlantIndex extends React.Component {
 
   render() {
     const { plants } = this.props;
-    const preview = this.state.url ? <img src={this.state.url} /> : null;
+
+    const preview = this.state.url ? <img className="create-plant-image" src={this.state.url} /> : null;
+
+    // Sorting errors
+    let nameError;
+    let waterError;
+    if (this.state.errors) {
+        Object.values(this.state.errors).forEach(error => {
+            if (error.includes("Name")) {
+                nameError = error;
+            } else {
+                waterError = error;
+            }
+        })
+    }
+
+
+
     const plantForm = (
           <div className="create-plant-form-anchor">
               <form className="create-plant-form" onSubmit={this.handleSubmit}>
@@ -265,9 +282,8 @@ class PlantIndex extends React.Component {
                       <h1 className="create-plant-form-header">Create a Plant</h1>
                   </div>
 
-                  {/* {this.renderErrors()} */}
                   <div className="create-plant-form-left">
-                      <label className="name">Name
+                      <label className="name">Name{nameError ? <span className="name-error-message"> - {nameError}</span> : null}
                           <input className="nameText" type="text" value={this.state.name} onChange={this.update("name")} />
                       </label> <br /> <br />
 
@@ -297,6 +313,7 @@ class PlantIndex extends React.Component {
 
                       <label className="days">How often should the plant be watered (in days)?
                           <input className="daysBox" type="numbers" min="0" max="1000" value={this.state.waterFrequency} onChange={this.update("waterFrequency")} />
+                          {waterError ? <span className="water-error-message"> - {waterError}</span> : null}
                       </label> <br /> <br />
 
                       <label className="temperature">Ideal Temperature Range (Fahrenheit) <br />
@@ -308,8 +325,10 @@ class PlantIndex extends React.Component {
 
                   <div className="create-plant-form-right">
                       {/* upload photo here*/}
-                      {preview}
-                      <input type="file" onChange={this.handleSelectedFile} />
+                        {preview}
+                        <label className="custom-file-upload">Upload a Picture
+                            <input className="file-input" type="file" onChange={this.handleSelectedFile} />
+                        </label>
 
                       <label className="tags">Select all that apply! <br />
                           <input className="tags-checkboxes" type="checkbox" name="tags" onChange={this.update("isIndoor")} />Indoor

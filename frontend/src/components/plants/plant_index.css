@@ -146,8 +146,8 @@
 }
 
 .create-plant-form{
-    height: 70vh;
-    width: 40vw;
+    height: 78vh;
+    width: 37vw;
     border-radius: 15px;
     box-shadow: 0px 0px 20px black;
     padding: 10px;
@@ -158,6 +158,8 @@
     display: flex;
 
     text-align: start;
+
+    font-family: 'Annie Use Your Telescope', cursive;
 }
 
 .create-plant-button{
@@ -173,7 +175,7 @@
 
 .create-plant-form-close{
   position: relative;
-  left: 38vw;
+  left: 36vw;
   bottom: 1vh;
   height: 4vh;
 
@@ -197,9 +199,11 @@
 }
 .create-plant-form-header {
     position: absolute;
-    left: 12vw;
+    left: 11vw;
     top: 0vh;
     width: 15vw;
+
+    font-size: 5vh;
 }
 
 .name {
@@ -207,17 +211,30 @@
     margin-top: 10vh;
     margin-left: 1vw;
     padding: 0;
+    font-size: 3vh;
 }
 
 .nameText {
     display: block;
     margin-top: 0.4vh;
+    /* border-radius: 0.5vh; */
+}
+
+.name-error-message {
+    color: #dc4044;
+    font-style: italic;
+    font-size: 2vh;
 }
 
 .difficulty {
     display: block;
     margin-left: 1vw;
-    margin-top: -2.5vh;
+    margin-top: -3.2vh;
+    font-size: 3vh;
+}
+
+.difficultyText:hover {
+    cursor: pointer;
 }
 
 .difficultyText {
@@ -228,13 +245,15 @@
 .sunlight {
     display: block;
     margin-left: 1vw;
-    margin-top: -2.5vh;
+    margin-top: -3vh;
+    font-size: 2.5vh;
 }
 
 .wateringFrequency {
     display: block;
     margin-left: 1vw;
-    margin-top: -2.5vh;
+    margin-top: -3.5vh;
+    font-size: 2.5vh;
 }
 
 .days {
@@ -243,6 +262,7 @@
     margin-top: -2.5vh;
 
     width: 15vw;
+    font-size: 2.5vh;
 }
 
 .daysBox {
@@ -252,11 +272,18 @@
     padding-left: 0.5vw;
 }
 
+.water-error-message {
+    color: #dc4044;
+    font-style: italic;
+    font-size: 2vh;
+}
+
 .temperature {
     display: block;
     margin-left: 1vw;
     margin-top: -2.5vh;
     line-height: 3.2vh;
+    font-size: 2.5vh;
 }
 
 .temperature-input {
@@ -276,11 +303,42 @@
 
 .tags {
     margin-top: 3.5vh;
+    margin-left: 1vw;
 }
 
 .tags-checkboxes {
     border-color: #fae0d4;
     box-shadow: none;
+}
+
+.file-input {
+    display: none;
+}
+
+.custom-file-upload {
+    font-size: 4vh;
+}
+
+.custom-file-upload:hover {
+    cursor: pointer;
+    opacity: 0.3;
+}
+
+.create-plant-image {
+    /* margin-right: 2.vw; */
+    margin-bottom: 5vh;
+    width: 15vw;
+    height: 27vh;
+    max-width: 30vw;
+
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+    border-radius: 50%;
+}
+
+.create-plant-image:hover {
+    border-color: #657468;
 }
 
 .submit-create-plant {
@@ -292,6 +350,8 @@
     font-weight: bold;
     height: 5vh;
     width: 4vw;
+    font-family: 'Annie Use Your Telescope', cursive;
+    font-size: 2.4vh;
 }
 
 .submit-create-plant:hover {
