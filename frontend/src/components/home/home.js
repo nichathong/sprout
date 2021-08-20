@@ -116,7 +116,8 @@ class Home extends React.Component{
         }
     }
 
-    handleWatering(gardenPlant){
+    handleWatering(myplant){
+        let gardenPlant = myplant;
         const {plants} = this.props 
         let numberOfDaysToAdd;
         for( let i=0;i< plants.length;i++){

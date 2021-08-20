@@ -105,6 +105,18 @@ input[type="submit"] {
     font-weight: bolder;
 }
 
+.demo-button{
+    padding: 5px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+}
+
+.demo-button:hover {
+    transition:all .5s ease-in-out;
+    background: rgb(255, 211, 163);
+    font-weight: bolder;
+}
 
 .error-msg {
     color: #da3743;

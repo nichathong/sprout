@@ -15,6 +15,7 @@ class SessionForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoHandler = this.demoHandler.bind(this);
   }
 
   componentDidMount(){
@@ -58,6 +59,14 @@ class SessionForm extends React.Component {
     }
   }
 
+  demoHandler(e){
+    e.preventDefault()
+    this.props.login({
+      email: "demo1@gmail.com",
+      password: "123456"
+    })
+  }
+
   // renderErrors() {
   //   return (
   //     <ul className="error-class">
@@ -67,6 +76,7 @@ class SessionForm extends React.Component {
   //     </ul>
   //   );
   // }
+
 
   render() {
     const { formType } = this.props;
@@ -148,12 +158,13 @@ class SessionForm extends React.Component {
                 {password2 && <div className="error-msg">{this.state.errors.password2}</div>}
               </label>
             )}
-
             <input
               className="session-form-submit"
               type="submit"
               value="Submit"
             />
+            <br/>
+           { formType==="Login" ? <button className="demo-button" onClick={this.demoHandler}>Demo User</button> :null }
           </form>
           <div className="bottom-text">
             {formType === "Login" ? (
