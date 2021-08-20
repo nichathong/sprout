@@ -160,9 +160,10 @@ class Home extends React.Component{
 
     renderWaterDone(){
         return(
-            <div>
-                <button onClick={this.handleSubmit}>X</button>
-                Thank you
+            <div className="water-done-form" >
+                
+                Thank you for watering your plant!  <br />  <br />  <br />
+                <button className = "anytime" onClick={this.handleSubmit}>Anytime!</button>
             </div>
         )
     }

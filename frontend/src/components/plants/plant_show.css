@@ -74,7 +74,7 @@
 
 .plant-show-edit-button {
     position: absolute;
-    top: 47vh;
+    bottom: 5vh;
     left: 57vw;
     z-index: 10;
 
@@ -98,7 +98,7 @@
 
 .plant-show-delete-button {
     position: absolute;
-    top: 47vh;
+    bottom: 5vh;
     left: 62vw;
     z-index: 10;
 
