@@ -78,7 +78,10 @@
     color: white;
     border-radius: 8px;
     margin-top: 20px;    
+}
 
+.login-splash:hover, .signup-splash:hover {
+    background-color: #91a183;
 }
 
 .login-splash {

@@ -37,6 +37,10 @@ export const getCurrentUserGardenPlants = state => {
         }
     }
 
+    // NO MORE THAN 12 PLANTS
+    if (userGardenPlants.length > 12) {
+        userGardenPlants = userGardenPlants.slice(0, 12);
+    }
    
     return userGardenPlants;
 }
@@ -76,6 +80,11 @@ export const getUserGardenPlants = (state, userId) => {
         if (gardenPlants[i].owner === userId) {
             userGardenPlants.push(gardenPlants[i]);
         }
+    }
+
+    // NO MORE THAN 12 PLANTS
+    if (userGardenPlants.length > 12) {
+        userGardenPlants = userGardenPlants.slice(0, 12);
     }
 
     return userGardenPlants;

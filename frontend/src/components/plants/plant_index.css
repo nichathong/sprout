@@ -218,6 +218,8 @@
     display: block;
     margin-top: 0.4vh;
     /* border-radius: 0.5vh; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 }
 
 .name-error-message {
@@ -240,6 +242,8 @@
 .difficultyText {
     display: block;
     margin-top: 0.4vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 }
 
 .sunlight {
@@ -270,6 +274,7 @@
     margin-left: 0.5vw;
     margin-top: 0.5vh;
     padding-left: 0.5vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .water-error-message {
@@ -292,6 +297,7 @@
     margin-left: 0.5vw;
     margin-right: 0.5vw;
     padding-left: 0.5vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .create-plant-form-right {
