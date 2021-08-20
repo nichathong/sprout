@@ -31,14 +31,17 @@
 
 
 .session-form{
-    width: 500px;
-    height: fit-content;
+    width: 535px;
+    background-color: rgb(250, 225, 212);
     margin: auto;
-    position:absolute;
+    position: absolute;
     margin-top: 300px;
-    left: 50%;
+    left: 42%;
     margin-left: -250px;
     line-height: 2;
+    display: inline-block;
+    padding: 35px;
+    border-radius: 20px;
 }
 .input-box{
     margin: 7px 0;
@@ -68,13 +71,24 @@
     text-decoration: none;
     font-family:Arial, Helvetica, sans-serif;
     color:gray;
+    bottom: 250px;
+    /* right: 100px; */
+    position: absolute;
 
+
+
+}
+.need-an-account {
+    bottom: 100px;
+    /* right: 100px; */
+    position: absolute;
 }
 
 .need-an-account a {
     text-decoration: none;
     font-family:Arial, Helvetica, sans-serif;
     color:gray;
+
 }
 
 input[type="submit"] {
@@ -92,6 +106,8 @@ input[type="submit"] {
 }
 
 
-
-
-
+.error-msg {
+    color: #da3743;
+    padding-top: 1%;
+    font-size: 15px;
+}
