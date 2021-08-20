@@ -126,7 +126,16 @@ class Home extends React.Component{
         }
         var newWaterDate = new Date();
         newWaterDate.setDate(newWaterDate.getDate() + numberOfDaysToAdd);
-        newWaterDate=newWaterDate.toLocaleDateString("en-US")
+        let month = '' + (newWaterDate.getMonth() + 1);
+        let day = '' + newWaterDate.getDate();
+        let year = newWaterDate.getFullYear();
+
+            if (month.length < 2){
+                month = '0' + month;
+            }
+            if (day.length < 2) {
+                day = '0' + day;
+            }
 
         let gardenPlantId
         if(gardenPlant._id === undefined){
@@ -142,7 +151,7 @@ class Home extends React.Component{
             owner: gardenPlant.owner,
             plant: gardenPlant.plant,
             nickname: gardenPlant.nickname,
-            waterDate: newWaterDate,
+            waterDate: `${year}-${month}-${day}`,
             date: gardenPlant.date,
         })
 
