@@ -16,17 +16,28 @@ class SessionForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  componentDidMount(){
+    if (this.props.errors) {
+      this.setState({ errors: this.props.errors })
+    }
+  }
   
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
-      this.props.history.push("/home"); //or /login?
+      this.props.history.push("/home"); 
     }
 
     this.setState({ errors: nextProps.errors });
   }
 
   update(field) {
-    return (e) => this.setState({ [field]: e.currentTarget.value });
+    
+    return (e) =>
+      this.setState({
+        [field]: e.currentTarget.value,
+        errors: { ...this.state.errors, [field]: "" }
+      });
   }
 
   handleSubmit(e) {
@@ -47,19 +58,19 @@ class SessionForm extends React.Component {
     }
   }
 
-  renderErrors() {
-    return (
-      <ul>
-        {Object.keys(this.props.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
-        ))}
-      </ul>
-    );
-  }
+  // renderErrors() {
+  //   return (
+  //     <ul className="error-class">
+  //       {Object.keys(this.props.errors).map((error, i) => (
+  //         <li className="error-msg" key={`error-${i}`}>{this.state.errors[error]}</li>
+  //       ))}
+  //     </ul>
+  //   );
+  // }
 
   render() {
     const { formType } = this.props;
-
+    const { firstname, lastname, password, password2, email } = this.props.errors;
     return (
       <div className="main-session-form">
         <div className="background-container">
@@ -74,19 +85,21 @@ class SessionForm extends React.Component {
             <img className="logo-session" src="sprout2.png" alt=""></img>
           </div>
           <form className="session-form" onSubmit={this.handleSubmit}>
-            {this.renderErrors()}
             {formType === "Login" ? null : (
               <div className="login-form">
                 <label>
                   <input
+                    id="firstname"
                     className="input-box"
                     type="text"
                     value={this.state.firstname}
                     placeholder="First Name"
                     onChange={this.update("firstname")}
                   />
+                {firstname && (
+                  <div className="error-msg">{this.state.errors.firstname}</div>
+                )}
                 </label>
-                <br />
 
                 <label>
                   <input
@@ -96,8 +109,8 @@ class SessionForm extends React.Component {
                     placeholder="Last Name"
                     onChange={this.update("lastname")}
                   />
+                {lastname && <div className="error-msg">{this.state.errors.lastname}</div>}
                 </label>
-                <br />
               </div>
             )}
 
@@ -109,8 +122,8 @@ class SessionForm extends React.Component {
                 placeholder="Email"
                 onChange={this.update("email")}
               />
+              {email && <div className="error-msg">{this.state.errors.email}</div>}
             </label>
-            <br />
 
             <label>
               <input
@@ -120,8 +133,8 @@ class SessionForm extends React.Component {
                 placeholder="Password"
                 onChange={this.update("password")}
               />
+              {password && <div className="error-msg">{this.state.errors.password}</div>}
             </label>
-            <br />
 
             {formType === "Login" ? null : (
               <label>
@@ -132,11 +145,15 @@ class SessionForm extends React.Component {
                   placeholder="Re-enter Password"
                   onChange={this.update("password2")}
                 />
+                {password2 && <div className="error-msg">{this.state.errors.password2}</div>}
               </label>
             )}
-            <br />
 
-            <input className="session-form-submit" type="submit" value="Submit" />
+            <input
+              className="session-form-submit"
+              type="submit"
+              value="Submit"
+            />
           </form>
           <div className="bottom-text">
             {formType === "Login" ? (

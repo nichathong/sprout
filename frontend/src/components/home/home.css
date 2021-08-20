@@ -50,6 +50,7 @@
   margin-top: 70px;
   font-size: 120%;
   font-weight: bold;
+  z-index: -700;
 }
 
 .hello{
@@ -68,10 +69,11 @@
 }
 
 .sprout-image{
-  height: 35vh;
-  width: 10vw;
+  height: 20vh;
+  width: 5vw;
   overflow: hidden;
   object-fit: cover;
+  z-index: -600;
 }
 
 
@@ -113,6 +115,28 @@
   z-index: 100000;
   background-color: white;
   position: absolute;
+  bottom: 0%;
+  translate: (0%, -100%);
+  border-radius: 10px;
+  box-shadow: 0px, 0px, 10px, 10px;
+}
+
+.nickname{
+  z-index: 100002;
+  color: black;
+  font-size: 90%;
+}
+
+.date{
+  z-index: 100002;
+  color: black;
+  font-size: 90%;
+}
+
+.waterdate{
+  z-index: 100002;
+  color: black;
+  font-size: 90%;
 }
 
 .watering-can{
@@ -121,5 +145,21 @@
   height: 10vh;
   width: 14vh;
 }
+
+.garden-plant-image{
+    height: 7vw;
+    width: 7vw;
+    position: relative;
+    border-radius: 3vw;
+    top: 0%;
+    cursor: pointer;
+    z-index: 500;
+    opacity: 95%;
+    border: 2px;
+    border-color: white;
+    border-style: solid;
+    
+}
+
 
 
