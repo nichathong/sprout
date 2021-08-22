@@ -83,13 +83,13 @@ class SessionForm extends React.Component {
     const { firstname, lastname, password, password2, email } = this.props.errors;
     return (
       <div className="main-session-form">
-        <div className="background-container">
+        {/* <div className="background-container">
           <img
             className="background-img"
             src="vadim-kaipov-8ZELrodSvTc-unsplash.jpg"
             alt=""
           ></img>
-        </div>
+        </div> */}
         <div className="session-form-continer">
           <div className="logo-container-session">
             <img className="logo-session" src="sprout2.png" alt=""></img>
