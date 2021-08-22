@@ -12,6 +12,7 @@
     width: 65vw;
     height: 70vh;
     background-color: rgb(250, 225, 212);
+    border-radius: 2vh;
 }
 
 .plant-image {
@@ -120,7 +121,7 @@
     background-color: #72c254;
 }
 
-.plant-show-edit-form-container{
+/* .plant-show-edit-form-container{
   position: absolute;
   left: 50%; top: 20%;
   transform: translate(-50%);
@@ -131,10 +132,10 @@
   box-shadow: 0px 0px 20px black;
   padding: 10px;
   z-index: 100;
-}
+} */
 
 
-.name2{
+/* .name2{
   float: right;
   position: absolute;
   left: 25%; top: 5%;
@@ -219,7 +220,7 @@
   left: 50%; bottom: 5%;
   transform: translate(-50%);
   margin-top: 30px;
-}
+} */
 
 .plant-tags{
     font-family: 'Annie Use Your Telescope', cursive;
@@ -251,7 +252,7 @@
     opacity: 0.3;
 }
 
-.create-plant-form-anchor {
+.edit-plant-form-anchor {
     position: fixed;
     z-index: 300;
     background-color: rgba(1, 1, 1, 0.7);
@@ -265,19 +266,184 @@
     align-items: center;
 }
 
-.edit-plant-form{
+.edit-plant-form {
     height: 78vh;
-    width: 37vw;
+    width: 30vw;
+    position: absolute;
+    top: 10vh;
+    left: 36.5vw;
+
+    display: flex;
     border-radius: 15px;
     box-shadow: 0px 0px 20px black;
     padding: 10px;
-    
-    position: absolute;
     background-color: #fae0d4;
 
-    display: flex;
-
-    text-align: start;
+    z-index: 100;
 
     font-family: 'Annie Use Your Telescope', cursive;
+    text-align: start;
+}
+
+.edit-form-close {
+  position: relative;
+  left: 28.6vw;
+  bottom: 1vh;
+  height: 4vh;
+
+  font-size: 4vh;
+}
+
+.edit-form-close:hover {
+    cursor: pointer;
+    color: #657468;
+}
+
+.edit-plant-form-header-anchor {
+    position: relative;
+    width: 0;
+    height: 0;
+}
+.edit-plant-form-header {
+    position: absolute;
+    left: 6.5vw;
+    top: 0vh;
+    width: 20vw;
+
+    font-size: 5vh;
+}
+
+.edit-plant-form-left {
+    width: 45vw;
+}
+
+.name2 {
+    display: block;
+    margin-top: 10vh;
+    margin-left: 1vw;
+    padding: 0;
+    font-size: 3vh;
+}
+
+.nameText2 {
+    display: block;
+    margin-top: 0.4vh;
+    /* border-radius: 0.5vh; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+/* .name-error-message {
+    color: #dc4044;
+    font-style: italic;
+    font-size: 2vh;
+} */
+
+.difficulty2 {
+    display: block;
+    margin-left: 1vw;
+    margin-top: 3vh;
+    font-size: 3vh;
+}
+
+/* .difficultyText2:hover {
+    cursor: pointer;
+} */
+
+.difficultyText2 {
+    display: block;
+    margin-top: 0.4vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.sunlight2 {
+    display: block;
+    margin-left: 1vw;
+    margin-top: 3vh;
+    font-size: 2.5vh;
+}
+
+.wateringFrequency2 {
+    display: block;
+    margin-left: 1vw;
+    margin-top: 3.5vh;
+    font-size: 2.5vh;
+}
+
+.days2 {
+    display: block;
+    margin-left: 1vw;
+    margin-top: 2.5vh;
+
+    width: 18vw;
+    font-size: 2.5vh;
+}
+
+.daysBox2 {
+    width: 1vw;
+    margin-left: 0.5vw;
+    margin-top: 0.5vh;
+    padding-left: 0.5vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* .water-error-message2 {
+    color: #dc4044;
+    font-style: italic;
+    font-size: 2vh;
+} */
+
+.temperature2 {
+    display: block;
+    margin-left: 1vw;
+    margin-top: 2.5vh;
+    line-height: 3.2vh;
+    font-size: 2.5vh;
+}
+
+.temperature-input2 {
+    width: 1.5vw;
+    margin-top: 1vh;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    padding-left: 0.5vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.tags2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 18vw;
+    margin-top: 3.5vh;
+    margin-left: 1vw;
+    font-size: 2.5vh;
+}
+
+.tags-checkboxes2 {
+    border-color: #fae0d4;
+    box-shadow: none;
+}
+
+.submit-update-plant {
+    /* margin-top: -20vh;
+    margin-bottom: 20vh;
+    margin-left: 20vw; */
+
+    position: absolute;
+    left: 23vw;
+    bottom: 2.7vh;
+    background-color: rgb(0, 128, 55);
+    color: white;
+    font-weight: bold;
+    height: 5vh;
+    width: 4vw;
+    font-family: 'Annie Use Your Telescope', cursive;
+    font-size: 2.4vh;
+}
+
+.submit-update-plant:hover {
+    background-color: #72c254;
+    cursor: pointer;
 }

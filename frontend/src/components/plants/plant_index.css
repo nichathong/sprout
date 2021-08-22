@@ -235,9 +235,9 @@
     font-size: 3vh;
 }
 
-.difficultyText:hover {
+/* .difficultyText:hover {
     cursor: pointer;
-}
+} */
 
 .difficultyText {
     display: block;
