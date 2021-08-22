@@ -1,19 +1,21 @@
 .home-page-container{
   
   width: 100vw;
-  height: 100vh;
+  height: 130vh;
   align-items: center;
   align-content: center;
   text-align: center;
   
+  background-color: rgb(250, 225, 212);
+
   
 }
 
-.home-page-background-color{
+/* .home-page-background-color{
   background-color: rgb(250, 225, 212);
   z-index: -10000;
   position: relative;
-}
+} */
 
 .plantList{
   list-style-type: none;
@@ -26,7 +28,7 @@
   width: 95vw;
   height: 60vw;
   border-radius: 200px;
-  z-index: -1000;
+  z-index: 1;
   position: relative;
   align-self: center;
   margin-top: 30px;
@@ -146,6 +148,11 @@
   width: 14vh;
 }
 
+.watering-can:hover {
+    cursor: pointer;
+    transform: rotate(-20deg);
+}
+
 .garden-plant-image{
     height: 7vw;
     width: 7vw;
@@ -159,6 +166,11 @@
     border-color: white;
     border-style: solid;
     
+}
+
+.garden-plant-image:hover {
+    cursor: pointer;
+    border-color: #657468;
 }
 
 .water-done-form{

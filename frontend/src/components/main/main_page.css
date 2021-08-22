@@ -1,11 +1,15 @@
 
 .main-page {
     /* position: relative; */
-    /* justify-content: center; */  
+    /* justify-content: center; */ 
+    height: 100vh; 
+    background-image: url("vadim-kaipov-8ZELrodSvTc-unsplash.jpg");
+    background-color: #cccccc;
+    background-size: cover;
 }
 
 
-.background-container {
+/* .background-container {
     position: absolute;
     overflow: hidden;
     
@@ -18,7 +22,7 @@
     opacity: 85%;
     
 
-}
+} */
 
 
 .main-container {

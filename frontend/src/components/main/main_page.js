@@ -41,9 +41,9 @@ class MainPage extends React.Component {
   render() {
     return (
       <div className="main-page">
-        <div className="background-container">
+        {/* <div className="background-container">
           <img className="background-img" src="vadim-kaipov-8ZELrodSvTc-unsplash.jpg" alt=""></img>
-        </div>
+        </div> */}
         <div className="main-container">
           <div className="content-contianer">
             <h1 className="welcome">Welcome to</h1>

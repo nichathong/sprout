@@ -3,6 +3,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    height: 100vh; 
+    background-image: url("vadim-kaipov-8ZELrodSvTc-unsplash.jpg");
+    background-color: #cccccc;
+    background-size: cover;
 }
 
 .session-form-continer{
