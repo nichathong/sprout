@@ -1,4 +1,11 @@
 
+.plant-index-item-mega-container {
+    height: 170vh; 
+    background-image: url("wallpaper.png");
+    background-color: #cccccc;
+    background-size: cover;
+}
+
 .main-content-plant-index-container {
   width: 80vw;
   /* height: 100vh; */
@@ -10,14 +17,6 @@
   left: 15vw;
 
   /* align-content: center; */
-}
-
-.plant-index-item-mega-container {
-
-}
-
-.navbar-container {
-    /* width: 120vw; */
 }
 
 .each-plant-index-container {
@@ -114,7 +113,7 @@
     padding-top: 5vh;
 }
 
-.background-contiainer-plant-index {
+/* .background-contiainer-plant-index {
   position: absolute;
 }
 
@@ -125,11 +124,8 @@
    object-fit: cover;
    top: 80px;
    opacity: 95%;
-   /* background-repeat: repeat-y; */
-
-   /* opacity: 30%; */
    
-}
+} */
 
 .create-plant-form-anchor {
     position: fixed;
@@ -235,9 +231,9 @@
     font-size: 3vh;
 }
 
-.difficultyText:hover {
+/* .difficultyText:hover {
     cursor: pointer;
-}
+} */
 
 .difficultyText {
     display: block;

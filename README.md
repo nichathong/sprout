@@ -1,4 +1,4 @@
-# Sprout
+![Sprout](https://user-images.githubusercontent.com/16362518/130368473-d834a971-0e66-4cec-b9d0-a97c90e46ba0.png)
 
 [Live Demo](https://sprout-plant-app.herokuapp.com/)
 

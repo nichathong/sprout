@@ -360,9 +360,9 @@ class PlantIndex extends React.Component {
           <div className="navbar-contianer">
             <NavbarContainer />
           </div>
-          <div className="background-contiainer-plant-index">
+          {/* <div className="background-contiainer-plant-index">
             <img className="plantsBackground" src="wallpaper.png" alt="" />
-          </div>
+          </div> */}
 
         {this.state.showForm ? plantForm : null}
 

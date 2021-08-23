@@ -189,8 +189,8 @@ class Home extends React.Component{
                             
                             <div className="plantName2"> {plant.nickname} </div> 
                             Days alive: {(days = Math.round(Math.ceil(new Date() - new Date(plant.date.split("T")[0])) / (1000 * 60 * 60 * 24)))} <br />
-                            {Math.round(Math.ceil(new Date() - new Date(plant.waterDate.split("T")[0])) / (1000 * 60 * 60 * 24)) === 1 ? <img className="watering-can" src="watering-can.png" onClick={()=> this.handleWatering(plant)}/> : <div></div>}
-                            {days < 3 ? <img className="sprout-image" src="plant-10.png" /> : (days < 6 ? <img className="sprout-image" src="plant-20.png" /> : (days < 9 ? <img className="sprout-image" src="plant-3.png" /> : (days < 12 ? <img className="sprout-image" src="plant-4.png" /> : <img className="sprout-image" src="plant-5.png" />)))}
+                            {Math.round(Math.ceil(new Date() - new Date(plant.waterDate.split("T")[0])) / (1000 * 60 * 60 * 24)) === 1 ? <img className="watering-can" src="https://sprout-app.s3.us-east-2.amazonaws.com/watering-can.png" onClick={()=> this.handleWatering(plant)}/> : <div></div>}
+                            {days < 3 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-10.png" /> : (days < 6 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-20.png" /> : (days < 9 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-3.png" /> : (days < 12 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-4.png" /> : <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-5.png" />)))}
                             <br/>
                             {this.renderPlantDetail(plant)}
                             <button className = "update-button" onClick={()=>this.showUpdate(plant)}>update</button>

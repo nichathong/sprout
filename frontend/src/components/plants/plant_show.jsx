@@ -52,6 +52,14 @@ class PlantShow extends React.Component {
     }
 
     _resetForm() {
+        // Fixing tags format here
+        let formattedTags;
+        if (this.props.plant.tags.length === 1 && this.props.plant.tags[0].includes(",")) {
+            formattedTags = this.props.plant.tags[0].split(",");
+        } else {
+            formattedTags = this.props.plant.tags;
+        }
+
         this.setState({
             showForm: false,
             errors:{},
@@ -68,14 +76,14 @@ class PlantShow extends React.Component {
             file:null,
 
             tags: {
-                isIndoor: this.props.plant.tags.includes("isIndoor") ? true : false,
-                isOutdoor: this.props.plant.tags.includes("isOutdoor") ? true : false,
-                isSucculent: this.props.plant.tags.includes("isSucculent") ? true : false,
-                isFlowering: this.props.plant.tags.includes("isFlowering") ? true : false,
-                isPoisonous: this.props.plant.tags.includes("isPoisonous") ? true : false,
-                isExotic: this.props.plant.tags.includes("isExotic") ? true : false,
-                isMultiColored: this.props.plant.tags.includes("isMultiColored") ? true : false,
-                isHanging: this.props.plant.tags.includes("isHanging") ? true : false
+                isIndoor: formattedTags.includes("isIndoor") ? true : false,
+                isOutdoor: formattedTags.includes("isOutdoor") ? true : false,
+                isSucculent: formattedTags.includes("isSucculent") ? true : false,
+                isFlowering: formattedTags.includes("isFlowering") ? true : false,
+                isPoisonous: formattedTags.includes("isPoisonous") ? true : false,
+                isExotic: formattedTags.includes("isExotic") ? true : false,
+                isMultiColored: formattedTags.includes("isMultiColored") ? true : false,
+                isHanging: formattedTags.includes("isHanging") ? true : false
             }
         });
     }
@@ -174,7 +182,7 @@ class PlantShow extends React.Component {
                         <h1 className="edit-plant-form-header">Update your Plant</h1>
                     </div>
 
-                    <div className="edit-plant-form-left">
+                    <div className="edit-plant-form-sub-container">
                         <label className = "name2">Name
                             <input className = "nameText2" type="text" value={this.state.name} onChange={this.update("name")} />
                         </label>
@@ -212,24 +220,23 @@ class PlantShow extends React.Component {
                             -
                             <input className="temperature-input2" type="numbers" min="0" max="300" value={this.state.temperatureMax} onChange={this.update("temperatureMax")} />
                         </label>
-                    </div>
 
-
-
-                    <div className="edit-plant-form-right">
-                        <label className = "tags2"> Tags: 
-                            <input type="checkbox" name="tags" onChange={this.update("isIndoor")} defaultChecked={plant.tags.includes("isIndoor")} />Indoor
-                            <input type="checkbox" name="tags" onChange={this.update("isOutdoor")} defaultChecked={plant.tags.includes("isOutdoor")} />Outdoor
-                            <input type="checkbox" name="tags" onChange={this.update("isSucculent")} defaultChecked={plant.tags.includes("isSucculent")} />Succulent
-                            <input type="checkbox" name="tags" onChange={this.update("isFlowering")} defaultChecked={plant.tags.includes("isFlowering")} />Flowering
-                            <input type="checkbox" name="tags" onChange={this.update("isPoisonous")} defaultChecked={plant.tags.includes("isPoisonous")} />Poisonous
-                            <input type="checkbox" name="tags" onChange={this.update("isExotic")} defaultChecked={plant.tags.includes("isExotic")} />Exotic
-                            <input type="checkbox" name="tags" onChange={this.update("isMultiColored")} defaultChecked={plant.tags.includes("isMultiColored")} />Multi-colored
-                            <input type="checkbox" name="tags" onChange={this.update("isHanging")} defaultChecked={plant.tags.includes("isHanging")} />Hanging
+                        <label className = "tags2"> Select all that apply!
+                            <input type="checkbox" name="tags" onChange={this.update("isIndoor")} checked={this.state.tags.isIndoor} />Indoor
+                            <input type="checkbox" name="tags" onChange={this.update("isOutdoor")} checked={this.state.tags.isOutdoor} />Outdoor
+                            <input type="checkbox" name="tags" onChange={this.update("isSucculent")} checked={this.state.tags.isSucculent} />Succulent
+                            <input type="checkbox" name="tags" onChange={this.update("isFlowering")} checked={this.state.tags.isFlowering} />Flowering
+                            <input type="checkbox" name="tags" onChange={this.update("isPoisonous")} checked={this.state.tags.isPoisonous} />Poisonous
+                            <input type="checkbox" name="tags" onChange={this.update("isExotic")} checked={this.state.tags.isExotic} />Exotic
+                            <input type="checkbox" name="tags" onChange={this.update("isMultiColored")} checked={this.state.tags.isMultiColored} />Multi-colored
+                            <input type="checkbox" name="tags" onChange={this.update("isHanging")} checked={this.state.tags.isHanging} />Hanging
                         </label>
 
-                        <input className = "submit-create-plant2" type="submit" value="Update Plant" />
+                        <input className = "submit-update-plant" type="submit" value="Update Plant" />
                     </div>
+
+
+
                 </form>
             </div> : null;
 
@@ -289,9 +296,14 @@ class PlantShow extends React.Component {
                     )}
 
                     {plant.tags.length < 1 ? null : 
-                        plant.tags[0].split(",").map((tag, idx) => (
-                            <li key={idx}>{tag.slice(2)} </li>
-                        ))
+                        plant.tags.length === 1 && plant.tags[0].includes(",") ?
+                            plant.tags[0].split(",").map((tag, idx) => (
+                                <li key={idx}>{tag.slice(2)} </li>
+                            ))
+                            :
+                            plant.tags.map((tag, idx) => (
+                                <li key={idx}>{tag.slice(2)}</li>
+                            ))
                     }
                   </ul>
                 </div>
