@@ -20,7 +20,7 @@
 
 .plantList{
   list-style-type: none;
-  opacity: 100%;
+  z-index: 10;
   float: left;
 
   width: 93vw;
