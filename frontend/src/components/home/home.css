@@ -6,7 +6,7 @@
   align-content: center;
   text-align: center;
   
-  background-color: rgb(250, 225, 212);
+  
   /* background-image: url("dirt.jpeg"); */
 
   
@@ -27,7 +27,7 @@
   height: 60vw;
   margin-top: 20vh;
 
-    background-color: #cccccc;
+  
   background-image: url("dirt.jpeg");
   border-radius: 200px;
 }
