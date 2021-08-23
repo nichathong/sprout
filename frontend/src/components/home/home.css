@@ -169,7 +169,7 @@
     border-radius: 3vw;
     top: 0%;
     cursor: pointer;
-    z-index: 500;
+    z-index: 100000;
     opacity: 95%;
     border: 2px;
     border-color: white;
