@@ -80,7 +80,7 @@
 }
 
 .sprout-image{
-  height: 20vh;
+  object-fit: cover;
   width: 5vw;
   overflow: hidden;
   object-fit: cover;
