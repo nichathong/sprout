@@ -162,6 +162,10 @@
     transform: rotate(-20deg);
 }
 
+.picture-link{
+  z-index: 10000000;
+}
+
 .garden-plant-image{
     height: 7vw;
     width: 7vw;

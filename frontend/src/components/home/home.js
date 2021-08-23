@@ -110,7 +110,7 @@ class Home extends React.Component{
         for( let i=0;i< plants.length;i++){
             if(plants[i]._id === gardenPlant.plant){
                 return(
-                    <Link to={`/plants/${gardenPlant.plant}`}><img className="garden-plant-image" src={plants[i].photoUrls[0]}/></Link>
+                    <Link className = "picture-link" to={`/plants/${gardenPlant.plant}`}><img className="garden-plant-image" src={plants[i].photoUrls[0]}/></Link>
                 )
             }
         }
