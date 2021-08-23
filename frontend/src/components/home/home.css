@@ -7,7 +7,7 @@
   text-align: center;
   
   background-color: rgb(250, 225, 212);
-  background-image: url("dirt.jpeg");
+  /* background-image: url("dirt.jpeg"); */
 
   
 }
@@ -22,7 +22,14 @@
   list-style-type: none;
   opacity: 100%;
   float: left;
-  margin: 100px;
+
+  width: 93vw;
+  height: 60vw;
+  margin-top: 20vh;
+
+    background-color: #cccccc;
+  background-image: url("dirt.jpeg");
+  border-radius: 200px;
 }
 
 .dirt{
@@ -50,7 +57,8 @@
   color: white;
   font-family: 'Annie Use Your Telescope', cursive;
   margin: 10px;
-  margin-top: 70px;
+  margin-top: 30vh;
+  margin-bottom: -15vh;
   font-size: 120%;
   font-weight: bold;
   z-index: -700;
