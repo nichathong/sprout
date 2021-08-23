@@ -35,8 +35,21 @@
     margin-bottom: 2vh;
 }
 
+.user-garden-top-border {
+    height: 1px;
+    width: 94vw;
+
+    border-bottom-style: solid;
+    border-bottom-width: 0.5px;
+    border-bottom-color: black;
+}
+
 .user-garden-dirt {
-    z-index: 10;
+    background-image: url("dirt.jpeg");
+    background-color: #cccccc;
+    background-size: cover;
+
+    /* z-index: 10; */
     width: 94vw;
     height: 60vw;
 
@@ -45,11 +58,17 @@
     border-radius: 30vh;
 }
 
-.user-garden-top-border {
-    height: 1px;
-    width: 94vw;
-
-    border-bottom-style: solid;
-    border-bottom-width: 0.5px;
-    border-bottom-color: black;
+.individual-sprout-2 {
+    float: left;
+  position: relative;
+  /* top: -30%; */
+  left: 7%;
+  height: 40vh;
+  width: 11vw;
+  color: white;
+  font-family: 'Annie Use Your Telescope', cursive;
+  margin: 10px;
+  margin-top: 70px;
+  font-size: 120%;
+  font-weight: bold;
 }
