@@ -181,7 +181,7 @@ class Home extends React.Component{
                 </div>
                 <div className = "home-page-container">
                 
-                <img className = "dirt" src="dirt.jpeg"/>
+                
 
                 <ul className = "plantList">
                     {gardenPlants.map((plant, idx) => {
