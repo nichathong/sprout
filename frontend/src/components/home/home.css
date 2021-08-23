@@ -174,7 +174,7 @@
     top: 0%;
     cursor: pointer;
     z-index: 100000;
-    opacity: 95%;
+    opacity: 1;
     border: 2px;
     border-color: white;
     border-style: solid;
