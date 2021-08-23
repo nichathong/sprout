@@ -24,7 +24,7 @@ const UserSchema = new Schema({
     },
     public:{
         type: Boolean,
-        default: false
+        default: true
     },
     date: {
         type: Date,
