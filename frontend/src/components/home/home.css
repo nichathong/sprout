@@ -27,7 +27,7 @@
   height: 60vw;
   margin-top: 20vh;
 
-  
+  background-color: rgb(250, 225, 212);
   background-image: url("dirt.jpeg");
   border-radius: 200px;
 }
