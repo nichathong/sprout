@@ -12,7 +12,7 @@ router.get("/test",(req,res)=>{
 router.post("/new/:plant_id",passport.authenticate('jwt', { session: false }),(req, res)=>{
     GardenPlant.find({owner: req.user.id}).then(gardenPlants => {
         if(gardenPlants.length>=12){
-            return res.status(404).json({toomanygardenplants: "You can only add 12 plants"})
+            return res.status(404).json({toomanygardenplants: "You can only add 12 plants!"})
         }else{
             const newGardenPlant = new GardenPlant({
                 owner: req.user.id,

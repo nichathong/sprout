@@ -56,6 +56,10 @@ class PlantIndex extends React.Component {
     this.setState({ errors: nextProps.errors });
   }
 
+  componentWillUnmount() {
+      this.props.clearGardenErrors();
+  }
+
 
   _resetForm() {
     this.setState({
@@ -180,10 +184,16 @@ class PlantIndex extends React.Component {
     handleAdd(plant) {
         return e => {
             e.preventDefault();
-            this.props.addGardenPlant(plant._id ? plant._id : plant.id);
-            this.setState({ showPopup: true, popupId: e.currentTarget.id });
-            setTimeout(() => this.setState({ showPopup: false, popupId: undefined }), 1500);
-        }
+            this.props.addGardenPlant(plant._id ? plant._id : plant.id)
+                .then(() => {
+                    if (this.props.addPlantError.length === 0) {
+                        this.setState({ showPopup: true, popupId: e.target.id });
+                        setTimeout(() => this.setState({ showPopup: false, popupId: undefined }), 1500);
+                    } else {
+                        this.setState({ popupId: e.target.id });
+                    }
+                })
+            }
   }
 
   stateChange() {
@@ -209,25 +219,25 @@ class PlantIndex extends React.Component {
     }
   }
 
-  renderErrors() {
-    return (
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
-        ))}
-      </ul>
-    );
-  }
+//   renderErrors() {
+//     return (
+//       <ul>
+//         {Object.keys(this.state.errors).map((error, i) => (
+//           <li key={`error-${i}`}>{this.state.errors[error]}</li>
+//         ))}
+//       </ul>
+//     );
+//   }
 
-  handleAdd(plant) {
-    return (e) => {
-        e.preventDefault();
-        this.props.addGardenPlant(plant._id ? plant._id : plant.id);
-        this.setState({ showPopup: true, popupId: plant._id ? plant._id : plant.id });
-        setTimeout(() => this.setState({ showPopup: false, popupId: plant._id ? plant._id : plant.id }), 1500);
+//   handleAdd(plant) {
+//     return (e) => {
+//         e.preventDefault();
+//         this.props.addGardenPlant(plant._id ? plant._id : plant.id);
+//         this.setState({ showPopup: true, popupId: plant._id ? plant._id : plant.id });
+//         setTimeout(() => this.setState({ showPopup: false, popupId: plant._id ? plant._id : plant.id }), 1500);
 
-    };
-  }
+//     };
+//   }
 
   renderImg(plant){
     if(plant.photoUrls===undefined){
@@ -255,7 +265,7 @@ class PlantIndex extends React.Component {
   }
 
   render() {
-    const { plants } = this.props;
+    const { plants, addPlantError } = this.props;
 
     const preview = this.state.url ? <img className="create-plant-image" src={this.state.url} /> : null;
 
@@ -393,7 +403,8 @@ class PlantIndex extends React.Component {
                                     {/* <div className="plantName">{capitalizeName(plant.name)}</div> */}
                                 </div>
                             </Link>
-                            <button className="add-plant-button" id={plant._id} onClick={this.handleAdd(plant)}>Add</button>
+                            <button className={`${addPlantError.length === 1 && this.state.popupId === plant._id ? "add-plant-button-err" : "add-plant-button"}`} id={plant._id} onClick={this.handleAdd(plant)}>Add</button>
+                            {addPlantError.length === 1 && this.state.popupId === plant._id ? <div className="add-plant-error-anchor"><span className="add-plant-error">{addPlantError}</span></div> : null}
                             {this.state.showPopup && this.state.popupId === plant._id ? plantAddedPopup : null}
                         </li>
                     ))}

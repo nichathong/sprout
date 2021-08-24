@@ -78,6 +78,34 @@
   font-size: 2.5vh;
 }
 
+.add-plant-button-err {
+  width: 4.5vw;
+  height: 5.5vh;
+  background-color: rgb(0, 128, 55);
+  color: white;
+  border-style: solid;
+  border-width: 0.22vh;
+  border-color: red;
+  border-radius: 1vh;
+  margin-top: -2.5vh;
+  font-family: 'Annie Use Your Telescope', cursive;
+  font-size: 2.5vh;
+}
+
+.add-plant-error-anchor {
+    position: relative;
+    width: 0;
+    height: 0;
+}
+
+.add-plant-error {
+    position: absolute;
+    top: 2vh;
+    left: -5vw;
+    width: 12vw;
+    color: red;
+}
+
 .plant-content-index{
     width: 150px;
     display: inline-flex;
@@ -439,7 +467,7 @@
     
     border-top: 1vh solid rgb(0, 128, 55);
 
-    animation: fadeAddedMessage 1.5s linear infinite;
+    animation: fadeAddedMessageArrow 1.5s linear infinite;
 }
 
 @keyframes fadeAddedMessage {
@@ -453,6 +481,20 @@
     70% { opacity: 0.6; }
     80% { opacity: 0.4; }
     90% { opacity: 0.2; }
+    100% { opacity: 0; }
+}
+
+@keyframes fadeAddedMessageArrow {
+    0% { opacity: 1; }
+    10% { opacity: 1; }
+    20% { opacity: 1; }
+    30% { opacity: 1; }
+    40% { opacity: 1; }
+    50% { opacity: 0.9; }
+    60% { opacity: 0.6; }
+    70% { opacity: 0.3; }
+    80% { opacity: 0; }
+    90% { opacity: 0; }
     100% { opacity: 0; }
 }
 

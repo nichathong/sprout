@@ -8,7 +8,7 @@ const GardensErrorReducer = (oldState=_nullErrors, action) => {
     Object.freeze(oldState);
     switch(action.type){
         case RECEIVE_GARDEN_ERRORS:
-            return action.errors;
+            return [action.errors.toomanygardenplants];
         case RECEIVE_GARDEN_PLANT:
             return _nullErrors;
         default:
