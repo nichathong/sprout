@@ -26,7 +26,7 @@ class GardenIndex extends React.Component {
                 <NavBarContainer />
 
                 <div className="garden-index-container">
-                    <h1 className="garden-index-header">Public Gardens</h1>
+                    <h1 className="garden-index-header">Browse Gardens</h1>
 
                     <ul className="garden-index-list-container">
                         {users.map((user, idx) => 
