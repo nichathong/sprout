@@ -6,7 +6,8 @@ export const RECEIVE_USER_GARDENS = "RECEIVE_USER_GARDENS";
 export const RECEIVE_GARDEN_PLANT = "RECEIVE_GARDEN_PLANT";
 export const RECEIVE_GARDEN_PLANTS = "RECEIVE_GARDEN_PLANTS";
 export const REMOVE_GARDEN_PLANT = "REMOVE_GARDEN_PLANT";
-export const UPDATE_GARDEN_PLANT = "UPDATE_GARDEN_PLANT"
+export const UPDATE_GARDEN_PLANT = "UPDATE_GARDEN_PLANT";
+export const RECEIVE_GARDEN_ERRORS = "RECEIVE_GARDEN_ERRORS"
 
 const receiveAllGardenPlants = data => ({
     type: RECEIVE_ALL_GARDEN_PLANTS,
@@ -38,6 +39,11 @@ const updateGardenPlantAction = data => ({
     data
 });
 
+const receiveGardenErrors = errors => ({
+    type: RECEIVE_GARDEN_ERRORS,
+    errors
+})
+
 export const fetchAllGardenPlants = () => dispatch => GardenAPIUtil.fetchAllGardenPlants()
     .then(data => dispatch(receiveAllGardenPlants(data)));
 
@@ -48,7 +54,9 @@ export const fetchAllUserGardens = () => dispatch => GardenAPIUtil.fetchAllUserG
     .then(data => dispatch(receiveUserGardens(data)));
 
 export const addGardenPlant = gardenPlantId => dispatch => GardenAPIUtil.addGardenPlant(gardenPlantId)
-    .then(data => dispatch(receiveGardenPlant(data)));
+    .then(data => dispatch(receiveGardenPlant(data)))
+    .catch(err => dispatch(receiveGardenErrors(err.response.data)));
+
 
 export const deleteGardenPlant = gardenPlantId => dispatch => GardenAPIUtil.deleteGardenPlant(gardenPlantId)
     .then(data => dispatch(removeGardenPlant(gardenPlantId)));
