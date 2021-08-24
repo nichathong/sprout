@@ -26,12 +26,13 @@
 
 
 .main-container {
-    width: 500px;
-    height: 500px;
+    width: 70vw;
+    height: 80vh;
     position: fixed; 
-    margin-left: -250px;
-    margin-top: 100px;
+    
+    margin-top: 5%;
     left: 50%;
+    transform: translate(-50%);
     padding: 30px;
     /* left: 50%;
     right: 50%;
@@ -49,16 +50,72 @@
     
 }
 
+.homepage{
+    font-size: 140%;
+}
+
+.patrick{
+    float: left;
+    padding: 2%;
+    font-weight: bold;
+}
+
+.shirley{
+    float: left;
+    padding: 2%;
+    font-weight: bold;
+}
+
+.nicha{
+    float: left;
+    padding: 2%;
+    font-weight: bold;
+}
+
+.annie{
+    float: left;
+    padding: 2%;
+    font-weight: bold;
+}
+
+.description{
+    width: 50vw;
+    text-align: center;
+    font-size: 130%;
+    align-self: center;
+    align-items: center;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.instructions{
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: left;
+}
+
+.created-by{
+    margin-left: 15%;
+    margin-right: 15%;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    text-align: center;
+}
+
 .logo-container {
+
     /* margin-top: 30px; */
     /* width: 300px; */
 }
 .logo{
-  width: 250px;
+  width: 150px;
   height: auto;
   margin: -10px;
 
 }
+
 
 .content-container {
     align-items: center;
@@ -73,6 +130,8 @@
 
 .login-signup-link {
     margin-top: 50px;
+    position: relative;
+    bottom: 0%;
 }
 
 .login-splash, .signup-splash {
@@ -86,6 +145,12 @@
 
 .login-splash:hover, .signup-splash:hover {
     background-color: #91a183;
+}
+
+.social{
+    height: 30px;
+    width: 30px;
+    margin: 5px;
 }
 
 .login-splash {
