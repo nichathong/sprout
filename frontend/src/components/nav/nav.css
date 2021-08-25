@@ -72,9 +72,13 @@
 
 .explore-links {
     display: flex;
-    margin-left: -25vh;
+    margin-left: -35vh;
 }
 
+.profile{
+    height: 70px;
+    width: auto;
+}
 
 .logo-nave {
     padding-top: 1vh;

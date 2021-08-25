@@ -101,25 +101,7 @@ class MainPage extends React.Component {
           
         
 
-        <div className="created-by">
-
-          <div className="patrick">Patrick Campbell <br />
-            <a href="https://www.linkedin.com/in/patrick-campbell-336a72139/" target="_blank"><img className="social" src="LinkedIn.png" /></a>
-            <a className="social" href="https://github.com/pcampbell42" target="_blank"><img className="social" src="Github.png" /></a></div>
-
-          <div className="shirley">Shirley Tang <br />
-            <a href="https://www.linkedin.com/in/shirley-tang-213a40179/" target="_blank"><img className="social" src="LinkedIn.png" /></a>
-            <a className="social" href="https://github.com/shirleytang0121" target="_blank"><img className="social" src="Github.png" /></a></div>
-
-          <div className="nicha">Nicha Thongpanchang <br />
-            <a href="https://www.linkedin.com/in/nicha-thpng/" target="_blank"><img className="social" src="LinkedIn.png" /></a>
-            <a className="social" href="https://github.com/nichathong" target="_blank"><img className="social" src="Github.png" /></a></div>
-
-          <div className="annie">Annie Yang <br />
-            <a href="https://www.linkedin.com/in/annie-yang-48780175/" target="_blank"><img className="social" src="LinkedIn.png" /></a>
-            <a className="social" href="https://github.com/annieyang1993?tab=repositories" target="_blank"><img className="social" src="Github.png" /></a></div>
-
-          </div>
+        
         </div>
         {/* <div className="footer-container">
           <footer className="footter">

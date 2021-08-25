@@ -23,7 +23,7 @@
   font-family: 'Annie Use Your Telescope', cursive;
   width: 50vw;
   height: 50vh;
-  margin-top: 10vh;
+  margin-top: 5vh;
   overflow-y: auto;
   position: relative;
   left: 50%;
@@ -33,6 +33,7 @@
   
   padding-left: 4vw;
   padding-right: 2vw;
+  float: left;
 }
 
 .instructions-title{
@@ -41,3 +42,26 @@
   align-items: center;
   align-content: center;
 }
+
+.created-by{
+    width: 50vw;
+    margin-top: 3%;
+    padding-top: 2%;
+    height: 30vh;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    text-align: center; 
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: rgb(250, 225, 212); 
+    font-family: 'Annie Use Your Telescope', cursive;
+    font-size: 150%;
+    font-weight: bold;
+    border-radius: 2vh;
+    padding-left: 4vw;
+    padding-right: 2vw;
+    float: left;
+}
+

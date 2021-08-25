@@ -23,7 +23,7 @@ class Navbar extends React.Component {
                 <div className="nav-container">
                     <nav className="all-nav-bttn">
                         <div className = "instructions">
-                        <Link className="explore-instructions" to={'/instructions'}>Instructions</Link>
+                        <Link className="explore-instructions" to={'/instructions'}>About</Link>
                         </div>
                         <div className="explore-links">
                             <Link className="explore-plant-link"to={'/plants'}>All Plants</Link>
