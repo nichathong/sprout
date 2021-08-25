@@ -1,0 +1,43 @@
+.home-page-container{
+  
+  width: 100vw;
+  height: 130vh;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  background-color: rgb(250, 225, 212)
+  
+  /* background-image: url("dirt.jpeg"); */
+}
+
+.plant-index-item-mega-container {
+    height: 170vh; 
+    background-image: url("wallpaper.png");
+    background-color: #cccccc;
+    background-size: cover;
+}
+
+.instructions2 {
+  background-color: rgb(250, 225, 212);
+  border-radius: 2vh;
+  font-family: 'Annie Use Your Telescope', cursive;
+  width: 50vw;
+  height: 50vh;
+  margin-top: 10vh;
+  overflow-y: auto;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 150%;
+  font-weight: bold;
+  
+  padding-left: 4vw;
+  padding-right: 2vw;
+}
+
+.instructions-title{
+  align-self: center;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}

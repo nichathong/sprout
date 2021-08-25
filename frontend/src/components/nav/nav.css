@@ -17,7 +17,7 @@
     padding-left: 8vw;
 }
 
-.explore-plant-link, .explore-garden {
+.explore-plant-link, .explore-garden, .explore-instructions {
     height: fit-content;
     padding-top: 9vh;
     text-decoration: none;
@@ -28,12 +28,31 @@
 }
 
 .explore-garden {
-    margin-left: -30vh;
+    margin-left: -10vh;
 }
+
+.instructions{
+    width: 10vh;
+    display: flex;
+    margin-left: -10vh;
+    height: fit-content;
+    
+    text-decoration: none;
+    color: rgb(5, 5, 5);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 5px;
+}
+
+.explore-instructions:hover{
+    border-bottom-style: solid;
+    
+}
+
 
 
 .explore-plant-link:hover {
     border-bottom-style: solid;
+    padding-bottom: 5px;
 
 }
 
@@ -53,7 +72,9 @@
 
 .explore-links {
     display: flex;
+    margin-left: -25vh;
 }
+
 
 .logo-nave {
     padding-top: 1vh;
