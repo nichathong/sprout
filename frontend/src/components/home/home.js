@@ -30,7 +30,6 @@ class Home extends React.Component{
 
     handleClick(plantId) {
         this.props.deleteGardenPlant(plantId);
-        console.log(this.props.gardenPlants);
     }
 
     handleSubmit(e){
@@ -87,21 +86,20 @@ class Home extends React.Component{
     renderUpdateForm(gardenPlant){
         return(
             <div className = "render-update-form">
-                <button onClick={()=>this._restForm()}>x</button>
+                <div className="update-garden-form-close" onClick={()=>this._restForm()}>x</div>
                 <form onSubmit={this.handleSubmit}>
                     <label className = "nickname">Nickname
-                         <input  type="text" value={this.state.nickname} onChange={this.update("nickname")} />
+                        <input  type="text" value={this.state.nickname} onChange={this.update("nickname")} />
                     </label>
                     <label className="date">Date
-                         <input  type="text" value={this.state.date} onChange={this.update("date")} />
+                        <input  type="text" value={this.state.date} onChange={this.update("date")} />
                     </label>
                     <label className="waterdate">WaterDate
-                         <input  type="text" value={this.state.waterDate} onChange={this.update("waterDate")} />
+                        <input  type="text" value={this.state.waterDate} onChange={this.update("waterDate")} />
                     </label>
-                    <input type="submit" value="Update" />
+                    <input className="update-garden-form-submit" type="submit" value="Update" />
                 </form>
             </div>
-
         )
     }
 
@@ -173,7 +171,6 @@ class Home extends React.Component{
         const { plants, gardenPlants } = this.props;
         var today = new Date();
         var days = 0;
-        console.log(this.state)
         return (
             <div>
                 <div className="navbar-container">
@@ -185,21 +182,21 @@ class Home extends React.Component{
 
                 <ul className = "plantList">
                     {gardenPlants.map((plant, idx) => {
-                        return <li className = "individual-sprout" key={idx}>
+                        return (
+                            <li className = "individual-sprout" key={idx}>
                             
-                            <div className="plantName2"> {plant.nickname} </div> 
-                            Days alive: {(days = Math.round(Math.ceil(new Date() - new Date(plant.date.split("T")[0])) / (1000 * 60 * 60 * 24)))} <br />
-                            {Math.round(Math.ceil(new Date() - new Date(plant.waterDate.split("T")[0])) / (1000 * 60 * 60 * 24)) === 1 ? <img className="watering-can" src="https://sprout-app.s3.us-east-2.amazonaws.com/watering-can.png" onClick={()=> this.handleWatering(plant)}/> : <div></div>}
-                            {days < 3 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-10.png" /> : (days < 6 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-20.png" /> : (days < 9 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-3.png" /> : (days < 12 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-4.png" /> : <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-5.png" />)))}
-                            <br/>
-                            {this.renderPlantDetail(plant)}
-                            <button className = "update-button" onClick={()=>this.showUpdate(plant)}>update</button>
-                             {(this.state.showUpdateForm && (this.state._id===plant._id || this.state._id === plant.id)) ? this.renderUpdateForm(plant):null }
+                                <div className="plantName2"> {plant.nickname} </div> 
+                                Days alive: {(days = Math.round(Math.ceil(new Date() - new Date(plant.date.split("T")[0])) / (1000 * 60 * 60 * 24)))} <br />
+                                {Math.round(Math.ceil(new Date() - new Date(plant.waterDate.split("T")[0])) / (1000 * 60 * 60 * 24)) >= 1 ? <img className="watering-can" src="https://sprout-app.s3.us-east-2.amazonaws.com/watering-can.png" onClick={()=> this.handleWatering(plant)}/> : <div></div>}                            
+                                {days < 3 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-10.png" /> : (days < 6 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-20.png" /> : (days < 9 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-3.png" /> : (days < 12 ? <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-4.png" /> : <img className="sprout-image" src="https://sprout-app.s3.us-east-2.amazonaws.com/plant-5.png" />)))}
+                                <br/>
+                                {this.renderPlantDetail(plant)}
+                                <button className = "update-button" onClick={()=>this.showUpdate(plant)}>update</button>
 
-                             
-
-                            <button className = "delete-button" onClick={() => {this.handleClick(plant._id || plant.id)}}>Delete</button>                           
+                                <button className = "delete-button" onClick={() => {this.handleClick(plant._id || plant.id)}}>Delete</button>                           
+                                {(this.state.showUpdateForm && (this.state._id === plant._id || this.state._id === plant.id)) ? this.renderUpdateForm(plant) : null}
                             </li>
+                        );
                     })}
                 </ul>
                 </div>

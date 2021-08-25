@@ -109,6 +109,7 @@ input[type="submit"] {
     transition:all .5s ease-in-out;
     background: rgb(255, 211, 163);
     font-weight: bolder;
+    cursor: pointer;
 }
 
 .demo-button{
@@ -122,10 +123,16 @@ input[type="submit"] {
     transition:all .5s ease-in-out;
     background: rgb(255, 211, 163);
     font-weight: bolder;
+    cursor: pointer;
 }
 
 .error-msg {
     color: #da3743;
     padding-top: 1%;
     font-size: 15px;
+}
+
+
+.session-form input:focus {
+    outline-style: none;
 }
