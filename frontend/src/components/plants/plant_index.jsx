@@ -4,7 +4,6 @@ import NavbarContainer from "../nav/navbar_container";
 import './plant_index.css'
 import { capitalizeName } from "../../helpers/random_helpers";
 
-
 class PlantIndex extends React.Component {
   constructor(props) {
     super(props);
