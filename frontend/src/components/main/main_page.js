@@ -4,7 +4,6 @@ import "./main_page.css"
 
 class MainPage extends React.Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       email: "",

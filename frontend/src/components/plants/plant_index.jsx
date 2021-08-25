@@ -364,8 +364,7 @@ class PlantIndex extends React.Component {
       );
 
     return (
-      <div>
-        <div className="plant-index-item-mega-container">
+        <div className="patricks-plant-index-container-DO-NOT-TOUCH">
           <div className="navbar-contianer">
             <NavbarContainer />
           </div>
@@ -373,7 +372,7 @@ class PlantIndex extends React.Component {
             <img className="plantsBackground" src="wallpaper.png" alt="" />
           </div> */}
 
-        {this.state.showForm ? plantForm : null}
+            {this.state.showForm ? plantForm : null}
 
           <div className="main-content-plant-index-container">
 
@@ -384,34 +383,33 @@ class PlantIndex extends React.Component {
               +
             </div>
 
-                <div className="each-plant-index-container">
-                <h1 className="plant-index-header">Types of Plants</h1>
+            <div className="each-plant-index-container">
+            <h1 className="plant-index-header">Types of Plants</h1>
 
-                  <div className="plant-index-list">
-                    {plants.map((plant, idx) => (
-                        <li className="plant-index-item-container" key={idx}>
-                            <Link className="plant-index-item" to={`/plants/${plant._id}`}>
-                                <div className="plant-content-index"key={plant._id}>
-                                    {/* <img
-                                        className="plantPhoto"
-                                        src={plant.photoUrls[0]}
-                                        alt=""
-                                    /> */}
-                                    {this.renderImg(plant)}
-                                    {this.renderName(plant)}
-                                    {/* <div className="plantName">{capitalizeName(plant.name)}</div> */}
-                                </div>
-                            </Link>
-                            <button className={`${addPlantError.length === 1 && this.state.popupId === plant._id ? "add-plant-button-err" : "add-plant-button"}`} id={plant._id} onClick={this.handleAdd(plant)}>Add</button>
-                            {addPlantError.length === 1 && this.state.popupId === plant._id ? <div className="add-plant-error-anchor"><span className="add-plant-error">{addPlantError}</span></div> : null}
-                            {this.state.showPopup && this.state.popupId === plant._id ? plantAddedPopup : null}
-                        </li>
-                    ))}
-                  </div>
+                <div className="plant-index-list">
+                {plants.map((plant, idx) => (
+                    <li className="plant-index-item-container" key={idx}>
+                        <Link className="plant-index-item" to={`/plants/${plant._id}`}>
+                            <div className="plant-content-index"key={plant._id}>
+                                {/* <img
+                                    className="plantPhoto"
+                                    src={plant.photoUrls[0]}
+                                    alt=""
+                                /> */}
+                                {this.renderImg(plant)}
+                                {this.renderName(plant)}
+                                {/* <div className="plantName">{capitalizeName(plant.name)}</div> */}
+                            </div>
+                        </Link>
+                        <button className={`${addPlantError.length === 1 && this.state.popupId === plant._id ? "add-plant-button-err" : "add-plant-button"}`} id={plant._id} onClick={this.handleAdd(plant)}>Add</button>
+                        {addPlantError.length === 1 && this.state.popupId === plant._id ? <div className="add-plant-error-anchor"><span className="add-plant-error">{addPlantError}</span></div> : null}
+                        {this.state.showPopup && this.state.popupId === plant._id ? plantAddedPopup : null}
+                    </li>
+                ))}
                 </div>
-              </div>
             </div>
-          </div>
+            </div>
+        </div>
     );
   }
 }

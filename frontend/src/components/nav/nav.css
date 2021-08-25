@@ -17,6 +17,17 @@
     padding-left: 8vw;
 }
 
+.nav-left {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: -3vw;
+}
+
+.nav-right {
+    display: flex;
+    margin-right: -5vw;
+}
+
 .explore-plant-link, .explore-garden, .explore-instructions {
     height: fit-content;
     padding-top: 9vh;
@@ -28,7 +39,7 @@
 }
 
 .explore-garden {
-    margin-left: -10vh;
+    margin-left: 3vw;
 }
 
 .instructions{
@@ -43,17 +54,47 @@
     padding-bottom: 5px;
 }
 
-.explore-instructions:hover{
-    border-bottom-style: solid;
-    
+.explore-instructions:after {
+  display:block;
+  content: '';
+  padding-top: 5px;
+  border-bottom: solid 3px rgb(5, 5, 5);  
+  transform: scaleX(0);  
+  transition: transform 175ms ease-in-out;
 }
 
+.explore-instructions#selected:after {
+    border-bottom: none;
+}
 
+.explore-instructions:hover:after { 
+    transform: scaleX(1);
+}
 
-.explore-plant-link:hover {
+.explore-instructions#selected{
     border-bottom-style: solid;
-    padding-bottom: 5px;
+    /* padding-bottom: 5px; */
+}
 
+.explore-plant-link:after {
+  display:block;
+  content: '';
+  padding-top: 5px;
+  border-bottom: solid 3px rgb(5, 5, 5);  
+  transform: scaleX(0);  
+  transition: transform 175ms ease-in-out;
+}
+
+.explore-plant-link#selected:after {
+    border-bottom: none;
+}
+
+.explore-plant-link:hover:after { 
+    transform: scaleX(1);
+}
+
+.explore-plant-link#selected {
+    border-bottom-style: solid;
 }
 
 .explore-garden-link {
@@ -64,26 +105,56 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.explore-garden-link:hover {
+.explore-garden-link:after {
+  display:block;
+  content: '';
+  padding-top: 5px;
+  border-bottom: solid 3px rgb(5, 5, 5);  
+  transform: scaleX(0);  
+  transition: transform 175ms ease-in-out;
+}
+
+.explore-garden-link#selected:after {
+    border-bottom: none;
+}
+
+.explore-garden-link:hover:after { 
+    transform: scaleX(1);
+}
+
+.explore-garden-link#selected {
     border-bottom-style: solid;
     padding-bottom: 5px;
-
 }
 
 .explore-links {
     display: flex;
-    margin-left: -35vh;
+    /* margin-left: -35vh; */
 }
 
 .profile{
     height: 70px;
     width: auto;
+    border-radius: 30%;
+    border: solid 2px white;
+}
+
+.profile:hover {
+    border-color: #657468;
 }
 
 .logo-nave {
     padding-top: 1vh;
     padding-right: 6vw;
     
+}
+
+.logo-nave:hover {
+    filter: brightness(1.1);
+}
+
+.logo-nave#selected {
+    filter: brightness(1.1);
 }
 
 .logout-bttn {
@@ -95,6 +166,7 @@
     border-radius: 1px;
     background-color: transparent;
     font-weight: bolder;
+    margin-left: 5vw;
 }
 
 .logout-bttn:hover {
@@ -104,12 +176,11 @@
     color: white;
 }
 
-.explore-plant-link {
-    
-}
-
 img {
     width: 150px;
     height: auto;
 }
 
+.social:hover {
+    opacity: 0.5;
+}
