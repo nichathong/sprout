@@ -58,6 +58,17 @@
     width: 95%;
     /* border-radius:10px; */
 }
+
+.input-box-err {
+    margin: 7px 0;
+    padding:10px;
+    border: none;
+    background: transparent;
+    border-bottom: thin solid;
+    width: 95%;
+    border-color:#da3743;
+}
+
 .login-form{
 
 }
@@ -80,10 +91,12 @@
     bottom: 270px;
     /* right: 100px; */
     position: absolute;
-
-
-
 }
+
+.already-have-account a:hover {
+    text-decoration: underline;
+}
+
 .need-an-account {
     bottom: 100px;
     /* right: 100px; */
@@ -94,7 +107,10 @@
     text-decoration: none;
     font-family:Arial, Helvetica, sans-serif;
     color:gray;
+}
 
+.need-an-account a:hover {
+    text-decoration: underline;
 }
 
 input[type="submit"] {
@@ -126,10 +142,22 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+.session-error-anchor {
+    position: relative;
+    height: 0;
+    width: 0;
+}
+
 .error-msg {
     color: #da3743;
     padding-top: 1%;
     font-size: 15px;
+    position: absolute;
+    font-style: italic;
+    font-size: 1.4vh;
+    left: 0.6vw;
+    width: 20vw;
+    bottom: 4.8vh;
 }
 
 
