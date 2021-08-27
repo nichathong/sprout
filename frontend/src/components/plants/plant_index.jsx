@@ -273,7 +273,7 @@ class PlantIndex extends React.Component {
     let waterError;
     if (this.state.errors) {
         Object.values(this.state.errors).forEach(error => {
-            if (error.includes("Name")) {
+            if (error.indexOf("Name")>-1) {
                 nameError = error;
             } else {
                 waterError = error;
