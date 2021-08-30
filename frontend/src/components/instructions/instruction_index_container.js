@@ -32,7 +32,7 @@ class Instructions extends React.Component {
                 <div className="created-by">
                     About the team: 
 
-                    <div>
+                    <div className="mern-people">
                     <div className="patrick">Patrick Campbell <br />
                         <a href="https://www.linkedin.com/in/patrick-campbell-336a72139/" target="_blank"><img className="social" src="LinkedIn.png" /></a>
                         <a className="social" href="https://github.com/pcampbell42" target="_blank"><img className="social" src="Github.png" /></a><br/>
