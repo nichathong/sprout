@@ -36,6 +36,12 @@
   float: left;
 }
 
+.mern-people {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .instructions-title{
   align-self: center;
   text-align: center;

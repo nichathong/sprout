@@ -49,7 +49,7 @@ React-redux cycle would be implemented to manage the data visualization for the 
 
 ## Group Members
 
-* **Patrick Campbell** - Team leader
+* **Patrick Campbell** - Team Lead
 * **Annie Yang** -  Frontend/Backend Asst.
-* **Shirley Tang** - Backend Leader
+* **Shirley Tang** - Backend Lead
 * **Nicha Thongpanchang** - Frontend Lead 
