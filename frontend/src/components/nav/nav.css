@@ -78,8 +78,7 @@
 
 .explore-plant-link:after {
   display:block;
-  cont
-  ent: '';
+  content: '';
   padding-top: 5px;
   border-bottom: solid 3px rgb(5, 5, 5);  
   transform: scaleX(0);  
