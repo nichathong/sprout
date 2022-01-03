@@ -25,7 +25,6 @@ const gardenPlantsReducer = (state = {}, action) => {
         case REMOVE_GARDEN_PLANT:
             nextState = Object.assign({}, state);
             delete nextState[action.data];
-            console.log(action.data);
             return nextState;
         
         default:

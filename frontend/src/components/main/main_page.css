@@ -24,10 +24,12 @@
 
 } */
 
-
+.edit{
+    height: 100px;
+}
 .main-container {
-    width: 70vw;
-    height: 80vh;
+    width: 55vw;
+    height: 70vh;
     position: fixed; 
     
     margin-top: 5%;
@@ -79,7 +81,7 @@
 }
 
 .description{
-    width: 50vw;
+    width:60vw;
     text-align: center;
     font-size: 130%;
     align-self: center;
@@ -96,12 +98,13 @@
 }
 
 .created-by{
-    margin-left: 15%;
-    margin-right: 15%;
+    width: 43vw;
+    margin-top: 17%;
+    
     align-items: center;
     align-content: center;
     align-self: center;
-    text-align: center;
+    text-align: center;  
 }
 
 .logo-container {
@@ -131,7 +134,7 @@
 .login-signup-link {
     margin-top: 50px;
     position: relative;
-    bottom: 0%;
+    bottom: -10%;
 }
 
 .login-splash, .signup-splash {
@@ -148,8 +151,8 @@
 }
 
 .social{
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     margin: 5px;
 }
 

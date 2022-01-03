@@ -4,7 +4,6 @@ import NavbarContainer from "../nav/navbar_container";
 import './plant_index.css'
 import { capitalizeName } from "../../helpers/random_helpers";
 
-
 class PlantIndex extends React.Component {
   constructor(props) {
     super(props);
@@ -54,6 +53,10 @@ class PlantIndex extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     this.setState({ errors: nextProps.errors });
+  }
+
+  componentWillUnmount() {
+      this.props.clearGardenErrors();
   }
 
 
@@ -180,10 +183,16 @@ class PlantIndex extends React.Component {
     handleAdd(plant) {
         return e => {
             e.preventDefault();
-            this.props.addGardenPlant(plant._id ? plant._id : plant.id);
-            this.setState({ showPopup: true, popupId: e.currentTarget.id });
-            setTimeout(() => this.setState({ showPopup: false, popupId: undefined }), 1500);
-        }
+            this.props.addGardenPlant(plant._id ? plant._id : plant.id)
+                .then(() => {
+                    if (this.props.addPlantError.length === 0) {
+                        this.setState({ showPopup: true, popupId: e.target.id });
+                        setTimeout(() => this.setState({ showPopup: false, popupId: undefined }), 1500);
+                    } else {
+                        this.setState({ popupId: e.target.id });
+                    }
+                })
+            }
   }
 
   stateChange() {
@@ -209,25 +218,25 @@ class PlantIndex extends React.Component {
     }
   }
 
-  renderErrors() {
-    return (
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
-        ))}
-      </ul>
-    );
-  }
+//   renderErrors() {
+//     return (
+//       <ul>
+//         {Object.keys(this.state.errors).map((error, i) => (
+//           <li key={`error-${i}`}>{this.state.errors[error]}</li>
+//         ))}
+//       </ul>
+//     );
+//   }
 
-  handleAdd(plant) {
-    return (e) => {
-        e.preventDefault();
-        this.props.addGardenPlant(plant._id ? plant._id : plant.id);
-        this.setState({ showPopup: true, popupId: plant._id ? plant._id : plant.id });
-        setTimeout(() => this.setState({ showPopup: false, popupId: plant._id ? plant._id : plant.id }), 1500);
+//   handleAdd(plant) {
+//     return (e) => {
+//         e.preventDefault();
+//         this.props.addGardenPlant(plant._id ? plant._id : plant.id);
+//         this.setState({ showPopup: true, popupId: plant._id ? plant._id : plant.id });
+//         setTimeout(() => this.setState({ showPopup: false, popupId: plant._id ? plant._id : plant.id }), 1500);
 
-    };
-  }
+//     };
+//   }
 
   renderImg(plant){
     if(plant.photoUrls===undefined){
@@ -255,7 +264,7 @@ class PlantIndex extends React.Component {
   }
 
   render() {
-    const { plants } = this.props;
+    const { plants, addPlantError } = this.props;
 
     const preview = this.state.url ? <img className="create-plant-image" src={this.state.url} /> : null;
 
@@ -355,8 +364,7 @@ class PlantIndex extends React.Component {
       );
 
     return (
-      <div>
-        <div className="plant-index-item-mega-container">
+        <div className="patricks-plant-index-container-DO-NOT-TOUCH">
           <div className="navbar-contianer">
             <NavbarContainer />
           </div>
@@ -364,7 +372,7 @@ class PlantIndex extends React.Component {
             <img className="plantsBackground" src="wallpaper.png" alt="" />
           </div> */}
 
-        {this.state.showForm ? plantForm : null}
+            {this.state.showForm ? plantForm : null}
 
           <div className="main-content-plant-index-container">
 
@@ -375,33 +383,33 @@ class PlantIndex extends React.Component {
               +
             </div>
 
-                <div className="each-plant-index-container">
-                <h1 className="plant-index-header">Types of Plants</h1>
+            <div className="each-plant-index-container">
+            <h1 className="plant-index-header">Types of Plants</h1>
 
-                  <div className="plant-index-list">
-                    {plants.map((plant, idx) => (
-                        <li className="plant-index-item-container" key={idx}>
-                            <Link className="plant-index-item" to={`/plants/${plant._id}`}>
-                                <div className="plant-content-index"key={plant._id}>
-                                    {/* <img
-                                        className="plantPhoto"
-                                        src={plant.photoUrls[0]}
-                                        alt=""
-                                    /> */}
-                                    {this.renderImg(plant)}
-                                    {this.renderName(plant)}
-                                    {/* <div className="plantName">{capitalizeName(plant.name)}</div> */}
-                                </div>
-                            </Link>
-                            <button className="add-plant-button" id={plant._id} onClick={this.handleAdd(plant)}>Add</button>
-                            {this.state.showPopup && this.state.popupId === plant._id ? plantAddedPopup : null}
-                        </li>
-                    ))}
-                  </div>
+                <div className="plant-index-list">
+                {plants.map((plant, idx) => (
+                    <li className="plant-index-item-container" key={idx}>
+                        <Link className="plant-index-item" to={`/plants/${plant._id}`}>
+                            <div className="plant-content-index"key={plant._id}>
+                                {/* <img
+                                    className="plantPhoto"
+                                    src={plant.photoUrls[0]}
+                                    alt=""
+                                /> */}
+                                {this.renderImg(plant)}
+                                {this.renderName(plant)}
+                                {/* <div className="plantName">{capitalizeName(plant.name)}</div> */}
+                            </div>
+                        </Link>
+                        <button className={`${addPlantError.length === 1 && this.state.popupId === plant._id ? "add-plant-button-err" : "add-plant-button"}`} id={plant._id} onClick={this.handleAdd(plant)}>Add</button>
+                        {addPlantError.length === 1 && this.state.popupId === plant._id ? <div className="add-plant-error-anchor"><span className="add-plant-error">{addPlantError}</span></div> : null}
+                        {this.state.showPopup && this.state.popupId === plant._id ? plantAddedPopup : null}
+                    </li>
+                ))}
                 </div>
-              </div>
             </div>
-          </div>
+            </div>
+        </div>
     );
   }
 }

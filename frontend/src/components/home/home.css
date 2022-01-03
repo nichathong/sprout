@@ -57,7 +57,7 @@
   color: white;
   font-family: 'Annie Use Your Telescope', cursive;
   margin: 10px;
-  margin-top: 20vh;
+  margin-top: 25vh;
   margin-bottom: -15vh;
   font-size: 120%;
   font-weight: bold;
@@ -126,10 +126,15 @@
   z-index: 100000;
   background-color: white;
   position: absolute;
+  left: -2.4vw;
   bottom: 0%;
   translate: (0%, -100%);
   border-radius: 10px;
   box-shadow: 0px, 0px, 10px, 10px;
+  padding: 1vh 0.5vw 1vh 0.5vw;
+  background-color: rgb(250, 225, 212);
+  border: solid 0.2vw black;
+
 }
 
 .nickname{
@@ -205,6 +210,8 @@
   font-size: 120%;
   font-weight: bold;
   background-color: rgb(250, 225, 212);
+  border: solid 0.2vw black;
+
 }
 
 .anytime{
@@ -214,10 +221,33 @@
   background-color: rgb(0, 128, 55);
   border-radius: 5px;
   color: white;
+  border-style: none;
+  padding: 1vh 1vw 1vh 1vw;
 }
 
 
 .anytime:hover {
     cursor: pointer;
     background-color: #72c254;
+}
+
+.update-garden-form-submit {
+  background-color: #008036;
+  color: white;
+}
+
+.update-garden-form-submit:hover {
+    cursor: pointer;
+    background-color: #72c254;
+}
+
+.update-garden-form-close {
+    float: left;
+    margin-top: -1.5vh;
+    color: black;
+}
+
+.update-garden-form-close:hover {
+    cursor: pointer;
+    opacity: 0.3;
 }

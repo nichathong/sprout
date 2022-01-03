@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
-import { signup } from '../../actions/session_actions';
+import { signup, clearErrors } from '../../actions/session_actions';
 
 const mstp = state => ({
     signedIn: state.session.isSignedIn,
@@ -9,6 +9,7 @@ const mstp = state => ({
 })
 
 const mdtp = dispatch => ({
-    signup: user => dispatch(signup(user))
+    signup: user => dispatch(signup(user)),
+    clearErrors: () => dispatch(clearErrors())
 })
 export default connect(mstp, mdtp)(SessionForm);

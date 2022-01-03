@@ -18,26 +18,25 @@ class SessionForm extends React.Component {
     this.demoHandler = this.demoHandler.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     if (this.props.errors) {
-      this.setState({ errors: this.props.errors })
+      this.setState({ errors: this.props.errors });
     }
   }
-  
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
-      this.props.history.push("/home"); 
+      this.props.history.push("/home");
     }
 
     this.setState({ errors: nextProps.errors });
   }
 
   update(field) {
-    
     return (e) =>
       this.setState({
         [field]: e.currentTarget.value,
-        errors: { ...this.state.errors, [field]: "" }
+        errors: { ...this.state.errors, [field]: "" },
       });
   }
 
@@ -59,12 +58,16 @@ class SessionForm extends React.Component {
     }
   }
 
-  demoHandler(e){
-    e.preventDefault()
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
+  demoHandler(e) {
+    e.preventDefault();
     this.props.login({
       email: "demo1@gmail.com",
-      password: "123456"
-    })
+      password: "123456",
+    });
   }
 
   // renderErrors() {
@@ -77,10 +80,10 @@ class SessionForm extends React.Component {
   //   );
   // }
 
-
   render() {
     const { formType } = this.props;
-    const { firstname, lastname, password, password2, email } = this.props.errors;
+    const { firstname, lastname, password, password2, email } =
+      this.props.errors;
     return (
       <div className="main-session-form">
         {/* <div className="background-container">
@@ -100,62 +103,86 @@ class SessionForm extends React.Component {
                 <label>
                   <input
                     id="firstname"
-                    className="input-box"
+                    className={`input-box${firstname ? "-err" : ""}`}
                     type="text"
                     value={this.state.firstname}
                     placeholder="First Name"
                     onChange={this.update("firstname")}
                   />
-                {firstname && (
-                  <div className="error-msg">{this.state.errors.firstname}</div>
-                )}
+                  {firstname && (
+                      <div className="session-error-anchor">
+                        <div className="error-msg">
+                            {this.state.errors.firstname}
+                        </div>
+                      </div>
+                  )}
                 </label>
 
                 <label>
                   <input
-                    className="input-box"
+                    className={`input-box${lastname ? "-err" : ""}`}
                     type="text"
                     value={this.state.lastname}
                     placeholder="Last Name"
                     onChange={this.update("lastname")}
                   />
-                {lastname && <div className="error-msg">{this.state.errors.lastname}</div>}
+                  {lastname && (
+                      <div className="session-error-anchor">
+                        <div className="error-msg">
+                            {this.state.errors.lastname}
+                        </div>
+                      </div>
+                  )}
                 </label>
               </div>
             )}
 
             <label>
               <input
-                className="input-box"
+                className={`input-box${email ? "-err" : ""}`}   
                 type="email"
                 value={this.state.email}
                 placeholder="Email"
                 onChange={this.update("email")}
               />
-              {email && <div className="error-msg">{this.state.errors.email}</div>}
+              {email && (
+                  <div className="session-error-anchor">
+                      <div className="error-msg">
+                          {this.state.errors.email}
+                        </div>
+                  </div>
+              )}
             </label>
 
             <label>
               <input
-                className="input-box"
+                className={`input-box${password ? "-err" : ""}`}
                 type="password"
                 value={this.state.password}
                 placeholder="Password"
                 onChange={this.update("password")}
               />
-              {password && <div className="error-msg">{this.state.errors.password}</div>}
+              {password && (
+                  <div className="session-error-anchor">
+                      <div className="error-msg">{this.state.errors.password}</div>
+                  </div>
+              )}
             </label>
 
             {formType === "Login" ? null : (
               <label>
                 <input
-                  className="input-box"
+                className={`input-box${password2 ? "-err" : ""}`}   
                   type="password"
                   value={this.state.password2}
                   placeholder="Re-enter Password"
                   onChange={this.update("password2")}
                 />
-                {password2 && <div className="error-msg">{this.state.errors.password2}</div>}
+                {password2 && (
+                    <div className="session-error-anchor">
+                        <div className="error-msg">{this.state.errors.password2}</div>
+                    </div>
+                )}
               </label>
             )}
             <input
@@ -163,8 +190,12 @@ class SessionForm extends React.Component {
               type="submit"
               value="Submit"
             />
-            <br/>
-           { formType==="Login" ? <button className="demo-button" onClick={this.demoHandler}>Demo User</button> :null }
+            <br />
+            {formType === "Login" ? (
+              <button className="demo-button" onClick={this.demoHandler}>
+                Demo User
+              </button>
+            ) : null}
           </form>
           <div className="bottom-text">
             {formType === "Login" ? (

@@ -25,8 +25,6 @@ class GardenShow extends React.Component {
     render() {
         const { user, plants, gardenPlants } = this.props;
 
-        // console.log(`${user.firstname} ------- ${gardenPlants.length}`);
-
         var today = new Date();
         var days = 0;
 

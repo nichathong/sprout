@@ -240,9 +240,6 @@ class PlantShow extends React.Component {
                 </form>
             </div> : null;
 
-            
-
-            console.log(plant ? plant.tags : null)
 
         return plant ? (
           <div className="plant-show-container">

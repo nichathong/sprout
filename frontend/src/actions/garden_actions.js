@@ -7,7 +7,8 @@ export const RECEIVE_GARDEN_PLANT = "RECEIVE_GARDEN_PLANT";
 export const RECEIVE_GARDEN_PLANTS = "RECEIVE_GARDEN_PLANTS";
 export const REMOVE_GARDEN_PLANT = "REMOVE_GARDEN_PLANT";
 export const UPDATE_GARDEN_PLANT = "UPDATE_GARDEN_PLANT";
-export const RECEIVE_GARDEN_ERRORS = "RECEIVE_GARDEN_ERRORS"
+export const RECEIVE_GARDEN_ERRORS = "RECEIVE_GARDEN_ERRORS";
+export const CLEAR_GARDEN_ERRORS = "CLEAR_GARDEN_ERRORS";
 
 const receiveAllGardenPlants = data => ({
     type: RECEIVE_ALL_GARDEN_PLANTS,
@@ -42,7 +43,11 @@ const updateGardenPlantAction = data => ({
 const receiveGardenErrors = errors => ({
     type: RECEIVE_GARDEN_ERRORS,
     errors
-})
+});
+
+export const clearGardenErrors = () => ({
+    type: CLEAR_GARDEN_ERRORS
+});
 
 export const fetchAllGardenPlants = () => dispatch => GardenAPIUtil.fetchAllGardenPlants()
     .then(data => dispatch(receiveAllGardenPlants(data)));
